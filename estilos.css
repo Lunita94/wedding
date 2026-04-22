@@ -1,0 +1,83 @@
+:root {
+    --vino: #4a080e;
+    --oro: #d4c19d;
+    --crema: #f9f7f2;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--crema);
+    scroll-behavior: smooth;
+}
+
+h1, h2 { font-family: 'Cormorant Garamond', serif; color: var(--vino); }
+
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.countdown-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(212, 193, 157, 0.4);
+    padding: 15px;
+    min-width: 80px;
+    border-radius: 4px;
+}
+
+.countdown-item span { display: block; font-size: 2rem; font-weight: 300; }
+.countdown-item p { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
+
+.btn-lujo {
+    background: white;
+    color: var(--vino);
+    border: 1px solid var(--oro);
+    transition: all 0.4s ease;
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-lujo:hover {
+    background: var(--vino);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+.form-input {
+    width: 100%;
+    border-bottom: 1px solid var(--oro);
+    padding: 10px 0;
+    outline: none;
+    background: transparent;
+}
+
+.label-form {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: #888;
+}
+
+.hidden { display: none !important; }
+
+.divider-floral {
+    height: 1px; width: 100px;
+    background: var(--oro);
+    margin: 20px auto;
+}
+
+iframe {
+    filter: grayscale(20%) sepia(10%); /* Le da un toque vintage que combina con el crema y vino */
+    transition: all 0.5s ease;
+}
+
+iframe:hover {
+    filter: grayscale(0%) sepia(0%); /* Se pone a color cuando pasan el mouse */
+}
