@@ -10,7 +10,7 @@ body {
     scroll-behavior: smooth;
 }
 
-h1, h2 { font-family: 'Cormorant Garamond', serif; color: var(--vino); }
+h1, h2 , h3 { font-family: 'Cormorant Garamond', serif; color: var(--vino); }
 
 .hero-section {
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
@@ -74,10 +74,41 @@ h1, h2 { font-family: 'Cormorant Garamond', serif; color: var(--vino); }
 }
 
 iframe {
-    filter: grayscale(20%) sepia(10%); /* Le da un toque vintage que combina con el crema y vino */
+    filter: grayscale(20%) sepia(10%);
     transition: all 0.5s ease;
 }
 
 iframe:hover {
-    filter: grayscale(0%) sepia(0%); /* Se pone a color cuando pasan el mouse */
+    filter: grayscale(0%) sepia(0%);
+}
+
+/* --- ANIMACIONES Y BOTONES DE LUJO --- */
+
+/* Animación de flotación suave para el contenedor del Lottie */
+@keyframes bounceSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.animate-bounce-slow {
+    animation: bounceSlow 3s ease-in-out infinite;
+}
+
+/* Estilo para los botones dorados/vino */
+.btn-lujo {
+    letter-spacing: 0.3em;
+    transition: all 0.5s ease;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #d4c19d;
+    background-color: white;
+    color: #4a080e;
+}
+
+.btn-lujo:hover {
+    background-color: #4a080e;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 8, 14, 0.2);
 }
