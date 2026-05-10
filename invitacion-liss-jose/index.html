@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boda de Liss y Jose</title>
+  <meta name="description" content="Invitacion a la boda de Liss y Jose">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="invite-shell">
+    <section class="hero section-pad" id="inicio">
+      <div class="floral-band floral-band-top" aria-hidden="true"></div>
+      <div class="hero-photo" aria-hidden="true"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">20.12.2026</p>
+        <h1>Liss & Jose</h1>
+        <span class="ornament-line"></span>
+        <p class="subtitle">Nuestra Boda</p>
+        <p class="hero-note">El amor se celebra mejor cuando se comparte con las personas que queremos.</p>
+      </div>
+      <div class="floral-band floral-band-bottom" aria-hidden="true"></div>
+    </section>
+
+    <section class="countdown section-pad soft-section reveal" aria-labelledby="countdown-title">
+      <h2 id="countdown-title">Falta</h2>
+      <div class="countdown-grid" id="countdown" aria-live="polite">
+        <div class="time-card"><strong id="days">00</strong><span>dias</span></div>
+        <div class="time-card"><strong id="hours">00</strong><span>hrs</span></div>
+        <div class="time-card"><strong id="minutes">00</strong><span>min</span></div>
+        <div class="time-card"><strong id="seconds">00</strong><span>seg</span></div>
+      </div>
+      <span class="heart" aria-hidden="true">&hearts;</span>
+    </section>
+
+    <div class="floral-band" aria-hidden="true"></div>
+
+    <section class="story section-pad reveal" id="historia" aria-labelledby="story-title">
+      <p class="section-number">01</p>
+      <h2 id="story-title">Nuestra Historia</h2>
+      <p>
+        Aqui pueden escribir un texto corto sobre como empezo todo, algun recuerdo bonito,
+        o una frase que represente esta nueva etapa juntos.
+      </p>
+      <div class="music-card">
+        <div>
+          <span class="mini-label">Nuestra cancion</span>
+          <strong>La cancion especial de Liss y Jose</strong>
+        </div>
+        <button class="icon-button" id="musicToggle" type="button" aria-label="Reproducir o pausar cancion">&#9658;</button>
+        <audio id="song" preload="none">
+          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </section>
+
+    <section class="moments section-pad reveal" id="momentos" aria-labelledby="moments-title">
+      <h2 id="moments-title">Nuestros Momentos</h2>
+      <p class="section-intro">Retratos y recuerdos que pronto van a contar su historia.</p>
+      <div class="photo-grid">
+        <figure>
+          <video src="../imagenes/wedding-photo-animation-gif-download-5827058.mp4" autoplay muted loop playsinline></video>
+        </figure>
+        <figure class="featured-photo">
+          <video src="../imagenes/wedding-photo-animation-gif-download-5827058.mp4" autoplay muted loop playsinline></video>
+        </figure>
+        <figure>
+          <video src="../imagenes/wedding-photo-animation-gif-download-5827058.mp4" autoplay muted loop playsinline></video>
+        </figure>
+      </div>
+      <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    </section>
+
+    <div class="floral-band" aria-hidden="true"></div>
+
+    <section class="events section-pad soft-section reveal" id="eventos" aria-labelledby="events-title">
+      <h2 id="events-title">Eventos</h2>
+      <p class="section-intro">Nos encantara compartir contigo cada momento de este dia.</p>
+      <div class="event-list">
+        <article class="event-card">
+          <div class="event-icon" aria-hidden="true">+</div>
+          <h3>Ceremonia</h3>
+          <p class="event-meta">Sabado 20 de diciembre - 3:00 p.m.</p>
+          <p>Parroquia Nuestra Se&ntilde;ora de Lujan<br>San Ramon, Alajuela</p>
+          <div class="button-row">
+            <a class="primary-button" href="https://maps.google.com" target="_blank" rel="noreferrer">Google Maps</a>
+            <a class="secondary-button" href="https://waze.com/ul" target="_blank" rel="noreferrer">Waze</a>
+          </div>
+        </article>
+        <article class="event-card">
+          <div class="event-icon" aria-hidden="true">*</div>
+          <h3>Celebracion</h3>
+          <p class="event-meta">Sabado 20 de diciembre - 5:00 p.m.</p>
+          <p>Salon de eventos Avril<br>San Ramon, Alajuela</p>
+          <div class="button-row">
+            <a class="primary-button" href="https://maps.google.com" target="_blank" rel="noreferrer">Google Maps</a>
+            <a class="secondary-button" href="https://waze.com/ul" target="_blank" rel="noreferrer">Waze</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="floral-band" aria-hidden="true"></div>
+
+    <section class="dress-code section-pad reveal" id="dress-code" aria-labelledby="dress-title">
+      <h2 id="dress-title">Dress Code</h2>
+      <p class="section-intro">Formal elegante. Agradecemos reservar el color blanco para la novia.</p>
+      <div class="dress-layout">
+        <div class="dress-copy">
+          <span class="mini-label">Inspiracion</span>
+          <h3>Vino, negro y tonos neutros</h3>
+          <p>Traje formal para caballeros y vestido largo o coctel elegante para damas.</p>
+        </div>
+        <img src="../imagenes/atuendo.png" alt="Ejemplo de atuendo formal para la boda">
+      </div>
+    </section>
+
+    <section class="rsvp section-pad soft-section reveal" id="confirmar" aria-labelledby="rsvp-title">
+      <h2 id="rsvp-title">Confirmar asistencia</h2>
+      <p class="section-intro">Es importante que confirmes tu asistencia. Puedes escribir varios nombres.</p>
+      <form id="rsvpForm" class="rsvp-form">
+        <label>
+          <span>Nombre o nombres</span>
+          <textarea id="guestNames" name="guestNames" rows="4" placeholder="Ejemplo: Ana Ruiz, Carlos Mora, Sofia Mora" required></textarea>
+        </label>
+        <label>
+          <span>Confirmacion</span>
+          <select id="attendance" name="attendance" required>
+            <option value="">Selecciona una opcion</option>
+            <option value="si">Si, asistiremos</option>
+            <option value="no">No podremos asistir</option>
+          </select>
+        </label>
+        <button class="primary-button submit-button" type="submit">Confirmar asistencia</button>
+      </form>
+      <div class="success-message" id="successMessage" hidden></div>
+    </section>
+
+    <div class="floral-band" aria-hidden="true"></div>
+
+    <footer class="footer section-pad">
+      <p class="footer-brand">Liss & Jose</p>
+      <span class="ornament-line"></span>
+      <nav aria-label="Secciones de la invitacion">
+        <a href="#inicio">Inicio</a>
+        <a href="#historia">Historia</a>
+        <a href="#eventos">Eventos</a>
+        <a href="#confirmar">Confirmar</a>
+      </nav>
+      <p class="credits">Hecho con cari&ntilde;o para celebrar su boda.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
