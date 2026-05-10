@@ -2,222 +2,283 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boda Jose & Liseth</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
-    <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8" />
 
-    <section class="portada">
-  <div class="scroll-down">
-    <a href="#nuestraboda">
-      <div class="arrow"></div>
-    </a>
-  </div>
-</section>
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Invitación de boda de Jose y Liseth" />
+    <meta property="og:title" content="Boda Jose & Liseth" />
+    <meta property="og:description" content="Nos casamos el 20 de diciembre 2026" />
+    <meta property="og:image" content="imagenes/preview.jpg" />
+
+    <title>Boda Jose & Liseth</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
 
 <body>
 
-    <!-- NAV -->
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md py-4 border-b border-gray-100">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <span class="text-xl font-light tracking-[0.4em] text-burgundy-deep">J & L</span>
-            <div class="flex space-x-6 text-[10px] uppercase tracking-widest">
+    <!-- ═══════════════════════════════════════════════
+         NAV
+    ═══════════════════════════════════════════════ -->
+    <nav class="nav-fixed">
+
+        <div class="nav-inner">
+
+            <span class="nav-monogram">J &amp; L</span>
+
+            <div class="nav-links">
                 <a href="#inicio">Inicio</a>
-                <a href="#nuestrahistoria">Nuestra Historia</a>
+                <a href="#nuestrahistoria">Historia</a>
                 <a href="#evento">Evento</a>
                 <a href="#rsvp">Confirmar</a>
-                <a href="#photos">Inmortalizar el momento</a>
+                <a href="#photos">Fotos</a>
             </div>
+
         </div>
+
     </nav>
 
-    <!-- HERO -->
-    <section id="inicio" class="hero-section h-screen flex items-center justify-center text-center text-white px-4 bg-[#f4f1eb]">
-        <div data-aos="fade-up" data-aos-duration="2000">
-            <span class="text-[20px] uppercase tracking-[0.6em] mb-8 block">Nuestra Boda</span>
-            <h1 class="text-6xl md:text-[100px] mb-4 font-light italic">Jose & Liseth</h1>
-            <div class="divider-floral"></div>
 
-            <div class="flex justify-center gap-6 md:gap-6 mb-20" id="countdown">
-                <div class="border p-3 min-w-[70px]"><span id="days">00</span></div>
-                <div class="border p-3 min-w-[70px]"><span id="hours">00</span></div>
-                <div class="border p-3 min-w-[70px]"><span id="minutes">00</span></div>
-                <div class="border p-3 min-w-[70px]"><span id="seconds">00</span></div>
-            </div>
+    <!-- ═══════════════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════════════ -->
+    <section id="inicio" class="hero-section">
 
-            <p class="text-xl md:text-3xl">20 • DICIEMBRE • 2026</p>
-            <p class="text-[12px] uppercase">San Ramón, Alajuela</p>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="2000">
+
+            <p class="hero-pre">Nos casamos</p>
+
+            <h1 class="hero-names">
+                Jose
+                <span class="ampersand">&amp;</span>
+                Liseth
+            </h1>
+
+            <div class="hero-divider"></div>
+
+            <p class="hero-date-text">20 · Dicuiembre · 2026</p>
+
+            <button class="music-btn" id="music-btn" onclick="toggleMusica()" aria-label="Reproducir música">
+
+                <span class="music-icon" id="music-icon">♪</span>
+                <span id="music-label">Reproducir música</span>
+
+            </button>
+
+            <audio id="musica">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            </audio>
+
         </div>
+
+        <a href="#contador" class="scroll-arrow" aria-label="Ir al contador">
+            <div class="arrow-chevron"></div>
+        </a>
+
     </section>
 
-    <!-- NUESTRA HISTORIA -->
-    <section id="nuestrahistoria" class="py-24 px-6 text-center bg-white">
-        <div class="max-w-3xl mx-auto bg-white">
-            <h2 class="text-4xl italic mb-6">Nuestra Historia</h2>
-            <div style="margin-top: 30px;">
-                <button onclick="toggleMusica()" class="btn-lujo px-6 py-2 text-[10px]"> ▶ Reproducir nuestra canción
-                </button>
-                <audio id="musica" controls>
-                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                    <!-- <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"> -->
-                </audio>
 
-                <!-- CARRUSEL -->
-                <section class="py-20 bg-white">
-                    <div class="max-w-5xl mx-auto px-6">
-                        <h2 class="text-4xl text-center italic mb-10">Nuestros Momentos</h2>
-                        <div class="overflow-hidden relative">
-                            <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
-
-                                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486"
-                                    class="w-full flex-shrink-0 object-cover h-[300px] md:h-[400px]">
-
-                                <img src="https://images.unsplash.com/photo-1519741497674-611481863552"
-                                    class="w-full flex-shrink-0 object-cover h-[300px] md:h-[400px]">
-
-                                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc"
-                                    class="w-full flex-shrink-0 object-cover h-[300px] md:h-[400px]">
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <p class="italic text-gray-600"> </p>
-            <p class="italic text-gray-600"> "Desde el primer café hasta el último suspiro, decidimos caminar juntos."
-            </p>
-            <div class="divider-floral"></div>
-        </div>
-    </section>
-
-    <!-- EVENTO -->
-<section id="evento" class="py-24 px-6  text-center bg-white">
-    <div class="container mx-auto px-6 max-w-6xl">
-            <h2 class="text-4xl italic mb-6">Evento</h2>
-            <p class="italic text-gray-600">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-
-
-    <div class="container-cards">
-        <div class="card-vino" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="card-title">Ceremonia</h3>
-            <p class="text-xs uppercase tracking-widest text-gray-400 mb-4">Hora: 3:00 p.m</p>
-            <div class="card-section mb-6 overflow-hidden rounded-sm shadow-sm border border-[#d4c19d]/30">
-                <h4 class="card-subtitle">Lugar</h4>
-                <p>Templo Católico San Juan<br>San Ramón, Alajuela</p>
-                <div class="mb-6 overflow-hidden rounded-sm shadow-sm border border-[#d4c19d]/30">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.123456789!2d-84.47!3d10.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA0JzQ4LjAiTiA4NMKwMjgnMTIuMCJX!5e0!3m2!1ses!2scr!4v123456789"
-                                width="100%" height="150" max-width="150" margin="40px auto" style="border:0;"
-                                allowfullscreen="" loading="lazy" border-radius=4px>
-                            </iframe>
-                        </div>
-
-                        <a href="https://maps.google.com" target="_blank"
-                            class="btn-lujo px-6 py-2 text-[10px] inline-block">
-                            ABRIR EN GOOGLE MAPS
-                        </a>
-                    </div>
-                </div>
-        </div>
-
-        <div class="card-vino" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="card-title">Celebración</h3>
-            <p class="text-xs uppercase tracking-widest text-gray-400 mb-4">Hora: 3:00 p.m</p>
-            <div class="card-section mb-6 overflow-hidden rounded-sm shadow-sm border border-[#d4c19d]/30">
-                <h4 class="card-subtitle">Lugar</h4>
-                <p>Antigua Hacienda del Marqués<br>Salón Imperial</p>
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.123456789!2d-84.47!3d10.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA0JzQ4LjAiTiA4NMKwMjgnMTIuMCJX!5e0!3m2!1ses!2scr!4v123456789"
-                                width="100%" height="150" max-width="150" margin="40px auto" style="border:0;"
-                                allowfullscreen="" loading="lazy" border-radius=4px>
-                            </iframe>
-
-                        <a href="https://maps.google.com" target="_blank"
-                            class="btn-lujo px-6 py-2 text-[10px] inline-block">
-                            ABRIR EN GOOGLE MAPS
-                        </a>
-                    </div>
-                </div>
-        </div>
-</section>
-
-
-    <!-- DRESS CODE -->
-    <section class="py-20 bg-white text-center">
-        <h2 class="text-4xl italic mb-4">Dress Code</h2>
-        <p class="mt-4">Formal / Gala</p>
-        <p class="text-gray-500 italic mt-2">Caballeros: Traje | Damas: Vestido largo</p>
-    </section>
-
-    <!-- RSVP -->
-    <section id="rsvp" class="py-24 bg-[#f4f1eb]">
-        <div class="container mx-auto px-6 max-w-2xl text-center">
-            <div id="contenedor-formulario" class="bg-white p-8 md:p-16 shadow-2xl">
-                <h2 class="text-4xl italic mb-4">Confirmar asistencia</h2>
-
-                <p class="italic text-gray-600 mb-6">
-                    La celebración no sería lo mismo sin ti
-                </p>
-
-                <form id="rsvp-form" class="space-y-6">
-                    <input type="text" class="form-input" placeholder="Nombre completo" required>
-
-                    <select class="form-input">
-                        <option>Selecciona</option>
-                        <option>SÍ, ASISTIRÉ</option>
-                        <option>NO PODRÉ ASISTIR</option>
-                    </select>
-
-                    <button type="submit" class="btn-lujo w-full py-3">
-                        ENVIAR CONFIRMACIÓN
-                    </button>
-
-                    <div id="mensaje-exito" class="hidden mt-4">
-                        ¡Muchas gracias!
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- INMORTALICEMOS -->
-    <section id="photos" class="py-24 bg-[#f4f1eb]">
-    <div class="camara-icon w-[150px] mx-auto flex justify-center items-center bg-transparent">
-                    <animated-icons src="https://animatedicons.co/get-icon?name=Camera%20V3&style=minimalistic&token=7e0acfcc-6d5c-4c6f-9fcd-b9408ce51418"
-                        trigger="loop"
-                        attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#6D6464FF","group-2":"#221E23FF","background:transparent"}}'
-                        height="200"
-                        width="200"
-                        speed="1"
-                    ></animated-icons>
-                    </div>
-
-
-        <h2 class="text-4xl md:text-5xl italic tracking-wide mb-4 text-[#4b3d32] text-center"> Inmortalicemos el momento </h2>
-            <a href="#" class="btn-lujo mt-6 inline-block px-6 py-3">
-                Subir fotos
-            </a>
+    <!-- ═══════════════════════════════════════════════
+         SEPARADOR
+    ═══════════════════════════════════════════════ -->
+    <div class="section-divider">
+        <span class="ornament">✦ ✦ ✦</span>
     </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         CONTADOR
+    ═══════════════════════════════════════════════ -->
+    <section id="contador" class="section-padded bg-crema">
+
+        <div class="section-inner text-center" data-aos="fade-up">
+
+            <p class="eyebrow">Una celebración de amor</p>
+
+            <h2 class="section-title">Estás Invitado</h2>
+
+            <p class="body-text max-narrow">
+                Nos llena de inmensa alegría poder compartir el amor con las personas que más queremos.
+                Los invitamos a celebrar juntos el día más especial de nuestras vidas.
+            </p>
+
+            <div class="date-banner">
+
+                <span class="date-pre">Te esperamos el</span>
+
+                <span class="date-main">
+                    20 de Diciembre, 2026
+                </span>
+
+                <span class="date-place">
+                    San Ramón, Alajuela · Costa Rica
+                </span>
+
+            </div>
+
+            <p class="eyebrow" style="margin-top: 3rem;">Faltan</p>
+
+            <div class="countdown-wrap" id="countdown">
+
+                <div class="countdown-unit">
+                    <span class="count-num" id="days">00</span>
+                    <span class="count-label">Días</span>
+                </div>
+
+                <div class="count-sep">:</div>
+
+                <div class="countdown-unit">
+                    <span class="count-num" id="hours">00</span>
+                    <span class="count-label">Horas</span>
+                </div>
+
+                <div class="count-sep">:</div>
+
+                <div class="countdown-unit">
+                    <span class="count-num" id="minutes">00</span>
+                    <span class="count-label">Min</span>
+                </div>
+
+                <div class="count-sep">:</div>
+
+                <div class="countdown-unit">
+                    <span class="count-num" id="seconds">00</span>
+                    <span class="count-label">Seg</span>
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
-    
 
-    <footer class="py-12 text-center">
-        <h2>J & L</h2>
-        <p style="font-size:60; letter-spacing: 4px; color: #999;">
-            Gracias por ser parte de nuestra historia
-        </p>
-    </footer>
 
-    <script src="iniciofunc.js"></script>
+    <!-- ═══════════════════════════════════════════════
+         SEPARADOR IMAGEN
+    ═══════════════════════════════════════════════ -->
+    <div class="img-divider">
+
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80"
+            alt="Separador decorativo" class="img-divider-img">
+
+        <div class="img-divider-overlay"></div>
+
+        <div class="img-divider-text">
+            <span class="ornament-light">— Una historia de amor —</span>
+        </div>
+
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         NUESTRA HISTORIA
+    ═══════════════════════════════════════════════ -->
+    <section id="nuestrahistoria" class="section-padded bg-white">
+
+        <div class="section-inner text-center" data-aos="fade-up">
+
+            <p class="eyebrow">Nuestra</p>
+
+            <h2 class="section-title">Historia</h2>
+
+            <!-- CARRUSEL -->
+            <div class="carousel-wrapper">
+
+                <div class="carousel-track" id="carousel">
+
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80"
+                            alt="Foto de la pareja 1">
+                    </div>
+
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80"
+                            alt="Foto de la pareja 2">
+                    </div>
+
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80"
+                            alt="Foto de la pareja 3">
+                    </div>
+
+                </div>
+
+                <!-- Botones -->
+                <button class="carousel-btn carousel-prev" onclick="moverCarruselManual(-1)" aria-label="Foto anterior">
+
+                    &#8249;
+
+                </button>
+
+                <button class="carousel-btn carousel-next" onclick="moverCarruselManual(1)" aria-label="Foto siguiente">
+
+                    &#8250;
+
+                </button>
+
+                <!-- Dots -->
+                <div class="carousel-dots" id="carousel-dots">
+
+                    <span class="dot active" onclick="irASlide(0)" aria-label="Ir a foto 1"></span>
+
+                    <span class="dot" onclick="irASlide(1)" aria-label="Ir a foto 2"></span>
+
+                    <span class="dot" onclick="irASlide(2)" aria-label="Ir a foto 3"></span>
+
+                </div>
+
+            </div>
+
+            <blockquote class="historia-quote">
+                "Desde el primer café hasta el último suspiro,
+                <br>
+                decidimos caminar juntos."
+            </blockquote>
+
+        </div>
+
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════
+         RESTO DE SECCIONES
+    ═══════════════════════════════════════════════ -->
+
+    <!-- AQUÍ DEJAS EL RESTO EXACTAMENTE IGUAL -->
+    <!-- EVENTO -->
+    <!-- DRESS CODE -->
+    <!-- RSVP -->
+    <!-- FOTOS -->
+    <!-- FOOTER -->
+
+
+    <!-- ═══════════════════════════════════════════════
+         SCRIPTS
+    ═══════════════════════════════════════════════ -->
+
+    <!-- AOS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- Animated Icons -->
     <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+
+    <!-- JS -->
+    <script src="script.js"></script>
 
 </body>
 

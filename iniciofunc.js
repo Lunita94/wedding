@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // =========================
-    // 1. ANIMACIONES (AOS)
-    // =========================
+    // ═══════════════════════════════════════════════
+    // AOS
+    // ═══════════════════════════════════════════════
     if (typeof AOS !== "undefined") {
         AOS.init({
             duration: 1000,
@@ -10,47 +10,60 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // =========================
-    // 2. CONTADOR REGRESIVO
-    // =========================
-    const weddingDate = new Date(2026, 11, 20, 17, 0, 0).getTime();
+    // ═══════════════════════════════════════════════
+    // CONTADOR REGRESIVO
+    // ═══════════════════════════════════════════════
+    const weddingDate = new Date(2026, 11, 20, 15, 0, 0).getTime();
 
     const countdown = document.getElementById("countdown");
 
-    if (countdown) {
-        const timer = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
+    function actualizarContador() {
 
-            if (distance <= 0) {
-                clearInterval(timer);
-                countdown.innerHTML = "<span style='font-size:20px;'>¡ES HOY! 💍</span>";
-                return;
-            }
+        if (!countdown) return;
 
-            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((distance % (1000 * 60)) / 1000);
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
 
-            const daysEl = document.getElementById("days");
-            const hoursEl = document.getElementById("hours");
-            const minutesEl = document.getElementById("minutes");
-            const secondsEl = document.getElementById("seconds");
+        if (distance <= 0) {
+            countdown.innerHTML = "<span class='count-today'>¡Es hoy! 💍</span>";
+            return;
+        }
 
-            if (daysEl && hoursEl && minutesEl && secondsEl) {
-                daysEl.textContent = d.toString().padStart(2, '0');
-                hoursEl.textContent = h.toString().padStart(2, '0');
-                minutesEl.textContent = m.toString().padStart(2, '0');
-                secondsEl.textContent = s.toString().padStart(2, '0');
-            }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-        }, 1000);
+        const hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+
+        const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+
+        const seconds = Math.floor(
+            (distance % (1000 * 60)) / 1000
+        );
+
+        document.getElementById("days").textContent =
+            String(days).padStart(2, "0");
+
+        document.getElementById("hours").textContent =
+            String(hours).padStart(2, "0");
+
+        document.getElementById("minutes").textContent =
+            String(minutes).padStart(2, "0");
+
+        document.getElementById("seconds").textContent =
+            String(seconds).padStart(2, "0");
     }
 
-    // =========================
-    // 3. FORMULARIO RSVP
-    // =========================
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+
+    // ═══════════════════════════════════════════════
+    // RSVP
+    // ═══════════════════════════════════════════════
     const rsvpForm = document.getElementById("rsvp-form");
     const contenedorForm = document.getElementById("contenedor-formulario");
     const mensajeExito = document.getElementById("mensaje-exito");
@@ -58,20 +71,21 @@ document.addEventListener("DOMContentLoaded", function () {
     if (rsvpForm && contenedorForm && mensajeExito) {
 
         rsvpForm.addEventListener("submit", function (e) {
+
             e.preventDefault();
 
-            // Validación básica
-            const nombre = rsvpForm.querySelector("input");
-            if (!nombre.value.trim()) {
-                nombre.focus();
+            const nombreInput = rsvpForm.querySelector("input");
+
+            if (!nombreInput.value.trim()) {
+                nombreInput.focus();
                 return;
             }
 
-            // Animación de salida
             contenedorForm.style.transition = "opacity 0.4s ease";
             contenedorForm.style.opacity = "0";
 
             setTimeout(() => {
+
                 contenedorForm.classList.add("hidden");
                 mensajeExito.classList.remove("hidden");
 
@@ -81,34 +95,83 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
             }, 400);
+
         });
     }
 
- function toggleMusica() {
-    const audio = document.getElementById("musica");
+    // ═══════════════════════════════════════════════
+    // CARRUSEL
+    // ═══════════════════════════════════════════════
+    const carousel = document.getElementById("carousel");
+    const dots = document.querySelectorAll(".dot");
 
-    if (!audio) return;
-debugger;
-    if (audio.paused) {
-        audio.play().catch(err => console.log(err));
-    } else {
-        audio.pause();
+    let carouselIndex = 0;
+    const totalSlides = dots.length;
+
+    function goToSlide(index) {
+
+        if (!carousel) return;
+
+        carouselIndex = (index + totalSlides) % totalSlides;
+
+        carousel.style.transform =
+            `translateX(-${carouselIndex * 100}%)`;
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === carouselIndex);
+        });
     }
-}
 
-// CARRUSEL AUTOMÁTICO
-let index = 0;
-const carousel = document.getElementById("carousel");
+    // Funciones globales para botones HTML
+    window.moverCarruselManual = function (dir) {
+        clearInterval(autoTimer);
+        goToSlide(carouselIndex + dir);
+        iniciarAutoSlide();
+    };
 
-function moverCarrusel() {
-    if (!carousel) return;
+    window.irASlide = function (index) {
+        clearInterval(autoTimer);
+        goToSlide(index);
+        iniciarAutoSlide();
+    };
 
-    const total = carousel.children.length;
-    index = (index + 1) % total;
+    function iniciarAutoSlide() {
+        autoTimer = setInterval(() => {
+            goToSlide(carouselIndex + 1);
+        }, 4000);
+    }
 
-    carousel.style.transform = `translateX(-${index * 100}%)`;
-}
-
-setInterval(moverCarrusel, 3000); // cambia cada 3 segundos
+    let autoTimer;
+    iniciarAutoSlide();
 
 });
+
+
+// ═══════════════════════════════════════════════
+// MÚSICA
+// ═══════════════════════════════════════════════
+function toggleMusica() {
+
+    const audio = document.getElementById("musica");
+    const icon = document.getElementById("music-icon");
+    const label = document.getElementById("music-label");
+
+    if (!audio) return;
+
+    if (audio.paused) {
+
+        audio.play().catch(error => {
+            console.log(error);
+        });
+
+        icon.textContent = "♬";
+        label.textContent = "Pausar música";
+
+    } else {
+
+        audio.pause();
+
+        icon.textContent = "♪";
+        label.textContent = "Reproducir música";
+    }
+}
