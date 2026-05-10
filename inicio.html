@@ -1,285 +1,453 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8" />
-
-    <!-- Responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Invitación de boda de Jose y Liseth" />
-    <meta property="og:title" content="Boda Jose & Liseth" />
-    <meta property="og:description" content="Nos casamos el 20 de diciembre 2026" />
-    <meta property="og:image" content="imagenes/preview.jpg" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda Jose & Liseth</title>
-
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
-
-    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
 
-    <!-- ═══════════════════════════════════════════════
-         NAV
-    ═══════════════════════════════════════════════ -->
-    <nav class="nav-fixed">
+<!-- NAV -->
+<nav class="nav-fixed">
+    <div class="nav-inner">
+        <span class="nav-monogram">J & L</span>
+        <div class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#nuestrahistoria">Historia</a>
+            <a href="#evento">Evento</a>
+            <a href="#rsvp">Confirmar</a>
+            <a href="#photos">Fotos</a>
+        </div>
+    </div>
+</nav>
 
-        <div class="nav-inner">
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section id="inicio" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="2000">
+        <p class="hero-pre">Nos casamos</p>
+        <h1 class="hero-names">Jose <span class="ampersand">&amp;</span> Liseth</h1>
+        <div class="hero-divider"></div>
+        <p class="hero-date-text">20 · Diciembre · 2026</p>
 
-            <span class="nav-monogram">J &amp; L</span>
+        <button class="music-btn" id="music-btn" onclick="toggleMusica()" aria-label="Reproducir música">
+            <span class="music-icon" id="music-icon">♪</span>
+            <span id="music-label">Reproducir música</span>
+        </button>
+        <audio id="musica">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <a href="#contador" class="scroll-arrow">
+        <div class="arrow-chevron"></div>
+    </a>
+</section>
 
-            <div class="nav-links">
-                <a href="#inicio">Inicio</a>
-                <a href="#nuestrahistoria">Historia</a>
-                <a href="#evento">Evento</a>
-                <a href="#rsvp">Confirmar</a>
-                <a href="#photos">Fotos</a>
+
+<!-- ═══════════════════════════════════════════════
+     SEPARADOR
+═══════════════════════════════════════════════ -->
+<div class="section-divider">
+    <span class="ornament">✦ ✦ ✦</span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CONTADOR
+═══════════════════════════════════════════════ -->
+<section id="contador" class="section-padded bg-crema">
+    <div class="section-inner text-center" data-aos="fade-up">
+        <p class="eyebrow">Una celebración de amor</p>
+        <h2 class="section-title">Estás Invitado</h2>
+
+        <p class="body-text max-narrow">
+            Nos llena de inmensa alegría poder compartir el amor con las personas que más queremos.
+            Los invitamos a celebrar juntos el día más especial de nuestras vidas.
+        </p>
+
+        <div class="date-banner">
+            <span class="date-pre">Te esperamos el</span>
+            <span class="date-main">20 de Diciembre, 2026</span>
+            <span class="date-place">San Ramón, Alajuela · Costa Rica</span>
+        </div>
+
+        <p class="eyebrow" style="margin-top: 3rem;">Faltan</p>
+
+        <div class="countdown-wrap" id="countdown">
+            <div class="countdown-unit">
+                <span class="count-num" id="days">00</span>
+                <span class="count-label">Días</span>
+            </div>
+            <div class="count-sep">:</div>
+            <div class="countdown-unit">
+                <span class="count-num" id="hours">00</span>
+                <span class="count-label">Horas</span>
+            </div>
+            <div class="count-sep">:</div>
+            <div class="countdown-unit">
+                <span class="count-num" id="minutes">00</span>
+                <span class="count-label">Min</span>
+            </div>
+            <div class="count-sep">:</div>
+            <div class="countdown-unit">
+                <span class="count-num" id="seconds">00</span>
+                <span class="count-label">Seg</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SEPARADOR IMAGEN
+═══════════════════════════════════════════════ -->
+<div class="img-divider">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80" alt="Separador decorativo" class="img-divider-img">
+    <div class="img-divider-overlay"></div>
+    <div class="img-divider-text">
+        <span class="ornament-light">— Una historia de amor —</span>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     NUESTRA HISTORIA
+═══════════════════════════════════════════════ -->
+<section id="nuestrahistoria" class="section-padded bg-white">
+    <div class="section-inner text-center" data-aos="fade-up">
+        <p class="eyebrow">Nuestra</p>
+        <h2 class="section-title">Historia</h2>
+
+        <!-- CARRUSEL -->
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carousel">
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Foto 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Foto 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="Foto 3">
+                </div>
+            </div>
+
+            <!-- Controles -->
+            <button class="carousel-btn carousel-prev" onclick="moverCarruselManual(-1)" aria-label="Anterior">&#8249;</button>
+            <button class="carousel-btn carousel-next" onclick="moverCarruselManual(1)" aria-label="Siguiente">&#8250;</button>
+
+            <!-- Indicadores -->
+            <div class="carousel-dots" id="carousel-dots">
+                <span class="dot active" onclick="irASlide(0)"></span>
+                <span class="dot" onclick="irASlide(1)"></span>
+                <span class="dot" onclick="irASlide(2)"></span>
+            </div>
+        </div>
+
+        <blockquote class="historia-quote">
+            "Desde el primer café hasta el último suspiro,<br>decidimos caminar juntos."
+        </blockquote>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SEPARADOR IMAGEN 2
+═══════════════════════════════════════════════ -->
+<div class="img-divider">
+    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1920&q=80" alt="Separador decorativo" class="img-divider-img">
+    <div class="img-divider-overlay"></div>
+    <div class="img-divider-text">
+        <span class="ornament-light">— El gran día —</span>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     EVENTO
+═══════════════════════════════════════════════ -->
+<section id="evento" class="section-padded bg-crema">
+    <div class="section-inner text-center" data-aos="fade-up">
+        <h2 class="section-title">Te esperamos</h2>
+
+        <div class="evento-grid">
+
+            <!-- Ceremonia -->
+            <div class="evento-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="evento-card-icon">✦</div>
+                <h3 class="evento-card-title">Ceremonia</h3>
+                <div class="evento-card-time">3:00 p.m.</div>
+                <div class="evento-card-divider"></div>
+                <div class="evento-card-place">
+                    <p class="evento-place-label">Lugar</p>
+                    <p class="evento-place-name">Templo Católico San Juan</p>
+                    <p class="evento-place-sub">San Ramón, Alajuela</p>
+                </div>
+                <div class="evento-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.123456789!2d-84.47!3d10.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA0JzQ4LjAiTiA4NMKwMjgnMTIuMCJX!5e0!3m2!1ses!2scr!4v123456789"
+                        width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+                <a href="https://maps.google.com" target="_blank" class="btn-evento">
+                    Abrir en Google Maps
+                </a>
+            </div>
+
+            <!-- Celebración -->
+            <div class="evento-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="evento-card-icon">♡</div>
+                <h3 class="evento-card-title">Celebración</h3>
+                <div class="evento-card-time">5:00 p.m.</div>
+                <div class="evento-card-divider"></div>
+                <div class="evento-card-place">
+                    <p class="evento-place-label">Lugar</p>
+                    <p class="evento-place-name">Antigua Hacienda del Marqués</p>
+                    <p class="evento-place-sub">Salón Imperial</p>
+                </div>
+                <div class="evento-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.123456789!2d-84.47!3d10.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA0JzQ4LjAiTiA4NMKwMjgnMTIuMCJX!5e0!3m2!1ses!2scr!4v123456789"
+                        width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+                <a href="https://maps.google.com" target="_blank" class="btn-evento">
+                    Abrir en Google Maps
+                </a>
             </div>
 
         </div>
+    </div>
+</section>
 
-    </nav>
 
+<!-- ═══════════════════════════════════════════════
+     DRESS CODE
+═══════════════════════════════════════════════ -->
+<section class="section-padded bg-white" data-aos="fade-up">
+    <div class="section-inner text-center">
+        <p class="eyebrow">Código de vestimenta</p>
+        <h2 class="section-title">Dress Code</h2>
 
-    <!-- ═══════════════════════════════════════════════
-         HERO
-    ═══════════════════════════════════════════════ -->
-    <section id="inicio" class="hero-section">
-
-        <div class="hero-overlay"></div>
-
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="2000">
-
-            <p class="hero-pre">Nos casamos</p>
-
-            <h1 class="hero-names">
-                Jose
-                <span class="ampersand">&amp;</span>
-                Liseth
-            </h1>
-
-            <div class="hero-divider"></div>
-
-            <p class="hero-date-text">20 · Dicuiembre · 2026</p>
-
-            <button class="music-btn" id="music-btn" onclick="toggleMusica()" aria-label="Reproducir música">
-
-                <span class="music-icon" id="music-icon">♪</span>
-                <span id="music-label">Reproducir música</span>
-
-            </button>
-
-            <audio id="musica">
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-            </audio>
-
+        <div class="dresscode-wrap">
+            <div class="dresscode-card">
+                <div class="dresscode-icon">♠</div>
+                <p class="dresscode-gender">Caballeros</p>
+                <p class="dresscode-attire">Traje formal</p>
+                <p class="dresscode-detail">Corbata o moño · Colores oscuros</p>
+            </div>
+            <div class="dresscode-divider-v"></div>
+            <div class="dresscode-card">
+                <div class="dresscode-icon">✿</div>
+                <p class="dresscode-gender">Damas</p>
+                <p class="dresscode-attire">Vestido largo</p>
+                <p class="dresscode-detail">Gala · Por favor evitar el blanco</p>
+            </div>
         </div>
 
-        <a href="#contador" class="scroll-arrow" aria-label="Ir al contador">
-            <div class="arrow-chevron"></div>
-        </a>
-
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════
-         SEPARADOR
-    ═══════════════════════════════════════════════ -->
-    <div class="section-divider">
-        <span class="ornament">✦ ✦ ✦</span>
+        <p class="dresscode-note">Etiqueta formal · Gala</p>
+        <p class="dresscode-sub">Tu elegancia es parte de nuestra celebración</p>
     </div>
+</section>
 
 
-    <!-- ═══════════════════════════════════════════════
-         CONTADOR
-    ═══════════════════════════════════════════════ -->
-    <section id="contador" class="section-padded bg-crema">
+<!-- ═══════════════════════════════════════════════
+     RSVP
+═══════════════════════════════════════════════ -->
+<section id="rsvp" class="section-padded bg-crema" data-aos="fade-up">
+    <div class="section-inner text-center">
+        <p class="eyebrow">Esperamos tu respuesta</p>
+        <h2 class="section-title">Confirmar Asistencia</h2>
 
-        <div class="section-inner text-center" data-aos="fade-up">
-
-            <p class="eyebrow">Una celebración de amor</p>
-
-            <h2 class="section-title">Estás Invitado</h2>
-
-            <p class="body-text max-narrow">
-                Nos llena de inmensa alegría poder compartir el amor con las personas que más queremos.
-                Los invitamos a celebrar juntos el día más especial de nuestras vidas.
+        <div class="rsvp-card" id="contenedor-formulario">
+            <p class="body-text" style="margin-bottom: 0.5rem;">
+                Tu presencia es muy importante para nosotros.
+            </p>
+            <p class="body-text" style="margin-bottom: 2rem;">
+                Por favor confirma antes del <strong>10 de noviembre</strong>.
             </p>
 
-            <div class="date-banner">
-
-                <span class="date-pre">Te esperamos el</span>
-
-                <span class="date-main">
-                    20 de Diciembre, 2026
-                </span>
-
-                <span class="date-place">
-                    San Ramón, Alajuela · Costa Rica
-                </span>
-
-            </div>
-
-            <p class="eyebrow" style="margin-top: 3rem;">Faltan</p>
-
-            <div class="countdown-wrap" id="countdown">
-
-                <div class="countdown-unit">
-                    <span class="count-num" id="days">00</span>
-                    <span class="count-label">Días</span>
-                </div>
-
-                <div class="count-sep">:</div>
-
-                <div class="countdown-unit">
-                    <span class="count-num" id="hours">00</span>
-                    <span class="count-label">Horas</span>
-                </div>
-
-                <div class="count-sep">:</div>
-
-                <div class="countdown-unit">
-                    <span class="count-num" id="minutes">00</span>
-                    <span class="count-label">Min</span>
-                </div>
-
-                <div class="count-sep">:</div>
-
-                <div class="countdown-unit">
-                    <span class="count-num" id="seconds">00</span>
-                    <span class="count-label">Seg</span>
-                </div>
-
-            </div>
-
+            <form id="rsvp-form">
+                <input type="text" class="rsvp-input" placeholder="Nombre completo" required>
+                <select class="rsvp-input rsvp-select">
+                    <option value="">¿Asistirás?</option>
+                    <option value="si">Sí, asistiré con mucho gusto</option>
+                    <option value="no">Lamentablemente no podré asistir</option>
+                </select>
+                <button type="submit" class="btn-primary">Enviar confirmación</button>
+            </form>
         </div>
 
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════
-         SEPARADOR IMAGEN
-    ═══════════════════════════════════════════════ -->
-    <div class="img-divider">
-
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80"
-            alt="Separador decorativo" class="img-divider-img">
-
-        <div class="img-divider-overlay"></div>
-
-        <div class="img-divider-text">
-            <span class="ornament-light">— Una historia de amor —</span>
+        <div id="mensaje-exito" class="rsvp-success hidden">
+            <div class="success-icon">✦</div>
+            <h3 class="success-title">¡Muchas gracias!</h3>
+            <p class="success-text">Hemos recibido tu confirmación. ¡Nos vemos el 20 de diciembre!</p>
         </div>
-
     </div>
+</section>
 
 
-    <!-- ═══════════════════════════════════════════════
-         NUESTRA HISTORIA
-    ═══════════════════════════════════════════════ -->
-    <section id="nuestrahistoria" class="section-padded bg-white">
+<!-- ═══════════════════════════════════════════════
+     SEPARADOR IMAGEN 3
+═══════════════════════════════════════════════ -->
+<div class="img-divider">
+    <img src="https://images.unsplash.com/photo-1518049549851-e58d7ff19148?auto=format&fit=crop&w=1920&q=80" alt="Separador" class="img-divider-img">
+    <div class="img-divider-overlay"></div>
+    <div class="img-divider-text">
+        <span class="ornament-light">— Inmortalicemos el momento —</span>
+    </div>
+</div>
 
-        <div class="section-inner text-center" data-aos="fade-up">
 
-            <p class="eyebrow">Nuestra</p>
+<!-- ═══════════════════════════════════════════════
+     COMPARTIR FOTOS
+═══════════════════════════════════════════════ -->
 
-            <h2 class="section-title">Historia</h2>
-
-            <!-- CARRUSEL -->
-            <div class="carousel-wrapper">
-
-                <div class="carousel-track" id="carousel">
-
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80"
-                            alt="Foto de la pareja 1">
-                    </div>
-
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80"
-                            alt="Foto de la pareja 2">
-                    </div>
-
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80"
-                            alt="Foto de la pareja 3">
-                    </div>
-
-                </div>
-
-                <!-- Botones -->
-                <button class="carousel-btn carousel-prev" onclick="moverCarruselManual(-1)" aria-label="Foto anterior">
-
-                    &#8249;
-
-                </button>
-
-                <button class="carousel-btn carousel-next" onclick="moverCarruselManual(1)" aria-label="Foto siguiente">
-
-                    &#8250;
-
-                </button>
-
-                <!-- Dots -->
-                <div class="carousel-dots" id="carousel-dots">
-
-                    <span class="dot active" onclick="irASlide(0)" aria-label="Ir a foto 1"></span>
-
-                    <span class="dot" onclick="irASlide(1)" aria-label="Ir a foto 2"></span>
-
-                    <span class="dot" onclick="irASlide(2)" aria-label="Ir a foto 3"></span>
-
-                </div>
-
+    <div class="camara-icon w-[150px] mx-auto flex justify-center items-center bg-transparent">
+            <animated-icons
+            src="https://animatedicons.co/get-icon?name=Camera%20V3&style=minimalistic&token=7e0acfcc-6d5c-4c6f-9fcd-b9408ce51418"
+            trigger="loop"
+            attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#521F34FF","group-2":"#3E0922FF","background":"#FFFFFF"}}'
+            height="100"
+            width="100"
+            speed="1"
+            ></animated-icons>
             </div>
+        
 
-            <blockquote class="historia-quote">
-                "Desde el primer café hasta el último suspiro,
-                <br>
-                decidimos caminar juntos."
-            </blockquote>
+<section id="photos"  data-aos="fade-up"></section>
+<div class="section-inner text-center justify-center">
+    <h2 class="section-title">Inmortaliza el Momento</h2>
+    <p class="body-text max-narrow">
+        Comparte tus fotos y videos de este día especial. Cada imagen es un recuerdo que guardaremos por siempre.
+    </p>
 
+    <a href="#" class="btn-primary" style="display: inline-block; margin-bottom: 2.5rem;">Subir mis fotos</a>
+    <div class="qr-wrap">
+        <div class="qr-frame">
+            <img src="imagenes/qr.jpg" alt="Código QR para subir fotos" class="qr-img">
         </div>
-
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════
-         RESTO DE SECCIONES
-    ═══════════════════════════════════════════════ -->
-
-    <!-- AQUÍ DEJAS EL RESTO EXACTAMENTE IGUAL -->
-    <!-- EVENTO -->
-    <!-- DRESS CODE -->
-    <!-- RSVP -->
-    <!-- FOTOS -->
-    <!-- FOOTER -->
+        <p class="qr-caption">Escanea el código para compartir</p>
+    </div>
+</div>
+    
+</section>
 
 
-    <!-- ═══════════════════════════════════════════════
-         SCRIPTS
-    ═══════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-ornament">✦</div>
+        <h2 class="footer-monogram">Jose &amp; Liseth</h2>
+        <div class="footer-divider"></div>
+        <p class="footer-date">20 · Diciembre · 2026</p>
+        <p class="footer-thanks">Gracias por ser parte de nuestra historia</p>
+        <p class="footer-sub">Con todo nuestro amor</p>
+    </div>
+</footer>
 
-    <!-- AOS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
 
-    <!-- Animated Icons -->
-    <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
 
-    <!-- JS -->
-    <script src="script.js"></script>
+<script>
+// ── AOS ─────────────────────────────────────────
+AOS.init({ duration: 1000, once: true });
+
+// ── MÚSICA ──────────────────────────────────────
+function toggleMusica() {
+    const audio = document.getElementById("musica");
+    const icon  = document.getElementById("music-icon");
+    const label = document.getElementById("music-label");
+    if (!audio) return;
+    if (audio.paused) {
+        audio.play().catch(e => console.log(e));
+        icon.textContent  = "♬";
+        label.textContent = "Pausar música";
+    } else {
+        audio.pause();
+        icon.textContent  = "♪";
+        label.textContent = "Reproducir música";
+    }
+}
+
+// ── CONTADOR ────────────────────────────────────
+(function () {
+    const weddingDate = new Date(2026, 11, 20, 15, 0, 0).getTime();
+    const ids = ["days","hours","minutes","seconds"];
+    const divs = [1000*60*60*24, 1000*60*60, 1000*60, 1000];
+
+    function tick() {
+        const distance = weddingDate - Date.now();
+        if (distance <= 0) {
+            document.getElementById("countdown").innerHTML = "<span class='count-today'>¡Es hoy! 💍</span>";
+            return;
+        }
+        let rem = distance;
+        ids.forEach((id, i) => {
+            const val = Math.floor(rem / divs[i]);
+            rem -= val * divs[i];
+            const el = document.getElementById(id);
+            if (el) el.textContent = String(val).padStart(2,"0");
+        });
+    }
+    tick();
+    setInterval(tick, 1000);
+})();
+
+// ── CARRUSEL ────────────────────────────────────
+let carouselIndex = 0;
+const carousel = document.getElementById("carousel");
+const dots = document.querySelectorAll(".dot");
+const totalSlides = 3;
+let autoTimer;
+
+function goToSlide(n) {
+    carouselIndex = (n + totalSlides) % totalSlides;
+    carousel.style.transform = `translateX(-${carouselIndex * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle("active", i === carouselIndex));
+}
+
+function moverCarruselManual(dir) {
+    clearInterval(autoTimer);
+    goToSlide(carouselIndex + dir);
+    autoTimer = setInterval(() => goToSlide(carouselIndex + 1), 4000);
+}
+
+function irASlide(n) {
+    clearInterval(autoTimer);
+    goToSlide(n);
+    autoTimer = setInterval(() => goToSlide(carouselIndex + 1), 4000);
+}
+
+autoTimer = setInterval(() => goToSlide(carouselIndex + 1), 4000);
+
+// ── RSVP ────────────────────────────────────────
+document.getElementById("rsvp-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const nombre = this.querySelector("input").value.trim();
+    if (!nombre) { this.querySelector("input").focus(); return; }
+    const form = document.getElementById("contenedor-formulario");
+    const exito = document.getElementById("mensaje-exito");
+    form.style.transition = "opacity 0.4s";
+    form.style.opacity = "0";
+    setTimeout(() => {
+        form.classList.add("hidden");
+        exito.classList.remove("hidden");
+        exito.scrollIntoView({ behavior:"smooth", block:"center" });
+    }, 400);
+});
+</script>
 
 </body>
-
 </html>

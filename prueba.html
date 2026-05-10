@@ -1,50 +1,296 @@
-<section id="evento" class="py-24 px-6 text-center bg-white">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <h2 class="text-3xl italic mb-2">Evento</h2>
-            <p class="italic text-gray-600">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+<!DOCTYPE html>
+<html lang="es">
 
-                <div class="space-y-6" data-aos="fade-right">
-                    <div class="border-l-2 border-champagne-gold pl-8">
-                        <h3 class="text-3xl mb-6 italic">Ceremonia Religiosa</h3>
-                        <p class="text-xs uppercase tracking-widest text-gray-400 mb-4">3:00 p.m</p>
-                        <p class="font-light mb-4">Templo Católico San Juan, San Ramón<br>Alajuela, Costa Rica</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Jose & Liseth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="estilos.css" rel="stylesheet">
 
-                        <div class="mb-6 overflow-hidden rounded-sm shadow-sm border border-[#d4c19d]/30">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.123456789!2d-84.47!3d10.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA0JzQ4LjAiTiA4NMKwMjgnMTIuMCJX!5e0!3m2!1ses!2scr!4v123456789"
-                                width="100%" height="150" max-width="150" margin="40px auto" style="border:0;"
-                                allowfullscreen="" loading="lazy" border-radius=4px>
-                            </iframe>
-                        </div>
-                        <a href="https://maps.google.com" target="_blank"
-                            class="btn-lujo px-6 py-2 text-[10px] inline-block">
-                            ABRIR EN GOOGLE MAPS
-                        </a>
-                    </div>
-                </div>
+    <section class="portada">
+        <div class="scroll-down">
+            <a href="#nuestraboda">
+            <div class="arrow"></div>
+            </a>
+        </div>
+    </section>
 
-                <div class="space-y-6" data-aos="fade-left">
-                    <div class="border-l-2 border-champagne-gold pl-8">
-                        <h3 class="text-3xl mb-6 italic">Recepción</h3>
-                        <p class="text-xs uppercase tracking-widest text-gray-400 mb-4">5:00 p.m</p>
-                        <p class="font-light mb-4">Antigua Hacienda del Marqués<br>Salón Imperial</p>
+<body class="bg-[#f4f1eb]">
+    
 
-                        <div class="mb-6 overflow-hidden rounded-sm shadow-sm border border-[#d4c19d]/30">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.987654321!2d-84.48!3d10.09!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA1JzQ4LjAiTiA4NMKwMjgnMTIuMCJX!5e0!3m2!1ses!2scr!4v987654321"
-                                width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"
-                                border-radius=4px>
-                            </iframe>
-                        </div>
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md py-4 border-b border-gray-100">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <span class="text-xl font-light tracking-[0.4em] text-burgundy-deep">J & L</span>
+            <div class="flex space-x-6 text-[10px] uppercase tracking-widest">
+                <a href="#inicio">Inicio</a>
+                <a href="#nuestrahistoria">Nuestra Historia</a>
+                <a href="#evento">Evento</a>
+                <a href="#rsvp">Confirmar</a>
+                <a href="#photos">Inmortalizar el momento</a>
+            </div>
+        </div>
+    </nav>
 
-                        <a href="https://maps.google.com" target="_blank"
-                            class="btn-lujo px-6 py-2 text-[10px] inline-block">
-                            ABRIR EN GOOGLE MAPS
-                        </a>
-                    </div>
-                </div>
+    <!-- HERO -->
+    <section id="inicio" class="hero-section h-screen flex items-center justify-center text-center text-white px-4 bg-[#f4f1eb]">
+        <div data-aos="fade-up" data-aos-duration="2000">
+            <span class="text-[20px] uppercase tracking-[0.6em] mb-8 block">Nos casamos</span>
+            <h1 class="serif-modern text-7xl md:text-9xl font-bold leading-tight reveal"> Jose <span class="text-gold-fluid">&</span> Liseth </h1>
+           
+                <audio id="musica" controls>
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    <!-- <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"> -->
+                </audio>
+            <div class="divider-floral"></div>
+        </div>
+    </section>
 
+
+    <section id="contador" class="py-24 px-6 bg-[#f4f1eb]">
+
+    <div class="max-w-3xl mx-auto text-center space-y-8">
+
+        <!-- Título -->
+        <h2 class="text-5xl italic text-[#521f34]">
+            Estás Invitado(a)
+        </h2>
+
+        <!-- Texto -->
+        <div class="space-y-4 text-gray-600 italic leading-relaxed text-lg">
+
+            <p>
+                Nos llena de mucha alegría compartir el amor con ustedes.
+            </p>
+            <p>
+                Los invitamos a celebrar juntos el día más especial de nuestras vidas.
+            </p>
+            </div>
+
+        <!-- Fecha -->
+        <div class="pt-6 space-y-2">
+
+            <p class="text-3xl italic text-[#521f34]">
+                Te esperamos el
+            </p>
+
+        <h3 class="text-5xl md:text-7xl font-semibold tracking-wide text-[#521f34]">
+            20 Diciembre 2026
+        </h3>
+
+        </div>
+
+        <!-- Texto contador -->
+        <h2 class="text-4xl italic text-[#521f34] pt-4">
+            Faltan
+        </h2>
+        <div class="flex justify-center py-10">
+            <div class="flex justify-center gap-6 md:gap-6 mb-20" id="countdown">
+                <div class="border p-3 min-w-[70px]"><span id="days">00</span></div>
+                <div class="border p-3 min-w-[70px]"><span id="hours">00</span></div>
+                <div class="border p-3 min-w-[70px]"><span id="minutes">00</span></div>
+                <div class="border p-3 min-w-[70px]"><span id="seconds">00</span></div>
             </div>
         </div>
     </section>
+
+    <!-- NUESTRA HISTORIA -->
+    <section id="nuestrahistoria" class="py-24 px-6 text-center">
+        <div class="flex justify-center py-10">
+    <img 
+        src="imagenes/flor sección.jpg" 
+        class="w-full flex-shrink-0 object-cover h-[300px] md:h-[400px]"
+        alt="Separador floral"
+    >
+</div>
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl italic mb-6">Nuestra Historia</h2>
+            <div style="margin-top: 30px;">
+
+                <!-- CARRUSEL -->
+                <section class="py-20">
+                    <div class="max-w-5xl mx-auto px-6">
+                        <div class="overflow-hidden relative">
+                            <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
+
+                                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486"
+                                    class="w-full flex-shrink-0 object-cover h-[300px] md:h-[400px]">
+
+                                <img src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                                    class="w-full flex-shrink-0 object-cover h-[300px] md:h-[400px]">
+
+                                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc"
+                                    class="w-full flex-shrink-0 object-cover h-[300px] md:h-[400px]">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <p class="italic text-gray-600"> </p>
+            <p class="italic text-gray-600"> "Desde el primer café hasta el último suspiro, decidimos caminar juntos."
+            </p>
+            <div class="divider-floral"></div>
+        </div>
+    </section>
+
+    <!-- EVENTO -->
+<section id="evento" class="py-24 px-6  text-center">
+<div class="camara-icon w-[150px] mx-auto flex justify-center items-center bg-transparent">
+        <animated-icons src="https://animatedicons.co/get-icon?name=Camera%20V3&style=minimalistic&token=7e0acfcc-6d5c-4c6f-9fcd-b9408ce51418"
+        trigger="loop"
+        attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#6D6464FF","group-2":"#221E23FF","background:transparent"}}'
+        height="100"
+        width="100"
+        speed="1"
+        ></animated-icons>
+</div>
+    <h2 class="text-4xl italic mb-6">Evento</h2>
+    <p class="italic text-gray-600"></p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+
+
+            <div class="container-cards">
+                <div class="card-vino" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="card-title">Ceremonia</h3>
+                        <p class="text-xs uppercase tracking-widest text-gray-400 mb-4">Hora: 3:00 p.m</p>
+                        <div class="card-section mb-6 overflow-hidden rounded-sm">
+                            <h4 class="card-subtitle">Lugar</h4>
+                            <p>Templo Católico San Juan<br>San Ramón, Alajuela</p>
+                                <div class="mb-6 overflow-hidden rounded-sm">
+                                            <iframe
+                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.123456789!2d-84.47!3d10.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA0JzQ4LjAiTiA4NMKwMjgnMTIuMCJX!5e0!3m2!1ses!2scr!4v123456789"
+                                                width="100%" height="150" max-width="150" margin="40px auto" style="border:0;"
+                                                allowfullscreen="" loading="lazy" border-radius=0px>
+                                            </iframe>
+                                </div>
+
+                                <a href="https://maps.google.com" target="_blank" class="btn-lujo px-6 py-2 text-[10px] inline-block">
+                                        ABRIR EN GOOGLE MAPS
+                                    </a>
+                                </div>
+                                </div>
+                                </div>
+
+            <div class="container-cards">
+
+                <div class="card-vino" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="card-title">Celebración</h3>
+                        <p class="text-xs uppercase tracking-widest text-gray-400 mb-4">Hora: 3:00 p.m</p>
+                        <div class="card-section mb-6 overflow-hidden rounded-sm ">
+                            <h4 class="card-subtitle">Lugar</h4>
+                            <p>Antigua Hacienda del Marqués<br>Salón Imperial</p>
+                            <div class="mb-6 overflow-hidden rounded-sm">
+                                        <iframe
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.123456789!2d-84.47!3d10.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA0JzQ4LjAiTiA4NMKwMjgnMTIuMCJX!5e0!3m2!1ses!2scr!4v123456789"
+                                            width="100%" height="150" max-width="150" margin="40px auto" style="border:0;"
+                                            allowfullscreen="" loading="lazy" border-radius=4px>
+                                        </iframe>
+                                </div>
+
+                                    <a href="https://maps.google.com" target="_blank"
+                                        class="btn-lujo px-6 py-2 text-[10px] inline-block">
+                                        ABRIR EN GOOGLE MAPS
+                                    </a>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        </div>
+        </div>
+</section>
+
+
+    <!-- DRESS CODE -->
+    <section class="py-20 bg-white text-center">
+        <h2 class="text-4xl italic mb-4">Dress Code</h2>
+        <p class="mt-4">Formal / Gala</p>
+        <p class="text-gray-500 italic mt-2">Caballeros: Traje | Damas: Vestido largo</p>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="py-24 bg-[#f4f1eb]">
+        <div class="container-cards">
+        <div class="card-vino-form" data-aos="fade-up" data-aos-delay="200">
+        <div class="container mx-auto px-1 max-w-2xl text-center">
+            <div id="contenedor-formulario" class="bg-white p-1 md:p-1 ">
+                <h2 class="text-4xl italic mb-4">Confirmar asistencia</h2>
+
+                <p class="italic text-gray-600 mb-6 text-lef">
+                Tu presencia es muy importante para nosotros. 
+                Por favor, confirma tu asistencia antes del 10 de noviembre.
+                <p class="italic text-gray-600 mb-6 text-lef">
+                </p>
+                <p class="italic text-gray-600 mb-6 text-lef">
+                ¡Esperamos poder compartir este día contigo!
+                </p>
+
+                <form id="rsvp-form" class="space-y-6">
+                    <input type="text" class="form-input" placeholder="Nombre completo" required>
+
+                    <select class="form-input">
+                        <option>Selecciona</option>
+                        <option>SÍ, ASISTIRÉ</option>
+                        <option>NO PODRÉ ASISTIR</option>
+                    </select>
+
+                    <button type="submit" class="btn-lujo px-6 py-2 text-[10px] inline-block">
+                        ENVIAR CONFIRMACIÓN
+                    </button>
+
+                    <div id="mensaje-exito" class="hidden mt-4">
+                        ¡Muchas gracias!
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INMORTALICEMOS -->
+    <section id="photos" class="py-24">
+    <div class="camara-icon w-[150px] mx-auto flex justify-center items-center bg-transparent">
+                    <animated-icons src="https://animatedicons.co/get-icon?name=Camera%20V3&style=minimalistic&token=7e0acfcc-6d5c-4c6f-9fcd-b9408ce51418"
+                        trigger="loop"
+                        attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#6D6464FF","group-2":"#221E23FF","background:transparent"}}'
+                        height="100"
+                        width="100"
+                        speed="1"
+                    ></animated-icons>
+                    </div>
+
+
+        <h2 class="text-4xl md:text-5xl italic tracking-wide mb-4 text-[#4b3d32] text-center"> Compartamos este día juntos </h2>
+        <p class="italic text-gray-600 mb-6 text-center">
+                   Comparte tus fotos y videos de este día con nosotros
+                </p>
+            <a href="#" class="btn-lujo px-6 py-2 text-[10px] inline-block">
+                Subir fotos
+            </a>
+            <img src="imagenes/qr.jpg"
+            class="w-[300px] h-[300px] mx-auto object-cover rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc"
+            class="w-full flex-shrink-0 object-cover h-[300px] md:h-[400px]">
+    </section>
+    
+
+    <footer class="py-12 text-center">
+        <h2>J & L</h2>
+        <p style="font-size:60; letter-spacing: 4px; color: #999;">
+            Gracias por ser parte de nuestra historia
+        </p>
+    </footer>
+
+    <script src="iniciofunc.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+
+</body>
+
+</html>
