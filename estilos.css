@@ -10,11 +10,23 @@ body {
     scroll-behavior: smooth;
 }
 
-h1, h2 , h3 { font-family: 'Cormorant Garamond', serif; color: var(--vino); }
+
+h1 {
+    font-family: 'Pacifico', serif;
+    color: var(--white);
+}
+
+
+
+h2,
+h3 {
+    font-family: 'Pacifico', serif;
+    color: var(--vino);
+}
 
 .hero-section {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80');
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -29,8 +41,17 @@ h1, h2 , h3 { font-family: 'Cormorant Garamond', serif; color: var(--vino); }
     border-radius: 4px;
 }
 
-.countdown-item span { display: block; font-size: 2rem; font-weight: 300; }
-.countdown-item p { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
+.countdown-item span {
+    display: block;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.countdown-item p {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
 .btn-lujo {
     background: white;
@@ -46,7 +67,7 @@ h1, h2 , h3 { font-family: 'Cormorant Garamond', serif; color: var(--vino); }
     background: var(--vino);
     color: white;
     transform: translateY(-3px);
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .form-input {
@@ -65,10 +86,13 @@ h1, h2 , h3 { font-family: 'Cormorant Garamond', serif; color: var(--vino); }
     color: #888;
 }
 
-.hidden { display: none !important; }
+.hidden {
+    display: none !important;
+}
 
 .divider-floral {
-    height: 1px; width: 100px;
+    height: 1px;
+    width: 100px;
     background: var(--oro);
     margin: 20px auto;
 }
@@ -86,8 +110,15 @@ iframe:hover {
 
 /* Animación de flotación suave para el contenedor del Lottie */
 @keyframes bounceSlow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 .animate-bounce-slow {
@@ -101,9 +132,15 @@ iframe:hover {
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    border: 1px solid #d4c19d;
+
+    border: 1px solid var(--vino);
     background-color: white;
-    color: #4a080e;
+    color: var(--vino);
+
+    padding: 12px 30px;
+    /* 👈 agrega esto */
+    border-radius: 50px;
+    /* 👈 ESTO es lo importante */
 }
 
 .btn-lujo:hover {
@@ -111,4 +148,132 @@ iframe:hover {
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(74, 8, 14, 0.2);
+}
+
+/* Asegura que el scroll sea suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Contenedor principal de la flecha */
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    /* Distancia desde el suelo de la imagen */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Dibujo de la flecha con CSS puro */
+.arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid #fff;
+    /* Color de la flecha */
+    border-bottom: 2px solid #fff;
+    transform: rotate(45deg);
+    animation: bounce 2s infinite;
+    /* Activa la animación */
+    cursor: pointer;
+}
+
+/* Animación de rebote */
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0) rotate(45deg);
+    }
+
+    40% {
+        transform: translateY(-10px) rotate(45deg);
+    }
+
+    60% {
+        transform: translateY(-5px) rotate(45deg);
+    }
+}
+
+/* Contenedor para alinear los dos cuadros */
+.container-cards {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    /* Hace que ambos tengan la misma altura */
+    gap: 30px;
+    /* Espacio entre cuadros */
+    flex-wrap: wrap;
+    /* Los pone uno abajo del otro en el cel */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.card-vino {
+    background-color: #fffefe;
+    /* Color vino tinto */
+    border: 1px solid #521f34;
+    /* Borde dorado fino */
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    color: #4a080e;
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(212, 193, 157, 0.2);
+    padding-bottom: 10px;
+}
+
+.card-section {
+    margin-bottom: 90px;
+}
+
+.card-subtitle {
+    font-family: 'Playfair Display', serif;
+    color: #521f34;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.card-section p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 200;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Botones dorados dentro de la tarjeta */
+.btn-card {
+    display: inline-block;
+    background-color: #b28d42;
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.btn-card:hover {
+    background-color: #d4c19d;
+    color: #801f3d;
 }
