@@ -169,6 +169,15 @@ p.eyebrow,
     margin-bottom: 1rem;
 }
 
+.body-text1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-weight: 300;
+    color: var(--gris);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
 .max-narrow {
     max-width: 480px;
     margin-left: auto;
@@ -1185,6 +1194,7 @@ p.eyebrow,
 .texto-resaltado {
   color: var(--vino, #6b1d2f);
   font-weight: bold;
+  font-style: italic;  
 }
 
 /* Adaptación para pantallas de celular (pantallas menores a 768px) */
@@ -2368,9 +2378,11 @@ p.eyebrow,
 
 /* Columna de la foto (ocupa el 45% del espacio) */
 .descripcion-col-foto {
-  flex: 1 1 45%;
+  flex: 1 1 50%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-end; /* La imagen se apoya en el fondo */
+  margin-bottom: 0; /* Garantiza que toque el borde inferior */
 }
 
 .foto-descripcion {
@@ -2399,8 +2411,7 @@ p.eyebrow,
     flex-direction: column; /* Pasa a formato vertical en móviles */
     gap: 2rem;
   }
-  }
-
   .descripcion-col-texto {
-    text-align: center; /* Opcional: centrar texto en móviles */
-  }  
+    text-align: center; /* Centra el texto solo en móviles */
+  } 
+} /* <--- La llave debe cerrar AQUÍ, al final de la sección responsiva */
