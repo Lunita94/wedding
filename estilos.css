@@ -1193,6 +1193,7 @@ p.eyebrow,
     flex-direction: column; /* Pasa a formato vertical en móviles */
     gap: 2rem;
   }
+}
 /* ==========================================================================
    INVITACIÓN DE BODA — CSS RESPONSIVO Y LIMPIO
    Tipografías: 
@@ -2340,7 +2341,7 @@ p.eyebrow,
     box-shadow: 0 4px 12px rgba(82, 31, 52, 0.2);
 }
 
-#detalles{
+#detalles {
     background-image: url('imagenes/fondo-regalos.png');
     background-size: cover;
     background-position: center;
