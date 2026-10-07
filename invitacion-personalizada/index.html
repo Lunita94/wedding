@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Jose & Liseth</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Librería AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════════
+         NAV (RESPONSIVO)
+    ═══════════════════════════════════════════════ -->
+    <nav class="nav-fixed">
+        <div class="nav-inner">
+            <span class="nav-monogram">J & L</span>
+            
+            <!-- Botón Menú Hamburguesa Móvil -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-links" id="nav-links">
+                <a href="#inicio" onclick="cerrarMenu()">Inicio</a>
+                <a href="#descripcion" onclick="cerrarMenu()">Descripcion</a>
+                <a href="#nuestrahistoria" onclick="cerrarMenu()">Historia</a>
+                <a href="#evento" onclick="cerrarMenu()">Evento</a>
+                <a href="#itinerario" onclick="cerrarMenu()">Itinerario</a>
+                <a href="#rsvp" onclick="cerrarMenu()">Confirmar</a>
+                <a href="#photos" onclick="cerrarMenu()">Fotos</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════════════ -->
+    <section id="inicio" class="hero-section">
+    <!-- 1. Agrega esta línea para que el CSS muestre la imagen de fondo -->
+    <div class="hero-photo"></div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="2000">
+        <p class="hero-pre">Nos casamos</p>
+        <h1 class="hero-names">Jose <span class="ampersand">&amp;</span> Liseth</h1>
+        <div class="hero-divider"></div>
+        <p class="hero-date-text">20 · Diciembre · 2026</p>
+
+        <button class="music-btn" id="music-btn" onclick="toggleMusica()" aria-label="Reproducir música">
+            <span class="music-icon" id="music-icon">♪</span>
+            <span id="music-label">Reproducir música</span>
+        </button>
+        <audio id="musica">
+            <!-- NOTA: Revisa el punto 2 sobre la música -->
+            <source src="Musica/Ed-Sheeran-Perfect-_Instrumental_.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <a href="#contador" class="scroll-arrow" aria-label="Bajar al contador">
+        <div class="arrow-chevron"></div>
+    </a>
+</section>
+
+<section id="descripcion" class="section-padded bg-marfil">
+  <div class="descripcion-container">
+    <div class="descripcion-grid">
+      
+      <!-- LADO IZQUIERDO: Foto -->
+      <div class="descripcion-col-foto" data-aos="fade-right">
+        <img src="imagenes/foto-lis-y-jose..jpeg" alt="Jose y Liseth">
+      </div>
+
+      <!-- LADO DERECHO: Texto -->
+      <div class="rsvp-card descripcion-card" data-aos="fade-left" data-aos-delay="120">
+        <p class="body-text">
+          Una propuesta, un Sí y una decisión que tomamos juntos. 
+          Nuestro amor ha crecido en nosotros, ha madurado y florecido, a veces sencillo, otras caótico pero siempre maravilloso. 
+          Así comienza una nueva etapa en nuestras vidas, siempre de la mano de Dios.
+          </p>
+          <p class="body-text">
+          Somos dedicados y fuertes; los desafíos que hemos enfrentado nos han ayudado a crecer y madurar; 
+          debemos agradecer a esos retos porque con ellos nos hemos dado cuenta que juntos podemos lograr lo que nos proponemos.
+          </p>
+          Tan sólo podemos decir que nuestra vida en estos momentos se encuentra completa y estamos listos para compartir <span class="texto-resaltado">el resto de nuestros días juntos</span>.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- ═══════════════════════════════════════════════
+         CONTADOR / INVITACIÓN
+    ═══════════════════════════════════════════════ -->
+    <section id="contador" class="section-padded section-contador-relative bg-white">
+        
+        <!-- Decoración Floral Responsiva -->
+        <div class="decoracion-flores">
+            <img src="imagenes/flores.jpeg" alt="Decoración floral" class="flores-esquina-izquierda">
+        </div>
+
+        <div class="section-inner text-center" data-aos="fade-up">
+            <p class="eyebrow">Una celebración de amor</p>
+            <h2 class="section-title">Estás Invitado</h2>
+
+            <p class="body-text max-narrow">
+                Nos llena de inmensa alegría poder compartir el amor con las personas que más queremos.
+                Los invitamos a celebrar juntos el día más especial de nuestras vidas.
+            </p>
+
+            <div class="date-banner">
+                <span class="date-pre">Te esperamos el</span>
+                <span class="date-main">20 de Diciembre, 2026</span>
+                <span class="date-pre">San Ramón, Alajuela · Costa Rica</span>
+            </div>
+
+            <p class="eyebrow" style="margin-top: 3rem;">Faltan</p>
+
+            <div class="countdown-wrap" id="countdown">
+                <div class="countdown-unit">
+                    <span class="count-num" id="days">00</span>
+                    <span class="count-label">Días</span>
+                </div>
+                <div class="count-sep">:</div>
+                <div class="countdown-unit">
+                    <span class="count-num" id="hours">00</span>
+                    <span class="count-label">Horas</span>
+                </div>
+                <div class="count-sep">:</div>
+                <div class="countdown-unit">
+                    <span class="count-num" id="minutes">00</span>
+                    <span class="count-label">Min</span>
+                </div>
+                <div class="count-sep">:</div>
+                <div class="countdown-unit">
+                    <span class="count-num" id="seconds">00</span>
+                    <span class="count-label">Seg</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SEPARADOR IMAGEN 1
+    ═══════════════════════════════════════════════ -->
+
+    <!-- ═══════════════════════════════════════════════
+         NUESTRA HISTORIA
+    ═══════════════════════════════════════════════ -->
+    <section id="nuestrahistoria" class="section-padded bg-marfil">
+        <div class="section-inner text-center" data-aos="fade-up">
+           
+            <h2 class="section-title">Nuestra Historia</h2>
+             <p class="eyebrow">de amor</p>
+
+            <!-- CARRUSEL -->
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carousel">
+                    <div class="carousel-slide">
+                        <img src="imagenes/quiosco.jpeg" alt="Foto 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="imagenes/te de cocina.jpeg" alt="Foto 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="imagenes/lis y jose.jpeg" alt="Foto 3">
+                    </div>
+                </div>
+
+                <!-- Controles -->
+                <button class="carousel-btn carousel-prev" onclick="moverCarruselManual(-1)" aria-label="Anterior">&#8249;</button>
+                <button class="carousel-btn carousel-next" onclick="moverCarruselManual(1)" aria-label="Siguiente">&#8250;</button>
+
+                <!-- Indicadores -->
+                <div class="carousel-dots" id="carousel-dots">
+                    <span class="dot active" onclick="irASlide(0)"></span>
+                    <span class="dot" onclick="irASlide(1)"></span>
+                    <span class="dot" onclick="irASlide(2)"></span>
+                </div>
+            </div>
+
+            <blockquote class="historia-quote">
+                "Desde el primer café hasta el último suspiro,<br>decidimos caminar juntos."
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SEPARADOR IMAGEN 2
+    ═══════════════════════════════════════════════ -->
+    <div class="img-divider" data-aos="zoom-in">
+        <img src="imagenes/anillo.jpeg" alt="Separador decorativo" class="img-divider-img">
+        <div class="img-divider-overlay"></div>
+        <div class="img-divider-text">
+            <span class="ornament-light">— El gran día —</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         EVENTO
+    ═══════════════════════════════════════════════ -->
+    <section id="evento" class="evento section-padded bg-white" aria-labelledby="events-title">
+        <h2 class="section-title" data-aos="fade-up">Evento</h2>
+        <p class="section-intro" data-aos="fade-up" data-aos-delay="80">Nos encantará compartir contigo cada momento de este día.</p>
+        
+        <div class="event-list">
+            <article class="event-card" data-aos="fade-up" data-aos-delay="120">
+                <h3>Ceremonia</h3>
+                <img src="imagenes/iglesia san juan.jpeg" alt="Separador decorativo" class="img-divider-img">
+                <p class="event-meta">Sábado 20 de diciembre - 3:00 p.m.</p>
+                <p>Templo de San Juan <br>San Ramón, Alajuela</p>
+                <div class="button-row">
+                    <a class="primary-button" href="https://maps.app.goo.gl/Y8SDanXSZyTLQRpX6" target="_blank" rel="noreferrer">Google Maps</a>
+                    <a class="secondary-button" href="https://ul.waze.com/ul?venue_id=180551781.1805714419.2153096&overview=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noreferrer">Waze</a>
+                </div>
+            </article>
+
+            <article class="event-card" data-aos="fade-up" data-aos-delay="220">
+                <h3>Recepción</h3>
+                <img src="imagenes/Salon B & J.jpeg" alt="Separador decorativo" class="img-divider-img">
+                <p class="event-meta">Sábado 20 de diciembre - 5:00 p.m.</p>
+                <p>Salón de eventos B&J <br>Concepción, San Ramón</p>
+                <div class="button-row">
+                    <a class="primary-button" href="https://maps.app.goo.gl/RSFQufWavvMtThxR9" target="_blank" rel="noreferrer">Google Maps</a>
+                    <a class="secondary-button" href="https://ul.waze.com/ul?ll=10.12434587%2C-84.44104875&navigate=yes&zoom=17&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noreferrer">Waze</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         ITINERARIO
+    ═══════════════════════════════════════════════ -->
+    <section id="itinerario" class="section-padded bg-marfil" data-aos="fade-up">
+        <div class="section-inner text-center">
+            <h2 class="section-title">Itinerario</h2>
+            <div class="itinerario-container">
+                <img src="imagenes/Programación para boda minimalista crema.png" alt="Itinerario de la boda" class="img-itinerario">
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         RSVP
+    ═══════════════════════════════════════════════ -->
+    <section id="rsvp" class="section-padded bg-white" data-aos="fade-up">
+        <div class="section-inner text-center">
+            <h2 class="section-title">Confirmar Asistencia</h2>
+            <p class="eyebrow">Esperamos tu respuesta</p>
+
+            <div class="rsvp-card" id="rsvp-loading" aria-live="polite">
+                <p class="body-text">Estamos preparando tu invitacion personal...</p>
+            </div>
+
+            <div class="rsvp-card hidden" id="rsvp-no-link">
+                <p class="body-text" style="margin-bottom: 0.5rem;">Esta invitacion necesita un enlace personal.</p>
+                <p class="body-text">Por favor abre el enlace que recibiste por WhatsApp o correo.</p>
+            </div>
+
+            <div class="rsvp-card hidden" id="contenedor-formulario">
+                <p class="body-text rsvp-family" id="rsvp-family"></p>
+                <p class="body-text" style="margin-bottom: 2rem;">
+                    Selecciona las personas que podran acompanarnos. Puedes volver a este enlace para actualizar la respuesta.
+                </p>
+                <form id="rsvp-form">
+                    <fieldset class="rsvp-guests-fieldset">
+                        <legend class="rsvp-guests-legend">Confirmar invitados</legend>
+                        <div id="rsvp-guests" class="rsvp-guests"></div>
+                    </fieldset>
+                    <button type="submit" class="btn-primary" id="rsvp-submit">Enviar confirmacion</button>
+                </form>
+            </div>
+
+            <div id="mensaje-exito" class="rsvp-success hidden">
+                <div class="success-icon">✦</div>
+                <h3 class="success-title">¡Muchas gracias!</h3>
+                <p class="success-text">Hemos recibido tu confirmación. ¡Nos vemos el 20 de diciembre!</p>
+            </div>
+        </div>
+    </section>
+
+ <section id="detalles" class="seccion-detalles section-padded" data-aos="fade-up">
+    <div class="section-inner text-center">
+        <h2 class="section-title">Regalos</h2>
+        <p class="eyebrow">Tu compañia y bendición</p>
+        <p class="eyebrow">es nuestro regalo mas importante</p>
+        <div class="rsvp-card regalos-card">
+            <p class="body-text" style="margin-bottom: 0.5rem;">
+                Pero si ese día nos quieres bendecir contaremos con sobres para regalos en efectivo.
+            </p>
+        </div>
+    </div>
+</section>
+        
+
+    <section id="photos" class=bg-white data-aos="fade-up" >
+       <div class="camara-icon w-[150px] mx-auto flex justify-center items-center bg-white mb-6">
+        <animated-icons
+            src="https://animatedicons.co/get-icon?name=Camera%20V3&style=minimalistic&token=7e0acfcc-6d5c-4c6f-9fcd-b9408ce51418"
+            trigger="loop"
+            attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#6b1d2f","group-2":"#6b1d2f","background":"#FFFFFF"}}'
+            height="100" width="100" speed="1"></animated-icons>
+        </div>
+        <div class="section-inner text-center justify-center mt-6">
+            <h2 class="section-title">Inmortaliza el Momento</h2>
+            <p class="body-text max-narrow">
+                Comparte tus fotos y videos de este día especial. Cada imagen es un recuerdo que guardaremos por siempre.
+            </p>
+            <div class="qr-wrap">
+                <div class="qr-frame">
+                    <img src="imagenes/qr.jpg" alt="Código QR para subir fotos" class="qr-img">
+                </div>
+                <p class="date-pre">Escanea el código para compartir</p>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- ═══════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════ -->
+    <footer class="w-full bg-[#f3ece6] py-16 px-6 text-center bg-marfil" data-aos="fade-up">
+        <div class="max-w-2xl mx-auto space-y-6">
+            <div class="bg-white/80 backdrop-blur-md p-10 rounded-3xl border border-white shadow-xl">
+                <h2 class="font-serif text-4xl text-[#6b1d2f] mb-2">Jose & Liseth</h2>
+                <p class="font-serif text-stone-600 italic">"Dos vidas, dos corazones, un solo camino eterno."</p>
+                <div class="mt-4 text-xs tracking-widest text-[#b88a4c] font-bold">20 · 12 · 2026 · SAN RAMÓN</div>
+            </div>
+
+            <!-- Créditos LuMaky -->
+            <p class="font-serif text-stone-600 text-base inline-flex items-center gap-1.5 justify-center">
+                Desarrollado con 
+                <svg class="w-4 h-4 fill-[#6b1d2f]" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 
+                por <strong class="font-sans font-extrabold text-[#b88a4c]">LuMaky</strong>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts externos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

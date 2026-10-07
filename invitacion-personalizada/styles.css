@@ -1,0 +1,2473 @@
+/* ==========================================================================
+   INVITACIÓN DE BODA — CSS RESPONSIVO Y LIMPIO
+   Tipografías: 
+     - Cormorant Garamond (Títulos y elegancia)
+     - Montserrat / Open Sans (Lectura, botones y formularios)
+   ========================================================================== */
+
+/* 1. VARIABLES & CONFIGURACIÓN GLOBAL
+   -------------------------------------------------------------------------- */
+:root {
+    /* Paleta Principal */
+    --vino: #4e1e1e;
+    --vino-deep: #4e1e1e;
+    --wine-950: #2a060b;
+    --wine-900: #4e1e1e;
+    --wine-700: #4e1e1e;
+    --wine-500: #a54658;
+    
+    /* Tonos Cálidos y Papel */
+    --crema: #faf8f3;
+    --blanco: #ffffff;
+    --paper: #fffdf9;
+    --rose-100: #f5e9ea;
+    --rose-50: #fbf6f4;
+    --mist: #f2e0de;
+    --marfil:#F4F3ee;
+    
+    
+    /* Detalles Dorados */
+    --oro: #c9a96e;
+    --oro-light: #e8d5b0;
+    --oro-pale: #f5eed9;
+    --gold: #c9ad75;
+    
+    /* Textos y Neutros */
+    --gris: #6b6b6b;
+    --gris-light: #a0a0a0;
+    --texto: #2c2c2c;
+    --ink: #4b3740;
+    --muted: #8a6b74;
+    
+    /* Sombras */
+    --shadow: 0 12px 35px rgba(75, 13, 23, 0.12);
+}
+
+/* RSVP personalizado por familia */
+.rsvp-family {
+    color: var(--vino);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+}
+
+.rsvp-guests-fieldset {
+    margin: 0 0 1.75rem;
+    padding: 0;
+    border: 0;
+    text-align: left;
+}
+
+.rsvp-guests-legend {
+    width: 100%;
+    margin-bottom: 0.8rem;
+    color: var(--gris);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.rsvp-guests {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.rsvp-guest-option {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-height: 48px;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--oro-light);
+    background: rgba(255, 255, 255, 0.58);
+    color: var(--texto);
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.rsvp-guest-option:hover,
+.rsvp-guest-option:has(input:checked) {
+    border-color: var(--vino);
+    background: rgba(78, 30, 30, 0.06);
+}
+
+.rsvp-guest-option input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: var(--vino);
+}
+
+#rsvp-submit:disabled {
+    cursor: wait;
+    opacity: 0.65;
+    transform: none;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--rose-100);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Textura sutil de fondo */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(75, 13, 23, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.28;
+    z-index: 0;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* Clases de Utilidad */
+.bg-crema { background-color: var(--crema); }
+.bg-white { background-color: var(--blanco); }
+.bg-marfil { background-color: var(--marfil); }
+.text-center { text-align: center; }
+.hidden { display: none !important; }
+
+.invite-shell {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    background: var(--paper);
+    position: relative;
+    z-index: 1;
+}
+
+/* 2. TIPOGRAFÍA GLOBAL
+   -------------------------------------------------------------------------- */
+h1, h2, h3, .footer-brand {
+    color: var(--wine-900);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: clamp(3.2rem, 12vw, 7.5rem);
+    line-height: 0.9;
+    color: #fff8f5;
+    text-shadow: 0 5px 22px rgba(42, 6, 11, 0.38);
+}
+
+h2 {
+    font-size: clamp(2rem, 6vw, 3.8rem);
+    line-height: 1.1;
+    text-align: center;
+}
+
+h3 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    line-height: 1.1;
+}
+
+p.eyebrow,
+.mini-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--oro);
+    display: block;
+    margin-bottom: 0.8rem;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--vino);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.body-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-weight: 300;
+    color: var(--gris);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.max-narrow {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 3. ESTRUCTURA Y NAVEGACIÓN
+   -------------------------------------------------------------------------- */
+.section-padded,
+.section-pad {
+    padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 4vw, 2.5rem);
+}
+
+.section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.nav-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(250, 248, 243, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--oro-light);
+}
+
+.nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-monogram {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--vino);
+    font-style: italic;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--vino);
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--oro);
+}
+
+/* Ocultar menú largo en celulares */
+@media (max-width: 650px) {
+    .nav-links {
+        display: none;
+    }
+}
+
+/* 4. HERO SECTION
+   -------------------------------------------------------------------------- */
+.hero-section,
+.hero {
+    position: relative;
+    min-height: 100dvh;
+    padding-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    color: #fff8f5;
+    background-color: var(--wine-900);
+}
+
+/* Asegúrate de que el padre de .hero-photo tenga esto */
+.hero, .hero-section {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Regla corregida para la imagen */
+.hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* Corregimos la ruta con '../' si tu CSS está dentro de una carpeta */
+    background-image: url('imagenes/1.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    /* Cambiamos 'fixed' por 'scroll' para evitar que se desaparezca */
+    background-attachment: scroll; 
+    opacity: 0.75;
+    z-index: 1; /* Garantiza que se muestre en su capa correspondiente */
+}
+.fondo-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image: url('imagenes/1.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    /* Cambiamos 'fixed' por 'scroll' para evitar que se desaparezca */
+    background-attachment: scroll; 
+    opacity: 0.75;
+    z-index: 1; /* Garantiza que se muestre en su capa correspondiente */
+}
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(30, 10, 18, 0.65) 0%,
+            rgba(30, 10, 18, 0.45) 50%,
+            rgba(30, 10, 18, 0.75) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 1.2rem;
+    width: min(100%, 720px);
+}
+
+.hero-pre {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.6rem, 2vw, 0.75rem);
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--oro-light);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.hero-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 14vw, 8.5rem);
+    font-weight: 300;
+    color: #fff;
+    line-height: 0.95;
+    margin-bottom: 0.5rem;
+}
+
+.ampersand {
+    font-style: italic;
+    color: var(--oro);
+    background: linear-gradient(135deg, #E5C76B 0%, #FBF5B7 30%, #c9a96e 55%, #FBF5B7 80%, #E5C76B 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gold-shine 4s linear infinite;
+}
+
+@keyframes gold-shine {
+    to { background-position: 200% center; }
+}
+
+.hero-divider, .ornament-line {
+    width: 60px;
+    height: 1px;
+    background: var(--oro);
+    margin: 1.2rem auto;
+    opacity: 0.8;
+}
+
+.hero-date-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-style: italic;
+    color: var(--oro-light);
+    letter-spacing: 0.2em;
+    margin-bottom: 1.8rem;
+}
+
+.music-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(201, 169, 110, 0.6);
+    color: var(--oro-light);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.6rem;
+    border-radius: 999px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    background: rgba(201, 169, 110, 0.25);
+    border-color: var(--oro);
+}
+
+.scroll-arrow {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.arrow-chevron {
+    width: 12px;
+    height: 12px;
+    border-right: 1.5px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.8);
+    transform: rotate(45deg);
+    animation: bounce-down 2s ease-in-out infinite;
+}
+
+@keyframes bounce-down {
+    0%, 100% { transform: translateY(0) rotate(45deg); }
+    50% { transform: translateY(6px) rotate(45deg); }
+}
+
+/* Desactivar fondo fijo en móviles por rendimiento */
+@media (max-width: 768px) {
+    .hero-photo {
+        background-attachment: scroll;
+    }
+}
+
+/* 5. SEPARADORES & DECORACIÓN
+   -------------------------------------------------------------------------- */
+.section-divider {
+    text-align: center;
+    padding: 0.8rem 0;
+}
+
+.ornament {
+    font-size: 0.55rem;
+    letter-spacing: 1em;
+    color: var(--oro);
+    display: inline-block;
+}
+
+.img-divider {
+    position: relative;
+    height: clamp(160px, 30vw, 260px);
+    overflow: hidden;
+}
+
+.img-divider-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.img-divider-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(30, 10, 18, 0.55), rgba(30, 10, 18, 0.45));
+}
+
+.img-divider-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.ornament-light {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.95rem, 3vw, 1.3rem);
+    color: rgba(232, 213, 176, 0.95);
+    letter-spacing: 0.15em;
+}
+
+.img-fondo{
+    position: relative;
+    height: clamp(160px, 30vw, 260px);
+    overflow: hidden;
+}
+
+.img-fondo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 6. CONTADOR (COUNTDOWN)
+   -------------------------------------------------------------------------- */
+#contador {
+    position: relative !important;
+    overflow: hidden;
+}
+
+.flores-esquina-izquierda {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: clamp(140px, 25vw, 260px);
+    height: auto;
+    z-index: 10;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+
+
+#contador .section-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.date-banner {
+    margin: 2rem auto;
+    padding: 1.8rem 1.2rem;
+    border: 1px solid var(--oro-light);
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--blanco);
+    box-shadow: var(--shadow);
+}
+
+.date-pre {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--texto);
+    margin-top: 20px;
+}
+
+.date-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-style: italic;
+    color: var(--vino);
+}
+
+.date-place {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris-light);
+}
+
+.countdown-wrap,
+.countdown-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.3rem, 2vw, 0.8rem);
+    margin: 1.5rem auto 0;
+    width: 100%;
+    max-width: 500px;
+}
+
+.countdown-unit,
+.time-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 60px;
+    padding: 1rem 0.3rem;
+    background: var(--blanco);
+    border: 1px solid var(--oro-light);
+    position: relative;
+}
+
+.countdown-unit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--oro);
+}
+
+.count-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 300;
+    color: var(--vino);
+    line-height: 1;
+}
+
+.count-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gris-light);
+    margin-top: 0.3rem;
+}
+
+.count-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--oro);
+    opacity: 0.6;
+}
+
+/* Ajuste móvil para contador */
+@media (max-width: 420px) {
+    .count-sep {
+        display: none;
+    }
+    .countdown-unit {
+        min-width: 50px;
+        padding: 0.8rem 0.2rem;
+    }
+}
+
+/* 7. CARRUSEL
+   -------------------------------------------------------------------------- */
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    margin: 2rem 0;
+    max-height: 440px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: clamp(250px, 50vh, 420px);
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(82, 31, 52, 0.6);
+    border: 1px solid rgba(201, 169, 110, 0.5);
+    color: var(--oro-light);
+    font-size: 1.5rem;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.carousel-prev { left: 0.5rem; }
+.carousel-next { right: 0.5rem; }
+
+.carousel-dots {
+    position: absolute;
+    bottom: 0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: var(--oro);
+    transform: scale(1.3);
+}
+
+.historia-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 3vw, 1.3rem);
+    color: var(--vino);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--oro-light);
+    border-bottom: 1px solid var(--oro-light);
+}
+
+/* 8. EVENTO (UBICACIONES & CARDS)
+   -------------------------------------------------------------------------- */
+.evento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.evento-card {
+    background: var(--blanco);
+    border: 1px solid var(--oro-light);
+    padding: clamp(1.8rem, 4vw, 2.5rem) 1.5rem;
+    position: relative;
+}
+
+.evento-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--oro), transparent);
+}
+
+.evento-card-icon {
+    font-size: 1.2rem;
+    color: var(--oro);
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.evento-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--vino);
+}
+
+.evento-card-time {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gris-light);
+    margin-bottom: 0.8rem;
+}
+
+.evento-card-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--oro);
+    margin: 1rem auto;
+    opacity: 0.6;
+}
+
+.evento-place-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 0.3rem;
+}
+
+.evento-place-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--vino);
+}
+
+.evento-place-sub {
+    font-size: 0.75rem;
+    color: var(--gris);
+    margin-bottom: 1rem;
+}
+
+.evento-map {
+    margin: 1.25rem 0;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.evento-map iframe {
+    width: 100%;
+    display: block;
+    border: 0;
+    filter: grayscale(20%);
+    transition: filter 0.4s;
+}
+
+.btn-evento,
+.btn-primary {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--vino);
+    background: var(--blanco);
+    border: 1px solid var(--vino);
+    padding: 0.75rem 1.8rem;
+    border-radius: 999px;
+    transition: all 0.35s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-evento:hover,
+.btn-primary:hover {
+    background: var(--vino);
+    color: var(--blanco);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(82, 31, 52, 0.18);
+}
+
+/* 9. DRESS CODE
+   -------------------------------------------------------------------------- */
+.dresscode-wrap {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    max-width: 560px;
+    margin: 2rem auto;
+    border: 1px solid var(--oro-light);
+    background: var(--blanco);
+}
+
+.dresscode-card {
+    flex: 1;
+    padding: 2rem 1.2rem;
+    text-align: center;
+}
+
+.dresscode-divider-v {
+    width: 1px;
+    background: var(--oro-light);
+    flex-shrink: 0;
+}
+
+.dresscode-icon {
+    font-size: 1.4rem;
+    color: var(--oro);
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.dresscode-gender {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gris-light);
+    margin-bottom: 0.4rem;
+}
+
+.dresscode-attire {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--vino);
+    margin-bottom: 0.4rem;
+}
+
+.dresscode-detail {
+    font-size: 0.7rem;
+    color: var(--gris);
+    line-height: 1.5;
+}
+
+/* Ajuste Dresscode en Smartphones */
+@media (max-width: 520px) {
+    .dresscode-wrap {
+        flex-direction: column;
+    }
+    .dresscode-divider-v {
+        width: 100%;
+        height: 1px;
+    }
+}
+
+/* 10. RSVP Y FORMULARIOS
+   -------------------------------------------------------------------------- */
+.rsvp-card {
+    max-width: 450px;
+    margin: 0 auto;
+    background: var(--blanco);
+    border: 1px solid var(--oro-light);
+    padding: clamp(1.8rem, 5vw, 2.8rem) clamp(1.2rem, 4vw, 2rem);
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.rsvp-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--oro), transparent);
+}
+
+.rsvp-input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--oro-light);
+    padding: 0.8rem 0;
+    font-size: 0.85rem;
+    color: var(--texto);
+    background: transparent;
+    outline: none;
+    margin-bottom: 1.5rem;
+    border-radius: 0;
+    transition: border-color 0.3s;
+}
+
+.rsvp-input::placeholder {
+    color: var(--gris-light);
+}
+
+.rsvp-input:focus {
+    border-bottom-color: var(--vino);
+}
+
+/* 11. COMPARTIR FOTOS (QR)
+   -------------------------------------------------------------------------- */
+.qr-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.qr-frame {
+    width: clamp(140px, 40vw, 180px);
+    height: clamp(140px, 40vw, 180px);
+    border: 1px solid var(--oro-light);
+    padding: 10px;
+    background: var(--blanco);
+}
+
+.qr-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.qr-caption {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris-light);
+}
+
+/* 12. FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+    background: var(--blanco);
+    padding: clamp(3rem, 8vw, 5rem) 1.5rem;
+    text-align: center;
+    border-top: 1px solid var(--oro-light);
+}
+
+.footer-inner {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.footer-ornament {
+    font-size: 0.8rem;
+    color: var(--oro);
+    letter-spacing: 0.8em;
+    display: block;
+    margin-bottom: 1.2rem;
+}
+
+.footer-monogram, .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 8vw, 3.8rem);
+    font-style: italic;
+    color: var(--wine-950);
+    margin-bottom: 1rem;
+}
+
+.footer-date {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 1.2rem;
+}
+
+.footer-thanks {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--vino);
+}
+
+/* ==========================================
+   SECCIÓN EVENTOS (ADAPTADO A TU HTML)
+   ========================================== */
+
+/* Contenedor principal de la sección */
+#evento.section-padded {
+    padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+    text-align: center;
+}
+
+/* Título e introducción */
+#evento .section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 3.8rem);
+    font-style: italic;
+    color: var(--vino, #4e1e1e);
+    margin-bottom: 0.5rem;
+}
+
+#evento .section-intro {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--gris, #6b6b6b);
+    max-width: 500px;
+    margin: 0 auto 2.5rem auto;
+}
+
+/* Grilla contenedora de los dos eventos */
+.event-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* Tarjeta individual (Fondo blanco y borde sutil) */
+.event-card {
+    background: #ffffff;
+    border: 1px solid var(--oro-light, #e8d5b0);
+    border-radius: 6px;
+    padding: 2.5rem 1.8rem;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(75, 13, 23, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Borde superior dorado elegante */
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--oro, #c9a96e), transparent);
+    border-radius: 6px 6px 0 0;
+}
+
+/* Ícono (+) o (*) */
+.event-icon {
+    font-size: 1.2rem;
+    color: var(--oro, #c9a96e);
+    margin-bottom: 0.5rem;
+}
+
+/* Títulos "Ceremonia" y "Recepción" */
+.event-card h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.2rem;
+    font-style: italic;
+    color: var(--vino, #4e1e1e);
+    margin-bottom: 0.2rem;
+}
+
+/* Fecha y hora */
+.event-meta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--oro, #c9a96e);
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 1rem;
+}
+
+/* Texto de ubicación (Templo de San Juan / Salón) */
+.event-card p:not(.event-meta) {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: var(--texto, #2c2c2c);
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+}
+
+/* Fila de botones (Google Maps & Waze) */
+.button-row {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: auto;
+    width: 100%;
+}
+
+/* Estilo base para los enlaces/botones */
+.primary-button,
+.secondary-button {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.65rem 1.2rem;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Botón principal (Google Maps) */
+.primary-button {
+    background: var(--vino, #4e1e1e);
+    color: #ffffff;
+    border: 1px solid var(--vino, #4e1e1e);
+}
+
+.primary-button:hover {
+    background: var(--vino-deep, #4e1e1e);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 31, 52, 0.25);
+}
+
+/* Botón secundario (Waze) */
+.secondary-button {
+    background: transparent;
+    color: var(--vino, #4e1e1e);
+    border: 1px solid var(--vino, #4e1e1e);
+}
+
+.secondary-button:hover {
+    background: var(--vino, #521f34);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 31, 52, 0.2);
+}
+
+/* Contenedor principal de la sección */
+.descripcion-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Flexbox para ponerlos lado a lado */
+.descripcion-grid {
+  display: flex;
+  flex-direction: row; /* Coloca foto a la izquierda y texto a la derecha */
+  align-items: center; /* Alinea verticalmente al centro */
+  gap: 3rem; /* Espacio entre la foto y el texto */
+}
+
+/* Columna de la foto (ocupa el 45% del espacio) */
+.descripcion-col-foto {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.foto-descripcion {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 12px; /* Opcional: bordes redondeados suavemente */
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Opcional: sombra elegante */
+}
+
+/* Columna del texto (ocupa el 55% del espacio) */
+.descripcion-col-texto {
+  flex: 1 1 55%;
+  text-align: left;
+}
+
+.texto-resaltado {
+  color: var(--vino, #6b1d2f);
+  font-weight: bold;
+}
+
+/* Adaptación para pantallas de celular (pantallas menores a 768px) */
+@media (max-width: 768px) {
+  .descripcion-grid {
+    flex-direction: column; /* Pasa a formato vertical en móviles */
+    gap: 2rem;
+  }
+}
+/* ==========================================================================
+   INVITACIÓN DE BODA — CSS RESPONSIVO Y LIMPIO
+   Tipografías: 
+     - Cormorant Garamond (Títulos y elegancia)
+     - Montserrat / Open Sans (Lectura, botones y formularios)
+   ========================================================================== */
+
+/* 1. VARIABLES & CONFIGURACIÓN GLOBAL
+   -------------------------------------------------------------------------- */
+:root {
+    /* Paleta Principal */
+    --vino: #4e1e1e;
+    --vino-deep: #4e1e1e;
+    --wine-950: #2a060b;
+    --wine-900: #4e1e1e;
+    --wine-700: #4e1e1e;
+    --wine-500: #a54658;
+    
+    /* Tonos Cálidos y Papel */
+    --crema: #faf8f3;
+    --blanco: #ffffff;
+    --paper: #fffdf9;
+    --rose-100: #f5e9ea;
+    --rose-50: #fbf6f4;
+    --mist: #f2e0de;
+    --marfil:#F4F3ee;
+    
+    
+    /* Detalles Dorados */
+    --oro: #c9a96e;
+    --oro-light: #e8d5b0;
+    --oro-pale: #f5eed9;
+    --gold: #c9ad75;
+    
+    /* Textos y Neutros */
+    --gris: #6b6b6b;
+    --gris-light: #a0a0a0;
+    --texto: #2c2c2c;
+    --ink: #4b3740;
+    --muted: #8a6b74;
+    
+    /* Sombras */
+    --shadow: 0 12px 35px rgba(75, 13, 23, 0.12);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--rose-100);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Textura sutil de fondo */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(75, 13, 23, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.28;
+    z-index: 0;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* Clases de Utilidad */
+.bg-crema { background-color: var(--crema); }
+.bg-white { background-color: var(--blanco); }
+.bg-marfil { background-color: var(--marfil); }
+.text-center { text-align: center; }
+.hidden { display: none !important; }
+
+.invite-shell {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    background: var(--paper);
+    position: relative;
+    z-index: 1;
+}
+
+/* 2. TIPOGRAFÍA GLOBAL
+   -------------------------------------------------------------------------- */
+h1, h2, h3, .footer-brand {
+    color: var(--wine-900);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: clamp(3.2rem, 12vw, 7.5rem);
+    line-height: 0.9;
+    color: #fff8f5;
+    text-shadow: 0 5px 22px rgba(42, 6, 11, 0.38);
+}
+
+h2 {
+    font-size: clamp(2rem, 6vw, 3.8rem);
+    line-height: 1.1;
+    text-align: center;
+}
+
+h3 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    line-height: 1.1;
+}
+
+p.eyebrow,
+.mini-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--oro);
+    display: block;
+    margin-bottom: 0.8rem;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--vino);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.body-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-weight: 300;
+    color: var(--gris);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.max-narrow {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 3. ESTRUCTURA Y NAVEGACIÓN
+   -------------------------------------------------------------------------- */
+.section-padded,
+.section-pad {
+    padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 4vw, 2.5rem);
+}
+
+.section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.nav-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(250, 248, 243, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--oro-light);
+}
+
+.nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-monogram {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--vino);
+    font-style: italic;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--vino);
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--oro);
+}
+
+/* Ocultar menú largo en celulares */
+@media (max-width: 650px) {
+    .nav-links {
+        display: none;
+    }
+}
+
+/* 4. HERO SECTION
+   -------------------------------------------------------------------------- */
+.hero-section,
+.hero {
+    position: relative;
+    min-height: 100dvh;
+    padding-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    color: #fff8f5;
+    background-color: var(--wine-900);
+}
+
+/* Asegúrate de que el padre de .hero-photo tenga esto */
+.hero, .hero-section {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Regla corregida para la imagen */
+.hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* Corregimos la ruta con '../' si tu CSS está dentro de una carpeta */
+    background-image: url('imagenes/1.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    /* Cambiamos 'fixed' por 'scroll' para evitar que se desaparezca */
+    background-attachment: scroll; 
+    opacity: 0.75;
+    z-index: 1; /* Garantiza que se muestre en su capa correspondiente */
+}
+.fondo-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image: url('imagenes/1.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    /* Cambiamos 'fixed' por 'scroll' para evitar que se desaparezca */
+    background-attachment: scroll; 
+    opacity: 0.75;
+    z-index: 1; /* Garantiza que se muestre en su capa correspondiente */
+}
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(30, 10, 18, 0.65) 0%,
+            rgba(30, 10, 18, 0.45) 50%,
+            rgba(30, 10, 18, 0.75) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 1.2rem;
+    width: min(100%, 720px);
+}
+
+.hero-pre {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.6rem, 2vw, 0.75rem);
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--oro-light);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.hero-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 14vw, 8.5rem);
+    font-weight: 300;
+    color: #fff;
+    line-height: 0.95;
+    margin-bottom: 0.5rem;
+}
+
+.ampersand {
+    font-style: italic;
+    color: var(--oro);
+    background: linear-gradient(135deg, #E5C76B 0%, #FBF5B7 30%, #c9a96e 55%, #FBF5B7 80%, #E5C76B 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gold-shine 4s linear infinite;
+}
+
+@keyframes gold-shine {
+    to { background-position: 200% center; }
+}
+
+.hero-divider, .ornament-line {
+    width: 60px;
+    height: 1px;
+    background: var(--oro);
+    margin: 1.2rem auto;
+    opacity: 0.8;
+}
+
+.hero-date-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-style: italic;
+    color: var(--oro-light);
+    letter-spacing: 0.2em;
+    margin-bottom: 1.8rem;
+}
+
+.music-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(201, 169, 110, 0.6);
+    color: var(--oro-light);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.6rem;
+    border-radius: 999px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    background: rgba(201, 169, 110, 0.25);
+    border-color: var(--oro);
+}
+
+.scroll-arrow {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.arrow-chevron {
+    width: 12px;
+    height: 12px;
+    border-right: 1.5px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.8);
+    transform: rotate(45deg);
+    animation: bounce-down 2s ease-in-out infinite;
+}
+
+@keyframes bounce-down {
+    0%, 100% { transform: translateY(0) rotate(45deg); }
+    50% { transform: translateY(6px) rotate(45deg); }
+}
+
+/* Desactivar fondo fijo en móviles por rendimiento */
+@media (max-width: 768px) {
+    .hero-photo {
+        background-attachment: scroll;
+    }
+}
+
+/* 5. SEPARADORES & DECORACIÓN
+   -------------------------------------------------------------------------- */
+.section-divider {
+    text-align: center;
+    padding: 0.8rem 0;
+}
+
+.ornament {
+    font-size: 0.55rem;
+    letter-spacing: 1em;
+    color: var(--oro);
+    display: inline-block;
+}
+
+.img-divider {
+    position: relative;
+    height: clamp(160px, 30vw, 260px);
+    overflow: hidden;
+}
+
+.img-divider-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.img-divider-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(30, 10, 18, 0.55), rgba(30, 10, 18, 0.45));
+}
+
+.img-divider-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.ornament-light {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.95rem, 3vw, 1.3rem);
+    color: rgba(232, 213, 176, 0.95);
+    letter-spacing: 0.15em;
+}
+
+.img-fondo{
+    position: relative;
+    height: clamp(160px, 30vw, 260px);
+    overflow: hidden;
+}
+
+.img-fondo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 6. CONTADOR (COUNTDOWN)
+   -------------------------------------------------------------------------- */
+#contador {
+    position: relative !important;
+    overflow: hidden;
+}
+
+.flores-esquina-izquierda {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: clamp(140px, 25vw, 260px);
+    height: auto;
+    z-index: 10;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+
+
+#contador .section-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.date-banner {
+    margin: 2rem auto;
+    padding: 1.8rem 1.2rem;
+    border: 1px solid var(--oro-light);
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--blanco);
+    box-shadow: var(--shadow);
+}
+
+.date-pre {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--texto);
+    margin-top: 20px;
+}
+
+.date-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-style: italic;
+    color: var(--vino);
+}
+
+.date-place {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris-light);
+}
+
+.countdown-wrap,
+.countdown-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.3rem, 2vw, 0.8rem);
+    margin: 1.5rem auto 0;
+    width: 100%;
+    max-width: 500px;
+}
+
+.countdown-unit,
+.time-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 60px;
+    padding: 1rem 0.3rem;
+    background: var(--blanco);
+    border: 1px solid var(--oro-light);
+    position: relative;
+}
+
+.countdown-unit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--oro);
+}
+
+.count-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 300;
+    color: var(--vino);
+    line-height: 1;
+}
+
+.count-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gris-light);
+    margin-top: 0.3rem;
+}
+
+.count-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--oro);
+    opacity: 0.6;
+}
+
+/* Ajuste móvil para contador */
+@media (max-width: 420px) {
+    .count-sep {
+        display: none;
+    }
+    .countdown-unit {
+        min-width: 50px;
+        padding: 0.8rem 0.2rem;
+    }
+}
+
+/* 7. CARRUSEL
+   -------------------------------------------------------------------------- */
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    margin: 2rem 0;
+    max-height: 440px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: clamp(250px, 50vh, 420px);
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(82, 31, 52, 0.6);
+    border: 1px solid rgba(201, 169, 110, 0.5);
+    color: var(--oro-light);
+    font-size: 1.5rem;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.carousel-prev { left: 0.5rem; }
+.carousel-next { right: 0.5rem; }
+
+.carousel-dots {
+    position: absolute;
+    bottom: 0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: var(--oro);
+    transform: scale(1.3);
+}
+
+.historia-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 3vw, 1.3rem);
+    color: var(--vino);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--oro-light);
+    border-bottom: 1px solid var(--oro-light);
+}
+
+/* 8. EVENTO (UBICACIONES & CARDS)
+   -------------------------------------------------------------------------- */
+.evento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.evento-card {
+    background: var(--blanco);
+    border: 1px solid var(--oro-light);
+    padding: clamp(1.8rem, 4vw, 2.5rem) 1.5rem;
+    position: relative;
+}
+
+.evento-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--oro), transparent);
+}
+
+.evento-card-icon {
+    font-size: 1.2rem;
+    color: var(--oro);
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.evento-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--vino);
+}
+
+.evento-card-time {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gris-light);
+    margin-bottom: 0.8rem;
+}
+
+.evento-card-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--oro);
+    margin: 1rem auto;
+    opacity: 0.6;
+}
+
+.evento-place-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 0.3rem;
+}
+
+.evento-place-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--vino);
+}
+
+.evento-place-sub {
+    font-size: 0.75rem;
+    color: var(--gris);
+    margin-bottom: 1rem;
+}
+
+.evento-map {
+    margin: 1.25rem 0;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.evento-map iframe {
+    width: 100%;
+    display: block;
+    border: 0;
+    filter: grayscale(20%);
+    transition: filter 0.4s;
+}
+
+.btn-evento,
+.btn-primary {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--vino);
+    background: var(--blanco);
+    border: 1px solid var(--vino);
+    padding: 0.75rem 1.8rem;
+    border-radius: 999px;
+    transition: all 0.35s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-evento:hover,
+.btn-primary:hover {
+    background: var(--vino);
+    color: var(--blanco);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(82, 31, 52, 0.18);
+}
+
+/* 9. DRESS CODE
+   -------------------------------------------------------------------------- */
+.dresscode-wrap {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    max-width: 560px;
+    margin: 2rem auto;
+    border: 1px solid var(--oro-light);
+    background: var(--blanco);
+}
+
+.dresscode-card {
+    flex: 1;
+    padding: 2rem 1.2rem;
+    text-align: center;
+}
+
+.dresscode-divider-v {
+    width: 1px;
+    background: var(--oro-light);
+    flex-shrink: 0;
+}
+
+.dresscode-icon {
+    font-size: 1.4rem;
+    color: var(--oro);
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.dresscode-gender {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gris-light);
+    margin-bottom: 0.4rem;
+}
+
+.dresscode-attire {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--vino);
+    margin-bottom: 0.4rem;
+}
+
+.dresscode-detail {
+    font-size: 0.7rem;
+    color: var(--gris);
+    line-height: 1.5;
+}
+
+/* Ajuste Dresscode en Smartphones */
+@media (max-width: 520px) {
+    .dresscode-wrap {
+        flex-direction: column;
+    }
+    .dresscode-divider-v {
+        width: 100%;
+        height: 1px;
+    }
+}
+
+/* 10. RSVP Y FORMULARIOS
+   -------------------------------------------------------------------------- */
+.rsvp-card {
+    max-width: 450px;
+    margin: 0 auto;
+    background: var(--blanco);
+    border: 1px solid var(--oro-light);
+    padding: clamp(1.8rem, 5vw, 2.8rem) clamp(1.2rem, 4vw, 2rem);
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.rsvp-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--oro), transparent);
+}
+
+.rsvp-input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--oro-light);
+    padding: 0.8rem 0;
+    font-size: 0.85rem;
+    color: var(--texto);
+    background: transparent;
+    outline: none;
+    margin-bottom: 1.5rem;
+    border-radius: 0;
+    transition: border-color 0.3s;
+}
+
+.rsvp-input::placeholder {
+    color: var(--gris-light);
+}
+
+.rsvp-input:focus {
+    border-bottom-color: var(--vino);
+}
+
+/* 11. COMPARTIR FOTOS (QR)
+   -------------------------------------------------------------------------- */
+.qr-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.qr-frame {
+    width: clamp(140px, 40vw, 180px);
+    height: clamp(140px, 40vw, 180px);
+    border: 1px solid var(--oro-light);
+    padding: 10px;
+    background: var(--blanco);
+}
+
+.qr-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.qr-caption {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris-light);
+}
+
+/* 12. FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+    background: var(--blanco);
+    padding: clamp(3rem, 8vw, 5rem) 1.5rem;
+    text-align: center;
+    border-top: 1px solid var(--oro-light);
+}
+
+.footer-inner {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.footer-ornament {
+    font-size: 0.8rem;
+    color: var(--oro);
+    letter-spacing: 0.8em;
+    display: block;
+    margin-bottom: 1.2rem;
+}
+
+.footer-monogram, .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 8vw, 3.8rem);
+    font-style: italic;
+    color: var(--wine-950);
+    margin-bottom: 1rem;
+}
+
+.footer-date {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 1.2rem;
+}
+
+.footer-thanks {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--vino);
+}
+
+/* ==========================================
+   SECCIÓN EVENTOS (ADAPTADO A TU HTML)
+   ========================================== */
+
+/* Contenedor principal de la sección */
+#evento.section-padded {
+    padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+    text-align: center;
+}
+
+/* Título e introducción */
+#evento .section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 3.8rem);
+    font-style: italic;
+    color: var(--vino, #4e1e1e);
+    margin-bottom: 0.5rem;
+}
+
+#evento .section-intro {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--gris, #6b6b6b);
+    max-width: 500px;
+    margin: 0 auto 2.5rem auto;
+}
+
+/* Grilla contenedora de los dos eventos */
+.event-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* Tarjeta individual (Fondo blanco y borde sutil) */
+.event-card {
+    background: #ffffff;
+    border: 1px solid var(--oro-light, #e8d5b0);
+    border-radius: 6px;
+    padding: 2.5rem 1.8rem;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(75, 13, 23, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Borde superior dorado elegante */
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--oro, #c9a96e), transparent);
+    border-radius: 6px 6px 0 0;
+}
+
+/* Ícono (+) o (*) */
+.event-icon {
+    font-size: 1.2rem;
+    color: var(--oro, #c9a96e);
+    margin-bottom: 0.5rem;
+}
+
+/* Títulos "Ceremonia" y "Recepción" */
+.event-card h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.2rem;
+    font-style: italic;
+    color: var(--vino, #4e1e1e);
+    margin-bottom: 0.2rem;
+}
+
+/* Fecha y hora */
+.event-meta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--oro, #c9a96e);
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 1rem;
+}
+
+/* Texto de ubicación (Templo de San Juan / Salón) */
+.event-card p:not(.event-meta) {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: var(--texto, #2c2c2c);
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+}
+
+/* Fila de botones (Google Maps & Waze) */
+.button-row {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: auto;
+    width: 100%;
+}
+
+/* Estilo base para los enlaces/botones */
+.primary-button,
+.secondary-button {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.65rem 1.2rem;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Botón principal (Google Maps) */
+.primary-button {
+    background: var(--vino, #4e1e1e);
+    color: #ffffff;
+    border: 1px solid var(--vino, #4e1e1e);
+}
+
+.primary-button:hover {
+    background: var(--vino-deep, #4e1e1e);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 31, 52, 0.25);
+}
+
+/* Botón secundario (Waze) */
+.secondary-button {
+    background: transparent;
+    color: var(--vino, #4e1e1e);
+    border: 1px solid var(--vino, #4e1e1e);
+}
+
+.secondary-button:hover {
+    background: var(--vino, #521f34);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 31, 52, 0.2);
+}
+
+#detalles {
+    background-image: url('imagenes/fondo-regalos.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 80px 20px;
+    min-height: 300px; /* <--- Asegura que la sección tenga altura visible */
+    width: 100%;
+    display: block;
+}
+/* Contenedor principal de la sección */
+.descripcion-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Flexbox para ponerlos lado a lado */
+.descripcion-grid {
+  display: flex;
+  flex-direction: row; /* Coloca foto a la izquierda y texto a la derecha */
+  align-items: center; /* Alinea verticalmente al centro */
+  gap: 3rem; /* Espacio entre la foto y el texto */
+}
+
+/* Columna de la foto (ocupa el 45% del espacio) */
+.descripcion-col-foto {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.foto-descripcion {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 12px; /* Opcional: bordes redondeados suavemente */
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Opcional: sombra elegante */
+}
+
+/* Columna del texto (ocupa el 55% del espacio) */
+.descripcion-col-texto {
+  flex: 1 1 55%;
+  text-align: left;
+}
+
+.texto-resaltado {
+  color: var(--vino, #6b1d2f);
+  font-weight: bold;
+}
+
+/* Adaptación para pantallas de celular (pantallas menores a 768px) */
+@media (max-width: 768px) {
+  .descripcion-grid {
+    flex-direction: column; /* Pasa a formato vertical en móviles */
+    gap: 2rem;
+  }
+  }
+
+  .descripcion-col-texto {
+    text-align: center; /* Opcional: centrar texto en móviles */
+  }  
