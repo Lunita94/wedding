@@ -20,8 +20,10 @@
     --crema: #faf8f3;
     --blanco: #ffffff;
     --paper: #fffdf9;
-    --rose-100: #f5e9ea;
-    --rose-50: #fbf6f4;
+    --rose-100: white;
+    --rose-50: white;
+    /* --rose-100: #f5e9ea; */
+    /* --rose-50: #fbf6f4; */
     --mist: #f2e0de;
     --marfil:#F4F3ee;
     
@@ -124,7 +126,8 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: var(--rose-100);
+    background-color: white;
+    /* background-color: var(--rose-100); */
     color: var(--ink);
     font-weight: 300;
     line-height: 1.7;
@@ -211,7 +214,7 @@ p.eyebrow,
     font-size: 0.85rem;
     font-weight: 500;
     letter-spacing: 0.25em;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     color: var(--oro);
     display: block;
     margin-bottom: 0.8rem;
@@ -223,8 +226,9 @@ p.eyebrow,
     font-weight: 300;
     font-style: italic;
     color: var(--vino);
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    line-height: 1;           /* Reducido de 1.1 a 1 para eliminar aire vertical interno */
+    margin-top: 0 !important; /* Elimina el margen superior por defecto de los navegadores */
+    margin-bottom: 0.5rem;   /* Reducido de 1.5rem a 0.5rem para acercarlo al contenido */
 }
 
 .body-text {
@@ -341,7 +345,7 @@ p.eyebrow,
     /* Corregimos la ruta con '../' si tu CSS está dentro de una carpeta */
     background-image: url('imagenes/1.jpeg'); 
     background-size: cover;
-    background-position: center;
+    background-position: top center;
     /* Cambiamos 'fixed' por 'scroll' para evitar que se desaparezca */
     background-attachment: scroll; 
     opacity: 0.75;
@@ -384,7 +388,7 @@ p.eyebrow,
     text-transform: uppercase;
     color: var(--oro-light);
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.2rem; /* Reducido de 1rem a 0.2rem */
 }
 
 .hero-names {
@@ -478,9 +482,46 @@ p.eyebrow,
 }
 
 /* Desactivar fondo fijo en móviles por rendimiento */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
     .hero-photo {
         background-attachment: scroll;
+    }
+}*/
+
+/* 2. Regla exclusiva para Celulares (max-width: 768px) */
+@media (max-width: 768px) {
+    .hero {
+        /* Desactivamos el alto forzado de pantalla completa */
+        min-height: unset !important;
+        height: auto !important;
+        
+        /* Forzamos la proporción vertical de una foto de teléfono (Alto / Ancho) */
+        aspect-ratio: 9 / 16; 
+        
+        /* Espacio superior para que el menú fijo no tape los nombres */
+        padding-top: 70px;
+        padding-bottom: 20px;
+    }
+
+    .hero-photo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        
+        /* Mantiene la foto encajada perfectamente en el aspect-ratio */
+        background-size: cover !important;
+        background-position: center top !important; /* Mantiene enfocado el arco/cenador */
+    }
+
+    /* Reducimos ligeramente los márgenes internos para que el texto quepa en la imagen */
+    .hero-content {
+        padding: 1rem 0.5rem;
+    }
+
+    .hero-names {
+        font-size: clamp(2.8rem, 11vw, 4.2rem) !important;
+        line-height: 1 !important;
     }
 }
 
@@ -557,16 +598,23 @@ p.eyebrow,
 
 .flores-esquina-izquierda {
     position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: clamp(140px, 25vw, 260px);
-    height: auto;
+    top: 10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: clamp(260px, 60vw, 420px) !important;
+    max-height: 1300px !important;              /* Permite ver más parte del ramo florecido */
+    object-fit: cover !important;               /* Llena mejor el espacio superior sin distorsionar */
+    object-position: top center !important;
+    height: auto !important;
     z-index: 10;
     mix-blend-mode: multiply;
     pointer-events: none;
 }
 
-
+/* Es necesario darle un margen superior al texto para que la imagen no lo tape */
+.section-title {
+    margin-top: 120px; /* Ajusta este valor según la altura de tu ramo */
+}
 
 #contador .section-inner {
     position: relative;
@@ -591,7 +639,6 @@ p.eyebrow,
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--texto);
-    margin-top: 20px;
 }
 
 .date-main {
@@ -1320,7 +1367,8 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: var(--rose-100);
+    background-color: white;
+    /* background-color: var(--rose-100); */
     color: var(--ink);
     font-weight: 300;
     line-height: 1.7;
@@ -1401,17 +1449,7 @@ h3 {
     line-height: 1.1;
 }
 
-p.eyebrow,
-.mini-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--oro);
-    display: block;
-    margin-bottom: 0.8rem;
-}
+
 
 .section-title {
     font-family: 'Cormorant Garamond', serif;
@@ -1583,6 +1621,7 @@ p.eyebrow,
     margin-bottom: 1rem;
 }
 
+
 .hero-names {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(3.5rem, 14vw, 8.5rem);
@@ -1753,15 +1792,19 @@ p.eyebrow,
 
 .flores-esquina-izquierda {
     position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: clamp(140px, 25vw, 260px);
-    height: auto;
-    z-index: 10;
-    mix-blend-mode: multiply;
-    pointer-events: none;
+    top: -20px !important;              /* Se ubica arriba en la cabecera */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    
+    /* Control de tamaño: para que no ocupe toda la tarjeta hacia abajo */
+    width: clamp(160px, 30vw, 240px) !important; 
+    max-height: 180px !important;       /* Limita el alto máximo */
+    object-fit: contain !important;     /* Evita que la imagen se deforme */
+    
+    z-index: 1 !important;
+    mix-blend-mode: multiply !important;
+    pointer-events: none !important;
 }
-
 
 
 #contador .section-inner {
@@ -1806,7 +1849,7 @@ p.eyebrow,
 
 .countdown-wrap,
 .countdown-grid {
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
     gap: clamp(0.3rem, 2vw, 0.8rem);
@@ -1868,6 +1911,7 @@ p.eyebrow,
         display: none;
     }
     .countdown-unit {
+        flex: 1 1 50px;
         min-width: 50px;
         padding: 0.8rem 0.2rem;
     }
@@ -1896,6 +1940,7 @@ p.eyebrow,
     width: 100%;
     height: clamp(250px, 50vh, 420px);
     object-fit: cover;
+    object-position: center 25%;
 }
 
 .carousel-btn {
@@ -2471,3 +2516,29 @@ p.eyebrow,
   .descripcion-col-texto {
     text-align: center; /* Opcional: centrar texto en móviles */
   }  
+
+  /* ==========================================
+   EFECTO DE APARICIÓN AL HACER SCROLL (REVEAL)
+   ========================================== */
+
+/* Estado inicial: Oculto y desplazado 30px hacia abajo */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* Estado activo: Se vuelve visible y regresa a su posición original */
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Opcional: Retardos para que varias tarjetas aparezcan en secuencia (efecto cascada) */
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.30s; }
+.delay-3 { transition-delay: 0.45s; }
+
+  
