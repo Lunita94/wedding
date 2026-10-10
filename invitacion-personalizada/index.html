@@ -52,7 +52,7 @@
     ═══════════════════════════════════════════════ -->
     <section id="inicio" class="hero-section">
     <!-- 1. Agrega esta línea para que el CSS muestre la imagen de fondo -->
-    <div class="hero-photo"></div>
+    <img src="imagenes/foto kiosko.png" alt="Foto Kiosko" class="hero-photo">
 
     <div class="hero-overlay"></div>
 
@@ -117,19 +117,19 @@
             <img src="imagenes/flores.jpeg" alt="Decoración floral" class="flores-esquina-izquierda">
         </div>
 
-        <div class="section-inner text-center" data-aos="fade-in">
+        <div class="section-inner text-center" data-aos="fade-up">
             <p class="eyebrow">Una celebración de amor</p>
             <!--<h2 class="section-title">Estás Invitado</h2>-->
 
             <p class="body-text max-narrow">
                 Nos llena de inmensa alegría poder compartir el amor con las personas que más queremos.
-                Los invitamos a celebrar juntos el día más especial de nuestras vidas.
+                Te invitamos a celebrar junto a nosotros el día más especial de nuestras vidas.
             </p>
 
             <div class="date-banner">
-                <span class="date-pre">Te esperamos el</span>
-                <span class="date-main">20 de Diciembre, 2026</span>
-                <span class="date-pre">San Ramón, Alajuela · Costa Rica</span>
+              
+                <h2 class="section-title">Domingo 20 de diciembre, 2026</h2>
+                <span class="date-pre">San Ramón, Alajuela </span>
             </div>
 
             <p class="eyebrow" style="margin-top: 3rem;">Faltan</p>
@@ -206,7 +206,7 @@
     <!-- ═══════════════════════════════════════════════
          SEPARADOR IMAGEN 2
     ═══════════════════════════════════════════════ -->
-    <div class="img-divider" data-aos="zoom-in">
+    <div class="img-divider" data-aos="zoom-up">
         <img src="imagenes/anillo.jpeg" alt="Separador decorativo" class="img-divider-img">
         <div class="img-divider-overlay"></div>
         <div class="img-divider-text">
@@ -290,8 +290,8 @@
             </div>
 
             <div id="mensaje-exito" class="rsvp-success hidden">
-                <h3 class="success-title">¡Muchas gracias!</h3>
-                <p class="success-text">Hemos recibido tu confirmación. ¡Nos vemos el 20 de diciembre!</p>
+                <p class="body-text">¡Muchas gracias!</p>
+                <p class="body-text">Hemos recibido tu confirmación. ¡Nos vemos el 20 de diciembre!</p>
             </div>
         </div>
     </section>
@@ -321,7 +321,10 @@
         <div class="section-inner text-center justify-center mt-6">
             <h2 class="section-title">Inmortaliza el Momento</h2>
             <p class="body-text max-narrow">
-                Comparte tus fotos y videos de este día especial. Cada imagen es un recuerdo que guardaremos por siempre.
+                Comparte tus fotos y videos de este día especial. 
+            </p>
+             <p class="body-text max-narrow">
+            Cada imagen es un recuerdo que guardaremos por siempre.
             </p>
             <div class="qr-wrap">
                 <div class="qr-frame">
@@ -340,7 +343,7 @@
     <footer class="w-full bg-[#f3ece6] py-16 px-6 text-center bg-marfil" data-aos="fade-in">
         <div class="max-w-2xl mx-auto space-y-6">
             <div class="bg-white/80 backdrop-blur-md p-10 rounded-3xl border border-white shadow-xl">
-                <h2 class="font-serif text-4xl text-[#6b1d2f] mb-2">Jose & Liseth</h2>
+                <h2 class="section-title">Jose & Liseth</h2>
                 <p class="font-serif text-stone-600 italic">"Dos vidas, dos corazones, un solo camino eterno."</p>
                 <div class="mt-4 text-xs tracking-widest text-[#b88a4c] font-bold">20 · 12 · 2026 · SAN RAMÓN</div>
             </div>
@@ -369,20 +372,21 @@ document.addEventListener("DOMContentLoaded", function () {
         threshold: 0.15      // El elemento se activa cuando el 15% es visible en pantalla
     };
 
-    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+    const revealOnScroll = new IntersectionObserver((entrier) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 // Añade la clase que activa la animación
                 entry.target.classList.add("is-visible");
                 // Deja de observar el elemento para que la animación solo ocurra una vez
-                observer.unobserve(entry.target);
+                //observer.unobserve(entry.target);
+                entry.target.classList.remove("is-visible");
             }
         });
     }, observerOptions);
 
     // Selecciona todos los elementos con la clase .reveal y los asigna al observador
-    const revealElements = document.querySelectorAll(".reveal");
-    revealElements.forEach(el => revealOnScroll.observe(el));
+    const revealElements = document.querySelectorAll(".fade-up");
+    elementsToReveal.forEach(el => observer.observe(el));
 });
 </script>
 

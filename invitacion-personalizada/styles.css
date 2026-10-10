@@ -211,10 +211,10 @@ h3 {
 p.eyebrow,
 .mini-label {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 500;
-    letter-spacing: 0.25em;
-    /*text-transform: uppercase;*/
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     color: var(--oro);
     display: block;
     margin-bottom: 0.8rem;
@@ -233,6 +233,7 @@ p.eyebrow,
 
 .body-text {
     font-family: 'Montserrat', sans-serif;
+    font-serif text-stone-600 italic
     font-size: clamp(0.85rem, 2vw, 0.95rem);
     font-weight: 300;
     color: var(--gris);
@@ -313,9 +314,9 @@ p.eyebrow,
     }
 }
 
-/* 4. HERO SECTION
+/* /* 4. HERO SECTION
    -------------------------------------------------------------------------- */
-.hero-section,
+/* .hero-section,
 .hero {
     position: relative;
     min-height: 100dvh;
@@ -329,108 +330,14 @@ p.eyebrow,
     background-color: var(--wine-900);
 }
 
-/* Asegúrate de que el padre de .hero-photo tenga esto */
+/* Asegúrate de que el padre de .hero-photo tenga esto 
 .hero, .hero-section {
     position: relative;
     overflow: hidden;
     min-height: 100vh;
 }
 
-/* Regla corregida para la imagen */
-.hero-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    /* Corregimos la ruta con '../' si tu CSS está dentro de una carpeta */
-    background-image: url('imagenes/1.jpeg'); 
-    background-size: cover;
-    background-position: top center;
-    /* Cambiamos 'fixed' por 'scroll' para evitar que se desaparezca */
-    background-attachment: scroll; 
-    opacity: 0.75;
-    z-index: 1; /* Garantiza que se muestre en su capa correspondiente */
-}
-.fondo-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-
-    background-image: url('imagenes/1.jpeg'); 
-    background-size: cover;
-    background-position: center;
-    /* Cambiamos 'fixed' por 'scroll' para evitar que se desaparezca */
-    background-attachment: scroll; 
-    opacity: 0.75;
-    z-index: 1; /* Garantiza que se muestre en su capa correspondiente */
-}
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom,
-            rgba(30, 10, 18, 0.65) 0%,
-            rgba(30, 10, 18, 0.45) 50%,
-            rgba(30, 10, 18, 0.75) 100%);
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 2rem 1.2rem;
-    width: min(100%, 720px);
-}
-
-.hero-pre {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.6rem, 2vw, 0.75rem);
-    letter-spacing: 0.45em;
-    text-transform: uppercase;
-    color: var(--oro-light);
-    display: block;
-    margin-bottom: 0.2rem; /* Reducido de 1rem a 0.2rem */
-}
-
-.hero-names {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 14vw, 8.5rem);
-    font-weight: 300;
-    color: #fff;
-    line-height: 0.95;
-    margin-bottom: 0.5rem;
-}
-
-.ampersand {
-    font-style: italic;
-    color: var(--oro);
-    background: linear-gradient(135deg, #E5C76B 0%, #FBF5B7 30%, #c9a96e 55%, #FBF5B7 80%, #E5C76B 100%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gold-shine 4s linear infinite;
-}
-
-@keyframes gold-shine {
-    to { background-position: 200% center; }
-}
-
-.hero-divider, .ornament-line {
-    width: 60px;
-    height: 1px;
-    background: var(--oro);
-    margin: 1.2rem auto;
-    opacity: 0.8;
-}
-
-.hero-date-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1rem, 3vw, 1.3rem);
-    font-style: italic;
-    color: var(--oro-light);
-    letter-spacing: 0.2em;
-    margin-bottom: 1.8rem;
-}
+/*  */
 
 .music-btn {
     display: inline-flex;
@@ -488,42 +395,6 @@ p.eyebrow,
     }
 }*/
 
-/* 2. Regla exclusiva para Celulares (max-width: 768px) */
-@media (max-width: 768px) {
-    .hero {
-        /* Desactivamos el alto forzado de pantalla completa */
-        min-height: unset !important;
-        height: auto !important;
-        
-        /* Forzamos la proporción vertical de una foto de teléfono (Alto / Ancho) */
-        aspect-ratio: 9 / 16; 
-        
-        /* Espacio superior para que el menú fijo no tape los nombres */
-        padding-top: 70px;
-        padding-bottom: 20px;
-    }
-
-    .hero-photo {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        
-        /* Mantiene la foto encajada perfectamente en el aspect-ratio */
-        background-size: cover !important;
-        background-position: center top !important; /* Mantiene enfocado el arco/cenador */
-    }
-
-    /* Reducimos ligeramente los márgenes internos para que el texto quepa en la imagen */
-    .hero-content {
-        padding: 1rem 0.5rem;
-    }
-
-    .hero-names {
-        font-size: clamp(2.8rem, 11vw, 4.2rem) !important;
-        line-height: 1 !important;
-    }
-}
 
 /* 5. SEPARADORES & DECORACIÓN
    -------------------------------------------------------------------------- */
@@ -621,51 +492,34 @@ p.eyebrow,
     z-index: 2;
 }
 
+./* 1. Mejorar el Banner de Fecha */
 .date-banner {
-    margin: 2rem auto;
-    padding: 1.8rem 1.2rem;
+    background: #ffffff;
     border: 1px solid var(--oro-light);
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    background: var(--blanco);
-    box-shadow: var(--shadow);
+    border-radius: 6px;
+    padding: 2.2rem 1.8rem;
+    box-shadow: 0 12px 35px rgba(78, 30, 30, 0.07); /* Sombra difuminada suave */
+    max-width: 460px;
+    margin: 2rem auto;
 }
 
-.date-pre {
-    font-size: 0.75rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--texto);
+.date-pre, 
+.date-place {
+    color: #8c7243; /* Un dorado un poco más oscuro/cálido para ganar contraste */
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    font-weight: 500;
 }
 
 .date-main {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-family: var(--font-title);
+    font-size: 2.2rem;
     font-style: italic;
-    color: var(--vino);
+    color: var(--vino); /* En color vino destaca mucho mejor la fecha */
+    margin: 0.6rem 0;
 }
 
-.date-place {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gris-light);
-}
-
-.countdown-wrap,
-.countdown-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(0.3rem, 2vw, 0.8rem);
-    margin: 1.5rem auto 0;
-    width: 100%;
-    max-width: 500px;
-}
-
+/* 2. Arreglar las Cajitas del Contador (Countdown) */
 .countdown-unit,
 .time-card {
     display: flex;
@@ -673,44 +527,45 @@ p.eyebrow,
     align-items: center;
     justify-content: center;
     flex: 1;
-    min-width: 60px;
-    padding: 1rem 0.3rem;
+    width: 75px;        /* Ancho fijo para mantener la proporción */
+    height: 75px;       /* Alto fijo igual al ancho para que sea un cuadrado base */
+    padding: 0;         /* Quitamos el padding interno para centrar perfecto */
     background: var(--blanco);
     border: 1px solid var(--oro-light);
     position: relative;
+    border-radius: 50%; /* <--- ¡Esta es la clave! Vuelve el contenedor un círculo perfecto */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease;
 }
 
+/* Opcional: Quitamos la línea dorada superior ya que en un círculo no luce bien */
 .countdown-unit::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--oro);
+    display: none; 
 }
 
 .count-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    font-weight: 300;
+    font-family: var(--font-title);
+    font-size: 2.2rem; /* Tamaño proporcional para evitar estiramientos */
+    font-weight: 400;  /* Peso regular para que la tipografía Serif respire */
     color: var(--vino);
-    line-height: 1;
+    line-height: 1.1;
 }
 
 .count-label {
-    font-size: 0.55rem;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
     letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gris-light);
+    font-weight: 500;
+    color: var(--gris);
     margin-top: 0.3rem;
 }
 
+/* 3. Hacer visibles los dos puntos ":" */
 .count-sep {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
     color: var(--oro);
-    opacity: 0.6;
+    font-size: 1.4rem;
+    opacity: 0.8;
+    align-self: center;
 }
 
 /* Ajuste móvil para contador */
@@ -816,12 +671,7 @@ p.eyebrow,
     text-align: center;
 }
 
-.evento-card {
-    background: var(--blanco);
-    border: 1px solid var(--oro-light);
-    padding: clamp(1.8rem, 4vw, 2.5rem) 1.5rem;
-    position: relative;
-}
+
 
 .evento-card::before {
     content: '';
@@ -1145,67 +995,6 @@ p.eyebrow,
 }
 
 /* Tarjeta individual (Fondo blanco y borde sutil) */
-.event-card {
-    background: #ffffff;
-    border: 1px solid var(--oro-light, #e8d5b0);
-    border-radius: 6px;
-    padding: 2.5rem 1.8rem;
-    position: relative;
-    box-shadow: 0 10px 25px rgba(75, 13, 23, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Borde superior dorado elegante */
-.event-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(to right, transparent, var(--oro, #c9a96e), transparent);
-    border-radius: 6px 6px 0 0;
-}
-
-/* Ícono (+) o (*) */
-.event-icon {
-    font-size: 1.2rem;
-    color: var(--oro, #c9a96e);
-    margin-bottom: 0.5rem;
-}
-
-/* Títulos "Ceremonia" y "Recepción" */
-.event-card h3 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 2.2rem;
-    font-style: italic;
-    color: var(--vino, #4e1e1e);
-    margin-bottom: 0.2rem;
-}
-
-/* Fecha y hora */
-.event-meta {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--oro, #c9a96e);
-    font-weight: 500;
-    margin-top: 20px;
-    margin-bottom: 1rem;
-}
-
-/* Texto de ubicación (Templo de San Juan / Salón) */
-.event-card p:not(.event-meta) {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    color: var(--texto, #2c2c2c);
-    line-height: 1.6;
-    margin-bottom: 1.8rem;
-}
 
 /* Fila de botones (Google Maps & Waze) */
 .button-row {
@@ -1548,8 +1337,8 @@ h3 {
 .hero-section,
 .hero {
     position: relative;
-    min-height: 100dvh;
-    padding-top: 80px;
+    width: 100%;
+    /* ELIMINAMOS min-height: 100dvh para que no ocupe más espacio del necesario */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1559,42 +1348,18 @@ h3 {
     background-color: var(--wine-900);
 }
 
-/* Asegúrate de que el padre de .hero-photo tenga esto */
-.hero, .hero-section {
-    position: relative;
-    overflow: hidden;
-    min-height: 100vh;
-}
-
 /* Regla corregida para la imagen */
-.hero-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    /* Corregimos la ruta con '../' si tu CSS está dentro de una carpeta */
-    background-image: url('imagenes/1.jpeg'); 
-    background-size: cover;
-    background-position: center;
-    /* Cambiamos 'fixed' por 'scroll' para evitar que se desaparezca */
-    background-attachment: scroll; 
-    opacity: 0.75;
-    z-index: 1; /* Garantiza que se muestre en su capa correspondiente */
-}
+.hero-photo,
 .fondo-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-
-    background-image: url('imagenes/1.jpeg'); 
-    background-size: cover;
-    background-position: center;
-    /* Cambiamos 'fixed' por 'scroll' para evitar que se desaparezca */
-    background-attachment: scroll; 
+    position: relative; /* Cambiamos absolute por relative para que empuje el contenedor */
+    width: 100%;        /* Ocupa todo el ancho */
+    height: auto;       /* Mantiene la proporción exacta de la foto sin deformarla */
+    display: block;     /* Elimina espacios blancos debajo de la imagen */
     opacity: 0.75;
-    z-index: 1; /* Garantiza que se muestre en su capa correspondiente */
+    z-index: 1;
 }
+
+  
 .hero-overlay {
     position: absolute;
     inset: 0;
@@ -1604,11 +1369,15 @@ h3 {
             rgba(30, 10, 18, 0.75) 100%);
 }
 
+/* El texto y los botones flotan exactamente encima de la foto */
 .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 2rem 1.2rem;
-    width: min(100%, 720px);
+    position: absolute; 
+    inset: 0;           /* Ocupa todo el espacio de la foto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;         /* Se asegura de verse arriba de la foto */
 }
 
 .hero-pre {
@@ -1858,52 +1627,7 @@ h3 {
     max-width: 500px;
 }
 
-.countdown-unit,
-.time-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    min-width: 60px;
-    padding: 1rem 0.3rem;
-    background: var(--blanco);
-    border: 1px solid var(--oro-light);
-    position: relative;
-}
 
-.countdown-unit::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--oro);
-}
-
-.count-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    font-weight: 300;
-    color: var(--vino);
-    line-height: 1;
-}
-
-.count-label {
-    font-size: 0.55rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gris-light);
-    margin-top: 0.3rem;
-}
-
-.count-sep {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    color: var(--oro);
-    opacity: 0.6;
-}
 
 /* Ajuste móvil para contador */
 @media (max-width: 420px) {
@@ -2011,7 +1735,7 @@ h3 {
 }
 
 .evento-card {
-    background: var(--blanco);
+    background: var(--ink);
     border: 1px solid var(--oro-light);
     padding: clamp(1.8rem, 4vw, 2.5rem) 1.5rem;
     position: relative;
@@ -2340,16 +2064,24 @@ h3 {
 
 /* Tarjeta individual (Fondo blanco y borde sutil) */
 .event-card {
-    background: #ffffff;
-    border: 1px solid var(--oro-light, #e8d5b0);
-    border-radius: 6px;
-    padding: 2.5rem 1.8rem;
-    position: relative;
-    box-shadow: 0 10px 25px rgba(75, 13, 23, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+        background: #ffffff;
+        border: 1px solid var(--oro-light, #e8d5b0);
+        border-radius: 6px;
+        padding: 2.5rem 1.8rem;
+        position: relative;
+        box-shadow: 0 10px 25px rgba(75, 13, 23, 0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+}
+
+.event-card img {
+    border-radius: 8px;
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    margin-bottom: 1.2rem;
 }
 
 /* Borde superior dorado elegante */
@@ -2383,6 +2115,7 @@ h3 {
 /* Fecha y hora */
 .event-meta {
     font-family: 'Montserrat', sans-serif;
+
     font-size: 0.7rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
