@@ -151,6 +151,17 @@
     accent-color: var(--vino);
 }
 
+.rsvp-decline-option {
+    margin-top: 1rem;
+}
+
+.rsvp-error {
+    margin-bottom: 1rem;
+    color: var(--vino);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
 #rsvp-submit:disabled {
     cursor: wait;
     opacity: 0.65;
@@ -1397,10 +1408,12 @@ h3 {
 /* Regla corregida para la imagen */
 .hero-photo,
 .fondo-photo {
-    position: relative; /* Cambiamos absolute por relative para que empuje el contenedor */
-    width: 100%;        /* Ocupa todo el ancho */
-    height: auto;       /* Mantiene la proporción exacta de la foto sin deformarla */
-    display: block;     /* Elimina espacios blancos debajo de la imagen */
+    position: relative;
+    width: 100%;
+    height: min(100vh, 850px);
+    object-fit: cover;
+    object-position: center;
+    display: block;
     opacity: 0.75;
     z-index: 1;
 }
@@ -2320,5 +2333,14 @@ h3 {
 .delay-1 { transition-delay: 0.15s; }
 .delay-2 { transition-delay: 0.30s; }
 .delay-3 { transition-delay: 0.45s; }
+
+/* AOS comienza sus fade-up con 100px; una distancia menor se siente más sutil. */
+[data-aos="fade-up"] {
+    transform: translate3d(0, 42px, 0);
+}
+
+[data-aos="fade-up"].aos-animate {
+    transform: translate3d(0, 0, 0);
+}
 
   
