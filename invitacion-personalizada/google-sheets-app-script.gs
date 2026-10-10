@@ -1,6 +1,6 @@
 const GROUP_SHEET = "Grupos";
 const RESPONSE_SHEET = "Respuestas";
-const SITE_URL = "https://REEMPLAZAR-POR-TU-SITIO.netlify.app/";
+const SITE_URL = "https://bodalissyjose.netlify.app/";
 const DEFAULT_COUNTRY_CODE = "506";
 
 const GROUP_HEADERS = [
@@ -150,15 +150,15 @@ function doPost(e) {
 
     const token = String(data.token || "").trim();
     const submissionId = String(data.submissionId || "").trim();
-    const selectedGuestIds = JSON.parse(data.selectedGuestIds || "[]").map(
-      String,
-    );
+    const selectedGuestIds = JSON.parse(data.selectedGuestIds || "[]");
+    const attendance = String(data.attendance || "");
     const pageUrl = String(data.pageUrl || "");
 
     if (
       !isValidToken_(token) ||
       !submissionId ||
-      !Array.isArray(selectedGuestIds)
+      !Array.isArray(selectedGuestIds) ||
+      !["si", "no"].includes(attendance)
     ) {
       return createOutput_({ ok: false, error: "Datos no validos" });
     }
@@ -167,7 +167,13 @@ function doPost(e) {
     lock.waitLock(10000);
     try {
       return createOutput_(
-        saveResponse_(token, selectedGuestIds, submissionId, pageUrl),
+        saveResponse_(
+          token,
+          selectedGuestIds.map(String),
+          submissionId,
+          pageUrl,
+          attendance,
+        ),
       );
     } finally {
       lock.releaseLock();
@@ -193,9 +199,7 @@ function getInvitation_(token) {
   const confirmedNames = new Set(
     splitGuestNames_(group.row[GROUP_COLUMN.CONFIRMED]).map(normalizeName_),
   );
-  const responded =
-    String(group.row[GROUP_COLUMN.STATUS]).trim().toLowerCase() ===
-    "respondido";
+  const responded = hasResponded_(group.row[GROUP_COLUMN.STATUS]);
 
   return {
     ok: true,
@@ -209,7 +213,13 @@ function getInvitation_(token) {
   };
 }
 
-function saveResponse_(token, selectedGuestIds, submissionId, pageUrl) {
+function saveResponse_(
+  token,
+  selectedGuestIds,
+  submissionId,
+  pageUrl,
+  attendance,
+) {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   const groupSheet = spreadsheet.getSheetByName(GROUP_SHEET);
   const responseSheet = spreadsheet.getSheetByName(RESPONSE_SHEET);
@@ -225,10 +235,26 @@ function saveResponse_(token, selectedGuestIds, submissionId, pageUrl) {
   if (!group || !isActive_(group.row[GROUP_COLUMN.ACTIVE])) {
     return { ok: false, error: "Invitacion no encontrada" };
   }
+  if (hasResponded_(group.row[GROUP_COLUMN.STATUS])) {
+    return {
+      ok: false,
+      alreadyResponded: true,
+      error: "Esta invitacion ya fue respondida",
+    };
+  }
 
   const guests = splitGuestNames_(group.row[GROUP_COLUMN.GUESTS]);
   const validIds = new Set(guests.map((_, index) => String(index + 1)));
   const selected = new Set(selectedGuestIds);
+  const declined = attendance === "no";
+
+  if (
+    !["si", "no"].includes(attendance) ||
+    (declined && selected.size > 0) ||
+    (!declined && selected.size === 0)
+  ) {
+    return { ok: false, error: "Selecciona invitados o indica que no pueden asistir" };
+  }
 
   if ([...selected].some((id) => !validIds.has(id))) {
     return { ok: false, error: "Invitados no validos" };
@@ -239,19 +265,33 @@ function saveResponse_(token, selectedGuestIds, submissionId, pageUrl) {
     selected.has(String(index + 1)),
   );
   const family = String(group.row[GROUP_COLUMN.FAMILY]).trim();
-  const responseRows = guests.map((name, index) => [
-    receivedAt,
-    submissionId,
-    token,
-    family,
-    name,
-    selected.has(String(index + 1)) ? "Si" : "No",
-    pageUrl,
-  ]);
+  const responseRows = declined
+    ? [[
+        receivedAt,
+        submissionId,
+        token,
+        family,
+        "Todo el grupo",
+        "No podemos asistir",
+        pageUrl,
+      ]]
+    : guests.map((name, index) => [
+        receivedAt,
+        submissionId,
+        token,
+        family,
+        name,
+        selected.has(String(index + 1)) ? "Si" : "No",
+        pageUrl,
+      ]);
 
   groupSheet
     .getRange(group.number, GROUP_COLUMN.CONFIRMED + 1, 1, 3)
-    .setValues([[confirmedNames.join(", "), "Respondido", receivedAt]]);
+    .setValues([[
+      declined ? "No podemos asistir" : confirmedNames.join(", "),
+      "Respondido",
+      receivedAt,
+    ]]);
 
   responseSheet
     .getRange(
@@ -270,9 +310,11 @@ function getReceipt_(token, submissionId) {
     return { ok: false, received: false };
   const sheet =
     SpreadsheetApp.getActiveSpreadsheet().getSheetByName(RESPONSE_SHEET);
+  const received = sheet ? hasReceipt_(sheet, token, submissionId) : false;
   return {
     ok: true,
-    received: sheet ? hasReceipt_(sheet, token, submissionId) : false,
+    received,
+    invitation: received ? undefined : getInvitation_(token),
   };
 }
 
@@ -359,6 +401,10 @@ function createOutput_(payload, prefix) {
 
 function isValidToken_(token) {
   return /^[a-zA-Z0-9-]{20,80}$/.test(token);
+}
+
+function hasResponded_(value) {
+  return String(value).trim().toLowerCase() === "respondido";
 }
 
 function isActive_(value) {

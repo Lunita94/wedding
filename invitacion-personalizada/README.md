@@ -39,6 +39,18 @@ La columna `Abrir WhatsApp` abre el chat del telefono indicado con un mensaje y 
 
 ## Confirmaciones
 
-Cada familia abre su enlace, marca a las personas que asistiran y pulsa enviar. La hoja `Grupos` actualiza `Confirmados`, `Estado` y `Actualizado`; la hoja `Respuestas` conserva un historial por persona y por envio. Una vez registrada, la invitacion muestra la confirmacion y ya no permite un segundo envio.
+El sobre muestra `Para la familia` y el nombre del grupo guardado en la hoja, sin listar los nombres individuales. Al tocar el sello, sale la tarjeta y permanece visible sin limite de tiempo. El boton `Abrir invitacion` lleva a la portada de la pagina. Cada familia marca a las personas que asistiran o elige `No podemos asistir`. Esta ultima opcion desmarca a todos los invitados, y seleccionar a un invitado desmarca la negativa. No se puede enviar el formulario sin elegir alguna opcion.
+
+La hoja `Grupos` actualiza `Confirmados`, `Estado` y `Actualizado`. Si nadie asiste, `Confirmados` dice `No podemos asistir` y `Respuestas` recibe una sola fila por el grupo. Si asisten personas, `Respuestas` conserva el detalle por invitado.
+
+Una vez registrada, la invitacion sigue permitiendo leer la pagina, pero no enviar ni modificar la respuesta. Apps Script bloquea los segundos envios bajo un bloqueo compartido, incluso si el enlace se abre desde otro dispositivo. La pagina verifica el recibo de guardado antes de mostrar el agradecimiento.
+
+## Publicar estos cambios
+
+1. En el Google Sheet, abrir `Extensiones > Apps Script` y actualizar `Code.gs` con [google-sheets-app-script.gs](google-sheets-app-script.gs). La URL `SITE_URL` ya apunta a `https://bodalissyjose.netlify.app/`.
+2. Actualizar la implementacion existente con una nueva version desde `Implementar > Gestionar implementaciones`. Conservar el identificador de implementacion y su URL `/exec`, ejecutando como `Yo` y con acceso `Cualquier persona`.
+3. Volver a desplegar esta carpeta completa en Netlify.
+
+No es necesario preparar las hojas de nuevo ni generar otros tokens. Las respuestas que ya tienen `Estado = Respondido` tambien quedan bloqueadas.
 
 Antes de compartir todas las invitaciones, probar un enlace en una ventana de incognito y confirmar que una respuesta aparezca en ambas hojas.

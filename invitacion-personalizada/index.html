@@ -18,7 +18,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Fuentes de Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="styles.css">
@@ -31,23 +31,28 @@
             <p>Preparando su invitacion...</p>
         </div>
 
-        <button class="envelope-scene" id="envelope-scene" type="button" disabled aria-label="Abrir invitacion">
+        <div class="envelope-presentation">
+        <button class="envelope-scene" id="envelope-scene" type="button" disabled aria-label="Abrir sobre" aria-describedby="envelope-address" aria-expanded="false" aria-controls="envelope-letter">
             <span class="envelope-shadow" aria-hidden="true"></span>
             <span class="envelope-back" aria-hidden="true"></span>
-            <span class="envelope-letter" aria-hidden="true">
+            <span class="envelope-letter" id="envelope-letter" aria-hidden="true">
                 <span class="envelope-letter-rule"></span>
                 <span class="envelope-letter-kicker">Con mucho cariño</span>
                 <strong>Jose <em>&amp;</em> Liseth</strong>
             </span>
             <span class="envelope-front" aria-hidden="true"></span>
             <span class="envelope-flap" aria-hidden="true"></span>
-            <span class="envelope-address">
-                <span>Para:</span>
-                <strong id="envelope-addressee">Nuestros invitados</strong>
-                <small>Haz clic en el sello para abrir</small>
+            <span class="envelope-seal" aria-hidden="true">
+                <img src="imagenes/sello-dorado-jl.webp" width="480" height="480" alt="" decoding="async">
             </span>
-            <span class="envelope-seal" aria-hidden="true">J <em>&amp;</em> L</span>
         </button>
+        <div class="envelope-address" id="envelope-address">
+            <span id="envelope-address-prefix">Para la familia</span>
+            <strong id="envelope-addressee">Nuestros invitados</strong>
+        </div>
+        <p class="envelope-signature">Jose <span>&amp;</span> Liseth</p>
+        <button class="btn-primary envelope-continue" id="envelope-continue" type="button" disabled>Abrir invitación</button>
+        </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════
@@ -307,20 +312,25 @@
             <div class="rsvp-card hidden" id="contenedor-formulario">
                 <p class="body-text rsvp-family" id="rsvp-family"></p>
                 <p class="body-text" style="margin-bottom: 2rem;">
-                    Selecciona las personas que podran acompanarnos. Puedes volver a este enlace para actualizar la respuesta.
+                    Selecciona las personas que podrán acompañarnos o indica que no pueden asistir. La respuesta se envía una sola vez.
                 </p>
                 <form id="rsvp-form">
                     <fieldset class="rsvp-guests-fieldset">
                         <legend class="rsvp-guests-legend">Confirmar invitados</legend>
                         <div id="rsvp-guests" class="rsvp-guests"></div>
+                        <label class="rsvp-guest-option rsvp-decline-option">
+                            <input type="checkbox" name="decline" id="rsvp-decline">
+                            <span>No podemos asistir</span>
+                        </label>
                     </fieldset>
+                    <p id="rsvp-error" class="rsvp-error hidden" role="alert" tabindex="-1"></p>
                     <button type="submit" class="btn-primary" id="rsvp-submit">Enviar confirmacion</button>
                 </form>
             </div>
 
             <div id="mensaje-exito" class="rsvp-success hidden">
-                <p class="body-text">¡Muchas gracias!</p>
-                <p class="body-text">Hemos recibido tu confirmación. ¡Nos vemos el 20 de diciembre!</p>
+                <p class="body-text success-title">¡Muchas gracias!</p>
+                <p class="body-text success-text">Hemos recibido tu confirmación.</p>
             </div>
         </div>
     </section>

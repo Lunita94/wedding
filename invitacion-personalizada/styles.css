@@ -50,19 +50,37 @@
     display: none;
 }
 
+.has-personal-invitation,
+.has-personal-invitation body {
+    overflow: hidden;
+}
+
 .has-personal-invitation .invitation-gate {
+    --envelope-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.28' filter='url(%23grain)'/%3E%3C/svg%3E");
     position: fixed;
     inset: 0;
     z-index: 1000;
     display: grid;
-    place-items: center;
-    overflow: hidden;
-    padding: 1.5rem;
-    background-color: #e9dfcf;
-    background-image:
-        radial-gradient(rgba(78, 30, 30, 0.11) 0.7px, transparent 0.8px),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.36), rgba(122, 88, 62, 0.08));
-    background-size: 9px 9px, 100% 100%;
+    place-items: safe center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 4.5rem 1.5rem 2rem;
+    background-color: #f5eddd;
+    background-image: url('imagenes/papel-floral.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.envelope-presentation {
+    display: none;
+    width: min(86vw, 620px);
+    text-align: center;
+}
+
+.invitation-gate.is-ready .envelope-presentation {
+    display: grid;
+    justify-items: center;
+    gap: 1.4rem;
 }
 
 .envelope-loading {
@@ -82,7 +100,7 @@
     place-items: center;
     border: 1px solid var(--oro);
     border-radius: 50%;
-    color: var(--oro);
+    color: var(--vino);
     font-size: 1.15rem;
     font-style: normal;
     letter-spacing: 0.08em;
@@ -91,8 +109,8 @@
 .envelope-scene {
     position: relative;
     display: none;
-    width: min(86vw, 590px);
-    aspect-ratio: 1.56;
+    width: 100%;
+    aspect-ratio: 1.5;
     margin: 0;
     padding: 0;
     border: 0;
@@ -113,6 +131,7 @@
 .envelope-scene:focus-visible {
     outline: 2px solid var(--vino);
     outline-offset: 12px;
+    border-radius: 4px;
 }
 
 .envelope-shadow,
@@ -120,7 +139,6 @@
 .envelope-letter,
 .envelope-front,
 .envelope-flap,
-.envelope-address,
 .envelope-seal {
     position: absolute;
 }
@@ -131,17 +149,19 @@
     left: 7%;
     height: 15%;
     border-radius: 50%;
-    background: rgba(55, 29, 20, 0.28);
-    filter: blur(13px);
+    background: rgba(57, 35, 28, 0.26);
+    filter: blur(17px);
 }
 
 .envelope-back {
     inset: 0;
     overflow: hidden;
-    border: 1px solid #c2aa7b;
-    background-color: #efe3c9;
-    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.5), transparent 45%);
-    box-shadow: 0 22px 35px rgba(67, 34, 22, 0.25);
+    border: 1px solid #382125;
+    border-radius: 5px;
+    background-color: #412629;
+    background-image: var(--envelope-grain), linear-gradient(135deg, #624145, #311c20);
+    background-blend-mode: soft-light, normal;
+    box-shadow: 0 22px 34px rgba(58, 35, 28, 0.2), 0 3px 6px rgba(58, 35, 28, 0.2);
 }
 
 .envelope-letter {
@@ -154,9 +174,10 @@
     gap: 0.35rem;
     min-height: 78%;
     padding: 1.6rem 1rem 1rem;
-    border: 1px solid #d8c49a;
-    background: #fffdf7;
-    color: var(--vino);
+    border: 1px solid #cbb68e;
+    background-color: #f4ecd8;
+    background-image: var(--envelope-grain), linear-gradient(120deg, #fff9ea, #ece0c4);
+    color: #626747;
     box-shadow: 0 2px 8px rgba(67, 34, 22, 0.12);
     transform: translateY(7%);
     transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -177,8 +198,8 @@
 }
 
 .envelope-letter strong {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.4rem, 5vw, 2.25rem);
+    font-family: 'Great Vibes', 'Cormorant Garamond', cursive;
+    font-size: 2.6rem;
     font-weight: 400;
     line-height: 1;
 }
@@ -192,11 +213,15 @@
 .envelope-front {
     z-index: 4;
     inset: 0;
-    border: 1px solid #c2aa7b;
+    border: 1px solid #3b2528;
+    border-radius: 5px;
     background:
-        linear-gradient(32deg, transparent 49.5%, rgba(195, 170, 120, 0.5) 50%, transparent 50.5%),
-        linear-gradient(328deg, transparent 49.5%, rgba(195, 170, 120, 0.5) 50%, transparent 50.5%),
-        #efe3c9;
+        var(--envelope-grain),
+        linear-gradient(34deg, transparent 49.6%, rgba(28, 12, 17, 0.35) 49.9%, rgba(172, 127, 123, 0.12) 50.1%, transparent 50.5%),
+        linear-gradient(326deg, transparent 49.6%, rgba(28, 12, 17, 0.35) 49.9%, rgba(172, 127, 123, 0.12) 50.1%, transparent 50.5%),
+        linear-gradient(115deg, #5e3e40, #4c2e33 55%, #40262b);
+    background-blend-mode: soft-light, normal, normal, normal;
+    box-shadow: inset 0 -3px 5px rgba(27, 11, 16, 0.22);
     clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
     transition: transform 550ms ease;
 }
@@ -206,11 +231,12 @@
     top: 0;
     right: 0;
     left: 0;
-    height: 59%;
-    border: 1px solid #c2aa7b;
+    height: 61%;
+    border: 1px solid #462a2e;
     background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.42), transparent 54%),
-        #e8d8b9;
+        var(--envelope-grain),
+        linear-gradient(155deg, #65464a 0%, #54363b 52%, #41272e 100%);
+    background-blend-mode: soft-light, normal;
     clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform-origin: top;
     transform-style: preserve-3d;
@@ -218,60 +244,55 @@
 }
 
 .envelope-address {
-    z-index: 7;
-    top: 56%;
-    right: 14%;
-    left: 14%;
+    position: relative;
+    width: min(100%, 540px);
     display: grid;
     justify-items: center;
-    gap: 0.35rem;
-    color: #5b3b31;
-    pointer-events: none;
+    gap: 0.5rem;
+    color: #565b3d;
 }
 
-.envelope-address > span {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1rem, 3vw, 1.35rem);
-    font-style: italic;
-}
-
+.envelope-address > span,
 .envelope-address strong {
     max-width: 100%;
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.25rem, 4.5vw, 2.2rem);
-    font-weight: 500;
-    line-height: 0.95;
+    font-size: 1.65rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
     text-align: center;
 }
 
-.envelope-address small {
-    margin-top: 0.7rem;
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.46rem, 1.35vw, 0.62rem);
-    font-weight: 500;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+.envelope-signature {
+    margin: 0;
+    color: #626747;
+    font-family: 'Great Vibes', 'Cormorant Garamond', cursive;
+    font-size: 2.4rem;
+    line-height: 1.2;
+}
+
+.envelope-signature span {
+    margin-inline: 0.25rem;
+    color: #997642;
 }
 
 .envelope-seal {
     z-index: 8;
-    top: 48%;
+    top: 57%;
     left: 50%;
-    display: grid;
-    width: clamp(56px, 11vw, 78px);
-    height: clamp(56px, 11vw, 78px);
-    place-items: center;
-    border: 3px double rgba(255, 237, 215, 0.6);
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #b75d69, var(--vino) 58%, #391016);
-    box-shadow: 0 5px 8px rgba(54, 16, 18, 0.28), inset 0 0 0 4px rgba(65, 13, 18, 0.22);
-    color: #f9e8cc;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1rem, 3vw, 1.4rem);
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    display: block;
+    width: 106px;
+    aspect-ratio: 1;
+    filter: drop-shadow(1px 5px 3px rgba(21, 8, 10, 0.48));
     transform: translate(-50%, -50%);
     transition: transform 420ms ease, opacity 260ms ease;
+}
+
+.envelope-seal img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .envelope-scene:not(:disabled):hover .envelope-seal {
@@ -291,6 +312,8 @@
 .invitation-gate.is-opening .envelope-letter {
     z-index: 5;
     transform: translateY(-38%);
+    transition-duration: 1100ms;
+    transition-delay: 400ms;
 }
 
 .invitation-gate.is-opening .envelope-seal {
@@ -298,21 +321,52 @@
     transform: translate(-50%, -78%) scale(0.72);
 }
 
-.invitation-gate.is-opening .envelope-address {
+.envelope-continue {
     visibility: hidden;
+    pointer-events: none;
+}
+
+.invitation-gate.is-open .envelope-continue {
+    visibility: visible;
+    pointer-events: auto;
 }
 
 @media (max-width: 480px) {
     .has-personal-invitation .invitation-gate {
-        padding: 1rem;
+        padding: 5rem 1.25rem 2rem;
+        background-image: var(--envelope-grain), url('imagenes/papel-floral.webp'), url('imagenes/papel-floral.webp');
+        background-size: 180px 180px, auto 53%, auto 53%;
+        background-position: 0 0, left top, right bottom;
+        background-repeat: repeat, no-repeat, no-repeat;
     }
 
-    .envelope-scene {
-        width: 94vw;
+    .envelope-presentation {
+        width: 100%;
+    }
+
+    .invitation-gate.is-ready .envelope-presentation {
+        gap: 1.2rem;
+    }
+
+    .envelope-seal {
+        width: 78px;
+    }
+
+    .envelope-address > span,
+    .envelope-address strong {
+        font-size: 1.25rem;
+    }
+
+    .envelope-signature {
+        font-size: 2rem;
     }
 
     .envelope-letter {
         padding-top: 1rem;
+    }
+
+    .envelope-letter strong {
+        font-size: 1.9rem;
     }
 }
 
@@ -321,6 +375,11 @@
     .envelope-letter,
     .envelope-seal {
         transition-duration: 1ms;
+    }
+
+    .invitation-gate.is-opening .envelope-letter {
+        transition-duration: 1ms;
+        transition-delay: 0ms;
     }
 }
 
@@ -383,6 +442,17 @@
     height: 18px;
     margin: 0;
     accent-color: var(--vino);
+}
+
+.rsvp-decline-option {
+    margin-top: 1rem;
+}
+
+.rsvp-error {
+    margin-bottom: 1rem;
+    color: var(--vino);
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 #rsvp-submit:disabled {

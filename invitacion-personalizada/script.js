@@ -6,6 +6,7 @@ const RSVP_CONFIG = {
 };
 
 let currentInvitation = null;
+let rsvpSubmitting = false;
 let carouselIndex = 0;
 let carouselTimer = null;
 
@@ -186,10 +187,15 @@ function showInvitationEnvelope(invitation) {
   const gate = document.querySelector("#invitation-gate");
   const scene = document.querySelector("#envelope-scene");
   const addressee = document.querySelector("#envelope-addressee");
+  const prefix = document.querySelector("#envelope-address-prefix");
+  const letter = document.querySelector("#envelope-letter");
+  const continueButton = document.querySelector("#envelope-continue");
 
-  if (!gate || !scene || !addressee) return;
+  if (!gate || !scene || !addressee || !prefix || !continueButton) return;
 
-  addressee.textContent = formatGuestNames(invitation.guests);
+  const family = invitation.family?.trim().replace(/^familia\s+/i, "");
+  prefix.textContent = family ? "Para la familia" : "Para";
+  addressee.textContent = family || "nuestros invitados";
   gate.setAttribute("aria-hidden", "false");
   gate.classList.add("is-ready");
   scene.disabled = false;
@@ -198,37 +204,35 @@ function showInvitationEnvelope(invitation) {
     "click",
     () => {
       scene.disabled = true;
+      scene.setAttribute("aria-expanded", "true");
       gate.classList.add("is-opening");
 
       const reducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       ).matches;
-      window.setTimeout(hideInvitationEnvelope, reducedMotion ? 0 : 1100);
+      window.setTimeout(() => {
+        letter?.setAttribute("aria-hidden", "false");
+        gate.classList.add("is-open");
+        continueButton.disabled = false;
+        continueButton.focus({ preventScroll: true });
+      }, reducedMotion ? 0 : 1500);
     },
     { once: true },
   );
+
+  continueButton.addEventListener("click", hideInvitationEnvelope, { once: true });
 }
 
 function hideInvitationEnvelope() {
   const gate = document.querySelector("#invitation-gate");
 
   gate?.setAttribute("aria-hidden", "true");
-  gate?.classList.remove("is-opening", "is-ready");
+  gate?.classList.remove("is-opening", "is-open", "is-ready");
   document.documentElement.classList.remove("has-personal-invitation");
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   if (typeof AOS !== "undefined") {
     window.setTimeout(() => AOS.refreshHard(), 0);
   }
-}
-
-function formatGuestNames(guests) {
-  const names = guests
-    .map((guest) => guest.name?.trim())
-    .filter(Boolean);
-
-  if (names.length <= 1) return names[0] || "Nuestros invitados";
-  if (names.length === 2) return `${names[0]} y ${names[1]}`;
-
-  return `${names.slice(0, -1).join(", ")} y ${names[names.length - 1]}`;
 }
 
 function renderInvitation(invitation) {
@@ -269,20 +273,46 @@ function renderInvitation(invitation) {
     return;
   }
 
-  form.addEventListener("submit", submitRsvp, { once: true });
+  form.addEventListener("change", (event) => {
+    const decline = form.querySelector("#rsvp-decline");
+    if (event.target === decline && decline.checked) {
+      form.querySelectorAll("input[name='guest']").forEach((input) => {
+        input.checked = false;
+      });
+    } else if (event.target.name === "guest" && event.target.checked) {
+      decline.checked = false;
+    }
+    document.querySelector("#rsvp-error")?.classList.add("hidden");
+  });
+  form.addEventListener("submit", submitRsvp);
   container.classList.remove("hidden");
 }
 
 async function submitRsvp(event) {
   event.preventDefault();
-  if (!currentInvitation) return;
+  if (!currentInvitation || currentInvitation.responded || rsvpSubmitting) return;
 
   const form = event.currentTarget;
   const submitButton = document.querySelector("#rsvp-submit");
+  const fieldset = form.querySelector("fieldset");
   const selectedGuestIds = [
     ...form.querySelectorAll("input[name='guest']:checked"),
   ].map((input) => input.value);
+  const declined = form.querySelector("#rsvp-decline").checked;
+
+  if (!selectedGuestIds.length && !declined) {
+    showRsvpError("Selecciona al menos una persona o marca «No podemos asistir».");
+    return;
+  }
+  if (selectedGuestIds.length && declined) {
+    showRsvpError("Elige quiénes asisten o indica que no pueden asistir.");
+    return;
+  }
   const submissionId = createSubmissionId();
+
+  rsvpSubmitting = true;
+  document.querySelector("#rsvp-error")?.classList.add("hidden");
+  if (fieldset) fieldset.disabled = true;
 
   if (submitButton) {
     submitButton.disabled = true;
@@ -294,6 +324,7 @@ async function submitRsvp(event) {
     body.append("action", "confirm");
     body.append("token", currentInvitation.token);
     body.append("selectedGuestIds", JSON.stringify(selectedGuestIds));
+    body.append("attendance", declined ? "no" : "si");
     body.append("submissionId", submissionId);
     body.append("pageUrl", window.location.href);
 
@@ -302,14 +333,34 @@ async function submitRsvp(event) {
       mode: "no-cors",
       body,
     });
-    currentInvitation.responded = true;
-    showSuccess(selectedGuestIds.length);
+    if (submitButton) submitButton.textContent = "Confirmando registro...";
+    const receipt = await loadJsonp({
+      action: "receipt",
+      token: currentInvitation.token,
+      submissionId,
+    });
+    if (receipt?.ok && receipt.received) {
+      currentInvitation.responded = true;
+      currentInvitation.guests.forEach((guest) => {
+        guest.attendance = selectedGuestIds.includes(guest.id) ? "si" : "no";
+      });
+      showSuccess(selectedGuestIds.length);
+    } else if (receipt?.invitation?.responded) {
+      Object.assign(currentInvitation, receipt.invitation);
+      showSuccess(
+        currentInvitation.guests.filter((guest) => guest.attendance === "si").length,
+        true,
+      );
+    } else {
+      throw new Error("Response not recorded");
+    }
   } catch {
     showRsvpError(
-      "No pudimos guardar la respuesta. Revisa tu conexion e intentalo de nuevo.",
+      "No pudimos comprobar el registro. Revisa tu conexión e intenta nuevamente. Si ya se guardó, no se enviará otra respuesta.",
     );
-    form.addEventListener("submit", submitRsvp, { once: true });
   } finally {
+    rsvpSubmitting = false;
+    if (fieldset) fieldset.disabled = false;
     if (submitButton) {
       submitButton.disabled = false;
       submitButton.textContent = "Enviar confirmacion";
@@ -338,14 +389,17 @@ function showSuccess(attendingCount, alreadyResponded = false) {
 
   form?.classList.add("hidden");
   success?.classList.remove("hidden");
-  success?.scrollIntoView({ behavior: "smooth", block: "center" });
+  if (!alreadyResponded) {
+    success?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 }
 
 function showRsvpError(message) {
-  const loading = document.querySelector("#rsvp-loading");
-  if (!loading) return;
-  loading.textContent = message;
-  loading.classList.remove("hidden");
+  const error = document.querySelector("#rsvp-error");
+  if (!error) return;
+  error.textContent = message;
+  error.classList.remove("hidden");
+  error.focus({ preventScroll: true });
 }
 
 function loadJsonp(params) {
@@ -353,7 +407,10 @@ function loadJsonp(params) {
     const callback = `rsvpJsonp${Date.now()}${Math.floor(Math.random() * 100000)}`;
     const url = new URL(RSVP_CONFIG.googleScriptUrl);
     const script = document.createElement("script");
-    const timeout = window.setTimeout(cleanup, 10000);
+    const timeout = window.setTimeout(() => {
+      cleanup();
+      reject(new Error("JSONP request timed out"));
+    }, 10000);
 
     Object.entries(params).forEach(([key, value]) =>
       url.searchParams.set(key, value),
