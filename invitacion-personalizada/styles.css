@@ -45,6 +45,51 @@
     --shadow: 0 12px 35px rgba(75, 13, 23, 0.12);
 }
 
+
+
+        /* Botón flotante de música (Fondo Rojo Vino, Icono Dorado) */
+        .floating-music-btn {
+    position: fixed !important;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999999;
+    
+    /* Dimensiones obligatorias para que no colapse */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+
+    background-color: #6b1d2f;
+    color: #e8d5b0;
+    box-shadow: 0 4px 20px rgba(107, 29, 47, 0.4);
+    transition: all 0.3s ease;
+}
+
+.floating-music-btn:hover {
+    background-color: #521422;
+    transform: scale(1.08);
+}
+
+/* Animación de la nota */
+@keyframes noteRhythm {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    20% { transform: scale(1.15) rotate(-12deg); }
+    40% { transform: scale(0.92) rotate(10deg); }
+    60% { transform: scale(1.1) rotate(-6deg); }
+    80% { transform: scale(0.98) rotate(4deg); }
+}
+
+.note-playing {
+    animation: noteRhythm 1.3s ease-in-out infinite;
+    transform-origin: center;
+}
+
+
 /* RSVP personalizado por familia */
 .rsvp-family {
     color: var(--vino);
@@ -233,8 +278,9 @@ p.eyebrow,
 
 .body-text {
     font-family: 'Montserrat', sans-serif;
-    font-serif text-stone-600 italic
-    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-style: italic
+    /*font-color:#57534e;*/
+    font-size : clamp(0.85rem, 2vw, 0.95rem);
     font-weight: 300;
     color: var(--gris);
     line-height: 1.8;
@@ -492,7 +538,7 @@ p.eyebrow,
     z-index: 2;
 }
 
-./* 1. Mejorar el Banner de Fecha */
+/* 1. Mejorar el Banner de Fecha */
 .date-banner {
     background: #ffffff;
     border: 1px solid var(--oro-light);
@@ -1382,19 +1428,20 @@ h3 {
 
 .hero-pre {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.6rem, 2vw, 0.75rem);
+    font-size: clamp(0.8rem, 2vw, 0.85rem);
     letter-spacing: 0.45em;
     text-transform: uppercase;
     color: var(--oro-light);
     display: block;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 
 .hero-names {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(3.5rem, 14vw, 8.5rem);
-    font-weight: 300;
+    font-weight: 500;
     color: #fff;
     line-height: 0.95;
     margin-bottom: 0.5rem;

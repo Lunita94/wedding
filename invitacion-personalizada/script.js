@@ -330,3 +330,55 @@ function loadJsonp(params) {
 function createSubmissionId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
 }
+
+
+// Función para pausar / reproducir manualmente al hacer clic
+function toggleMusica() {
+    const audio = document.getElementById('musica');
+    const noteSvg = document.getElementById('note-svg');
+    const slashSvg = document.getElementById('slash-svg');
+
+    if (!audio) return;
+
+    if (audio.paused) {
+        audio.play().then(() => {
+            if (noteSvg) noteSvg.classList.add('note-playing');
+            if (slashSvg) slashSvg.style.opacity = '0';
+        }).catch(error => {
+            console.error("Error al reproducir audio:", error);
+        });
+    } else {
+        audio.pause();
+        if (noteSvg) noteSvg.classList.remove('note-playing');
+        if (slashSvg) slashSvg.style.opacity = '1';
+    }
+}
+
+// Intentar iniciar la música automáticamente al abrir la página
+document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('musica');
+    const noteSvg = document.getElementById('note-svg');
+    const slashSvg = document.getElementById('slash-svg');
+
+    if (!audio) return;
+
+    // Intentamos reproducir de entrada
+    audio.play().then(() => {
+        // Si el navegador lo permite, activa la corchea en movimiento y oculta la raya
+        if (noteSvg) noteSvg.classList.add('note-playing');
+        if (slashSvg) slashSvg.style.opacity = '0';
+    }).catch(() => {
+        // Si el navegador bloquea el autoplay con sonido, se inicia con el primer clic en la pantalla
+        const activarEnPrimerClic = () => {
+            audio.play().then(() => {
+                if (noteSvg) noteSvg.classList.add('note-playing');
+                if (slashSvg) slashSvg.style.opacity = '0';
+            }).catch(e => console.log(e));
+            document.removeEventListener('click', activarEnPrimerClic);
+        };
+        document.addEventListener('click', activarEnPrimerClic);
+    });
+});
+
+
+

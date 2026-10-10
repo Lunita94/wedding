@@ -156,5 +156,30 @@
   </main>
 
   <script src="script.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Configuración del observador
+    const observerOptions = {
+        root: null,          // Utiliza la ventana del navegador
+        rootMargin: "0px",
+        threshold: 0.15      // El elemento se activa cuando el 15% es visible en pantalla
+    };
+
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Añade la clase que activa la animación
+                entry.target.classList.add("is-visible");
+                // Deja de observar el elemento para que la animación solo ocurra una vez
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Selecciona todos los elementos con la clase .reveal y los asigna al observador
+    const revealElements = document.querySelectorAll(".reveal");
+    revealElements.forEach(el => revealOnScroll.observe(el));
+});
+</script>
 </body>
 </html>
