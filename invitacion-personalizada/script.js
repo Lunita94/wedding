@@ -12,10 +12,13 @@ let carouselTimer = null;
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof AOS !== "undefined") {
     AOS.init({
-      duration: 800,
-      once: true,
-      offset: 120,
-      easing: 'ease-in-out'
+      duration: 1000,
+      delay: 0,
+      offset: 0,
+      once: false,
+      mirror: true,
+      anchorPlacement: "top-center",
+      easing: "ease-out-cubic"
     });
   }
 
@@ -152,10 +155,12 @@ function setupPersonalizedRsvp() {
     .then((invitation) => {
       loading?.classList.add("hidden");
       renderInvitation(invitation);
+      showInvitationEnvelope(invitation);
     })
     .catch(() => {
       loading?.classList.add("hidden");
       noLink?.classList.remove("hidden");
+      hideInvitationEnvelope();
       const message = noLink?.querySelector("p");
       if (message)
         message.textContent =
@@ -175,6 +180,55 @@ async function loadInvitation(token) {
 
   currentInvitation = { token, ...response };
   return currentInvitation;
+}
+
+function showInvitationEnvelope(invitation) {
+  const gate = document.querySelector("#invitation-gate");
+  const scene = document.querySelector("#envelope-scene");
+  const addressee = document.querySelector("#envelope-addressee");
+
+  if (!gate || !scene || !addressee) return;
+
+  addressee.textContent = formatGuestNames(invitation.guests);
+  gate.setAttribute("aria-hidden", "false");
+  gate.classList.add("is-ready");
+  scene.disabled = false;
+
+  scene.addEventListener(
+    "click",
+    () => {
+      scene.disabled = true;
+      gate.classList.add("is-opening");
+
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      window.setTimeout(hideInvitationEnvelope, reducedMotion ? 0 : 1100);
+    },
+    { once: true },
+  );
+}
+
+function hideInvitationEnvelope() {
+  const gate = document.querySelector("#invitation-gate");
+
+  gate?.setAttribute("aria-hidden", "true");
+  gate?.classList.remove("is-opening", "is-ready");
+  document.documentElement.classList.remove("has-personal-invitation");
+  if (typeof AOS !== "undefined") {
+    window.setTimeout(() => AOS.refreshHard(), 0);
+  }
+}
+
+function formatGuestNames(guests) {
+  const names = guests
+    .map((guest) => guest.name?.trim())
+    .filter(Boolean);
+
+  if (names.length <= 1) return names[0] || "Nuestros invitados";
+  if (names.length === 2) return `${names[0]} y ${names[1]}`;
+
+  return `${names.slice(0, -1).join(", ")} y ${names[names.length - 1]}`;
 }
 
 function renderInvitation(invitation) {

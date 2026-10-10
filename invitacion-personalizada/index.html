@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda Jose & Liseth</title>
+    <script>
+        if (new URLSearchParams(window.location.search).has("i")) {
+            document.documentElement.classList.add("has-personal-invitation");
+        }
+    </script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,6 +25,30 @@
 </head>
 
 <body>
+    <section class="invitation-gate" id="invitation-gate" aria-hidden="true" aria-live="polite">
+        <div class="envelope-loading" id="envelope-loading">
+            <span class="envelope-loading-mark">J &amp; L</span>
+            <p>Preparando su invitacion...</p>
+        </div>
+
+        <button class="envelope-scene" id="envelope-scene" type="button" disabled aria-label="Abrir invitacion">
+            <span class="envelope-shadow" aria-hidden="true"></span>
+            <span class="envelope-back" aria-hidden="true"></span>
+            <span class="envelope-letter" aria-hidden="true">
+                <span class="envelope-letter-rule"></span>
+                <span class="envelope-letter-kicker">Con mucho cariño</span>
+                <strong>Jose <em>&amp;</em> Liseth</strong>
+            </span>
+            <span class="envelope-front" aria-hidden="true"></span>
+            <span class="envelope-flap" aria-hidden="true"></span>
+            <span class="envelope-address">
+                <span>Para:</span>
+                <strong id="envelope-addressee">Nuestros invitados</strong>
+                <small>Haz clic en el sello para abrir</small>
+            </span>
+            <span class="envelope-seal" aria-hidden="true">J <em>&amp;</em> L</span>
+        </button>
+    </section>
 
     <!-- ═══════════════════════════════════════════════
          NAV (RESPONSIVO)
@@ -52,11 +81,11 @@
     ═══════════════════════════════════════════════ -->
     <section id="inicio" class="hero-section">
     <!-- 1. Agrega esta línea para que el CSS muestre la imagen de fondo -->
-    <img src="imagenes/foto kiosko.png" alt="Foto Kiosko" class="hero-photo">
+    <img src="imagenes/foto kiosko2.png" alt="Foto Kiosko" class="hero-photo">
 
     <div class="hero-overlay"></div>
 
-    <div class="hero-content" data-aos="fade-in" data-aos-duration="2000">
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="2000">
         <p class="hero-pre">Nos casamos</p>
         <h1 class="hero-names">Jose <span class="ampersand">&amp;</span> Liseth</h1>
         <div class="hero-divider"></div>
@@ -82,12 +111,12 @@
     <div class="descripcion-grid">
       
       <!-- LADO IZQUIERDO: Foto -->
-      <div class="descripcion-col-foto" data-aos="fade-in">
+      <div class="descripcion-col-foto" data-aos="fade-up">
         <img src="imagenes/foto-lis-y-jose..jpeg" alt="Jose y Liseth">
       </div>
 
       <!-- LADO DERECHO: Texto -->
-      <div class="rsvp-card descripcion-card" data-aos="fade-in" >
+      <div class="rsvp-card descripcion-card" data-aos="fade-up" >
         <p class="body-text">
           Una propuesta, un Sí y una decisión que tomamos juntos. 
           Nuestro amor ha crecido en nosotros, ha madurado y florecido, a veces sencillo, otras caótico pero siempre maravilloso. 
@@ -166,7 +195,7 @@
          NUESTRA HISTORIA
     ═══════════════════════════════════════════════ -->     
     <section id="nuestrahistoria" class="section-padded bg-marfil">
-        <div class="section-inner text-center" data-aos="fade-in">
+        <div class="section-inner text-center" data-aos="fade-up">
            
             <h2 class="section-title">Nuestra Historia</h2>
              <p class="eyebrow">de amor</p>
@@ -206,7 +235,7 @@
     <!-- ═══════════════════════════════════════════════
          SEPARADOR IMAGEN 2
     ═══════════════════════════════════════════════ -->
-    <div class="img-divider" data-aos="zoom-up">
+    <div class="img-divider" data-aos="fade-up">
         <img src="imagenes/anillo.jpeg" alt="Separador decorativo" class="img-divider-img">
         <div class="img-divider-overlay"></div>
         <div class="img-divider-text">
@@ -218,11 +247,11 @@
          EVENTO
     ═══════════════════════════════════════════════ -->
     <section id="evento" class="evento section-padded bg-white" aria-labelledby="events-title">
-        <h2 class="section-title" data-aos="fade-in">Evento</h2>
-        <p class="section-intro" data-aos="fade-in">Nos encantará compartir contigo cada momento de este día.</p>
+        <h2 class="section-title" data-aos="fade-up">Evento</h2>
+        <p class="section-intro" data-aos="fade-up">Nos encantará compartir contigo cada momento de este día.</p>
         
         <div class="event-list">
-            <article class="event-card" data-aos="fade-in" >
+            <article class="event-card" data-aos="fade-up" >
                 <h3>Ceremonia</h3>
                 <img src="imagenes/iglesia san juan.jpeg" alt="Separador decorativo" class="img-divider-img">
                 <p class="event-meta">Sábado 20 de diciembre - 3:00 p.m.</p>
@@ -233,7 +262,7 @@
                 </div>
             </article>
 
-            <article class="event-card" data-aos="fade-in">
+            <article class="event-card" data-aos="fade-up">
                 <h3>Recepción</h3>
                 <img src="imagenes/Salon B & J.jpeg" alt="Separador decorativo" class="img-divider-img">
                 <p class="event-meta">Sábado 20 de diciembre - 5:00 p.m.</p>
@@ -249,7 +278,7 @@
     <!-- ═══════════════════════════════════════════════
          ITINERARIO
     ═══════════════════════════════════════════════ -->
-    <section id="itinerario" class="section-padded bg-marfil" data-aos="fade-in">
+    <section id="itinerario" class="section-padded bg-marfil" data-aos="fade-up">
         <div class="section-inner text-center">
             <h2 class="section-title">Itinerario</h2>
             <div class="itinerario-container">
@@ -261,7 +290,7 @@
     <!-- ═══════════════════════════════════════════════
          RSVP
     ═══════════════════════════════════════════════ -->
-    <section id="rsvp" class="section-padded bg-white" data-aos="fade-in">
+    <section id="rsvp" class="section-padded bg-white" data-aos="fade-up">
         <div class="section-inner text-center">
             <h2 class="section-title">Confirmar Asistencia</h2>
             <p class="eyebrow">Esperamos tu respuesta</p>
@@ -296,7 +325,7 @@
         </div>
     </section>
 
- <section id="detalles" class="seccion-detalles section-padded" data-aos="fade-in">
+ <section id="detalles" class="seccion-detalles section-padded" data-aos="fade-up">
     <div class="section-inner text-center">
         <h2 class="section-title">Regalos</h2>
         <p class="eyebrow">Tu compañia y bendición</p>
@@ -310,7 +339,7 @@
 </section>
         
 
-    <section id="photos" class=bg-white data-aos="fade-in" >
+    <section id="photos" class=bg-white data-aos="fade-up" >
        <div class="camara-icon w-[150px] mx-auto flex justify-center items-center bg-white mb-6">
         <animated-icons
             src="https://animatedicons.co/get-icon?name=Camera%20V3&style=minimalistic&token=7e0acfcc-6d5c-4c6f-9fcd-b9408ce51418"
@@ -340,7 +369,7 @@
     <!-- ═══════════════════════════════════════════════
          FOOTER
     ═══════════════════════════════════════════════ -->
-    <footer class="w-full bg-[#f3ece6] py-16 px-6 text-center bg-marfil" data-aos="fade-in">
+    <footer class="w-full bg-[#f3ece6] py-16 px-6 text-center bg-marfil" data-aos="fade-up">
         <div class="max-w-2xl mx-auto space-y-6">
             <div class="bg-white/80 backdrop-blur-md p-10 rounded-3xl border border-white shadow-xl">
                 <h2 class="section-title">Jose & Liseth</h2>
@@ -362,33 +391,6 @@
     <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
 
     <script src="script.js"></script>
-
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Configuración del observador
-    const observerOptions = {
-        root: null,          // Utiliza la ventana del navegador
-        rootMargin: "0px",
-        threshold: 0.15      // El elemento se activa cuando el 15% es visible en pantalla
-    };
-
-    const revealOnScroll = new IntersectionObserver((entrier) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Añade la clase que activa la animación
-                entry.target.classList.add("is-visible");
-                // Deja de observar el elemento para que la animación solo ocurra una vez
-                //observer.unobserve(entry.target);
-                entry.target.classList.remove("is-visible");
-            }
-        });
-    }, observerOptions);
-
-    // Selecciona todos los elementos con la clase .reveal y los asigna al observador
-    const revealElements = document.querySelectorAll(".fade-up");
-    elementsToReveal.forEach(el => observer.observe(el));
-});
-</script>
 
 </body>
 
