@@ -389,7 +389,8 @@
         .floating-music-btn {
     position: fixed !important;
     bottom: 24px;
-    right: 24px;
+    left: 24px;
+    right: auto;
     z-index: 900;
     
     /* Dimensiones obligatorias para que no colapse */
@@ -415,7 +416,8 @@
 
 #music-tooltip {
     position: fixed;
-    right: 24px;
+    left: 24px;
+    right: auto;
     bottom: 84px;
     z-index: 900;
 }
@@ -1779,14 +1781,15 @@ h3 {
             rgba(30, 10, 18, 0.75) 100%);
 }
 
-/* El texto y los botones flotan exactamente encima de la foto */
+/* Texto en la parte inferior, con espacio para la flecha de scroll. */
 .hero-content {
     position: absolute; 
     inset: 0;           /* Ocupa todo el espacio de la foto */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    padding: 1.25rem 1.25rem 5.5rem;
     z-index: 2;         /* Se asegura de verse arriba de la foto */
 }
 
