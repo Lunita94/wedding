@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCountdown();
   setupCarousel();
   setupPersonalizedRsvp();
+  setupMusic();
 });
 
 function setupNavigation() {
@@ -46,30 +47,56 @@ function setupNavigation() {
 
 function toggleMusica() {
   const audio = document.querySelector("#musica");
-  const icon = document.querySelector("#music-icon");
-  const label = document.querySelector("#music-label");
-
-  if (!audio || !icon || !label) return;
+  if (!audio) return;
 
   if (audio.paused) {
-    audio
-      .play()
-      .then(() => {
-        icon.textContent = "♬";
-        label.textContent = "Pausar musica";
-      })
-      .catch(() => {
-        label.textContent = "No se pudo reproducir la musica";
-      });
+    audio.play().catch(() => {
+      updateMusicButton();
+      const tooltip = document.querySelector("#tooltip-text");
+      if (tooltip) tooltip.textContent = "No se pudo reproducir la música. Intenta nuevamente.";
+    });
     return;
   }
 
   audio.pause();
-  icon.textContent = "♪";
-  label.textContent = "Reproducir musica";
 }
 
 window.toggleMusica = toggleMusica;
+
+function updateMusicButton() {
+  const audio = document.querySelector("#musica");
+  const button = document.querySelector("#music-btn");
+  if (!audio || !button) return;
+
+  const playing = !audio.paused;
+  const label = playing ? "Pausar música" : "Reproducir música";
+  document.querySelector("#note-svg")?.classList.toggle("note-playing", playing);
+  const slash = document.querySelector("#slash-svg");
+  if (slash) slash.style.opacity = playing ? "0" : "1";
+  button.setAttribute("aria-label", label);
+  button.setAttribute("aria-pressed", String(playing));
+  button.title = label;
+  const tooltip = document.querySelector("#tooltip-text");
+  if (tooltip) tooltip.textContent = label;
+}
+
+function setupMusic() {
+  const audio = document.querySelector("#musica");
+  if (!audio) return;
+
+  audio.addEventListener("play", updateMusicButton);
+  audio.addEventListener("pause", updateMusicButton);
+  updateMusicButton();
+  audio.play().catch(() => {
+    updateMusicButton();
+    document.addEventListener("click", (event) => {
+      // El control manual ya gestiona su clic; no repetirlo por propagacion.
+      if (!event.target.closest("#music-btn") && audio.paused) {
+        audio.play().catch(updateMusicButton);
+      }
+    }, { once: true });
+  });
+}
 
 function setupCountdown() {
   const countdown = document.querySelector("#countdown");
@@ -441,55 +468,3 @@ function loadJsonp(params) {
 function createSubmissionId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
 }
-
-
-// Función para pausar / reproducir manualmente al hacer clic
-function toggleMusica() {
-    const audio = document.getElementById('musica');
-    const noteSvg = document.getElementById('note-svg');
-    const slashSvg = document.getElementById('slash-svg');
-
-    if (!audio) return;
-
-    if (audio.paused) {
-        audio.play().then(() => {
-            if (noteSvg) noteSvg.classList.add('note-playing');
-            if (slashSvg) slashSvg.style.opacity = '0';
-        }).catch(error => {
-            console.error("Error al reproducir audio:", error);
-        });
-    } else {
-        audio.pause();
-        if (noteSvg) noteSvg.classList.remove('note-playing');
-        if (slashSvg) slashSvg.style.opacity = '1';
-    }
-}
-
-// Intentar iniciar la música automáticamente al abrir la página
-document.addEventListener('DOMContentLoaded', () => {
-    const audio = document.getElementById('musica');
-    const noteSvg = document.getElementById('note-svg');
-    const slashSvg = document.getElementById('slash-svg');
-
-    if (!audio) return;
-
-    // Intentamos reproducir de entrada
-    audio.play().then(() => {
-        // Si el navegador lo permite, activa la corchea en movimiento y oculta la raya
-        if (noteSvg) noteSvg.classList.add('note-playing');
-        if (slashSvg) slashSvg.style.opacity = '0';
-    }).catch(() => {
-        // Si el navegador bloquea el autoplay con sonido, se inicia con el primer clic en la pantalla
-        const activarEnPrimerClic = () => {
-            audio.play().then(() => {
-                if (noteSvg) noteSvg.classList.add('note-playing');
-                if (slashSvg) slashSvg.style.opacity = '0';
-            }).catch(e => console.log(e));
-            document.removeEventListener('click', activarEnPrimerClic);
-        };
-        document.addEventListener('click', activarEnPrimerClic);
-    });
-});
-
-
-
