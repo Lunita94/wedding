@@ -36,6 +36,7 @@
     
     /* Textos y Neutros */
     --gris: #6b6b6b;
+    --griss:#393d42;
     --gris-light: #a0a0a0;
     --texto: #2c2c2c;
     --ink: #4b3740;
@@ -646,7 +647,7 @@ p.eyebrow,
     /*font-color:#57534e;*/
     font-size : clamp(0.85rem, 2vw, 0.95rem);
     font-weight: 300;
-    color: var(--gris);
+    color: var(--griss);
     line-height: 1.8;
     margin-bottom: 1rem;
 }
@@ -1390,7 +1391,7 @@ p.eyebrow,
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     font-weight: 300;
-    color: var(--gris, #6b6b6b);
+    color: var(--griss, #6b6b6b);
     max-width: 500px;
     margin: 0 auto 2.5rem auto;
 }
@@ -1660,14 +1661,16 @@ h3 {
     margin-bottom: 1.5rem;
 }
 
+
 .body-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.85rem, 2vw, 0.95rem);
-    font-weight: 300;
-    color: var(--gris);
+    font-size: clamp(1rem, 3.5vw, 1.125rem);
+    font-weight: 400;
+    color: var(--griss);
     line-height: 1.8;
     margin-bottom: 1rem;
 }
+
 
 .max-narrow {
     max-width: 480px;
@@ -2462,7 +2465,7 @@ h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     font-weight: 300;
-    color: var(--gris, #6b6b6b);
+    color: var(--griss, #6b6b6b);
     max-width: 500px;
     margin: 0 auto 2.5rem auto;
 }
@@ -2542,8 +2545,8 @@ h3 {
 /* Texto de ubicación (Templo de San Juan / Salón) */
 .event-card p:not(.event-meta) {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    color: var(--texto, #2c2c2c);
+    font-size: 1rem;
+    color: var(--texto, --griss);
     line-height: 1.6;
     margin-bottom: 1.8rem;
 }
