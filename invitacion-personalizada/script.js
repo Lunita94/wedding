@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       once: false,
       mirror: true,
       anchorPlacement: "top-center",
-      easing: "ease-out-cubic"
+      easing: "ease-out-cubic",
     });
   }
 
@@ -53,7 +53,9 @@ function toggleMusica() {
     audio.play().catch(() => {
       updateMusicButton();
       const tooltip = document.querySelector("#tooltip-text");
-      if (tooltip) tooltip.textContent = "No se pudo reproducir la música. Intenta nuevamente.";
+      if (tooltip)
+        tooltip.textContent =
+          "No se pudo reproducir la música. Intenta nuevamente.";
     });
     return;
   }
@@ -70,7 +72,9 @@ function updateMusicButton() {
 
   const playing = !audio.paused;
   const label = playing ? "Pausar música" : "Reproducir música";
-  document.querySelector("#note-svg")?.classList.toggle("note-playing", playing);
+  document
+    .querySelector("#note-svg")
+    ?.classList.toggle("note-playing", playing);
   const slash = document.querySelector("#slash-svg");
   if (slash) slash.style.opacity = playing ? "0" : "1";
   button.setAttribute("aria-label", label);
@@ -89,12 +93,16 @@ function setupMusic() {
   updateMusicButton();
   audio.play().catch(() => {
     updateMusicButton();
-    document.addEventListener("click", (event) => {
-      // El control manual ya gestiona su clic; no repetirlo por propagacion.
-      if (!event.target.closest("#music-btn") && audio.paused) {
-        audio.play().catch(updateMusicButton);
-      }
-    }, { once: true });
+    document.addEventListener(
+      "click",
+      (event) => {
+        // El control manual ya gestiona su clic; no repetirlo por propagación.
+        if (!event.target.closest("#music-btn") && audio.paused) {
+          audio.play().catch(updateMusicButton);
+        }
+      },
+      { once: true },
+    );
   });
 }
 
@@ -106,7 +114,7 @@ function setupCountdown() {
     const remaining = new Date(RSVP_CONFIG.weddingDate).getTime() - Date.now();
 
     if (remaining <= 0) {
-      countdown.innerHTML = "<span class='count-today'>Es hoy!</span>";
+      countdown.innerHTML = "<span class='count-today'>¡Es hoy!</span>";
       return;
     }
 
@@ -192,7 +200,7 @@ function setupPersonalizedRsvp() {
       const message = noLink?.querySelector("p");
       if (message)
         message.textContent =
-          "No pudimos validar este enlace. Revisa que este completo o intenta nuevamente.";
+          "No pudimos validar este enlace. Revisa que esté completo o intenta nuevamente.";
     });
 }
 
@@ -216,13 +224,15 @@ function showInvitationEnvelope(invitation) {
   const addressee = document.querySelector("#envelope-addressee");
   const prefix = document.querySelector("#envelope-address-prefix");
   const letter = document.querySelector("#envelope-letter");
+  const letterAddressee = document.querySelector("#envelope-letter-addressee");
   const continueButton = document.querySelector("#envelope-continue");
 
   if (!gate || !scene || !addressee || !prefix || !continueButton) return;
 
   const family = invitation.family?.trim().replace(/^familia\s+/i, "");
-  prefix.textContent = family ? "" : "Para";
+  prefix.textContent = "Para:";
   addressee.textContent = family || "nuestros invitados";
+  if (letterAddressee) letterAddressee.textContent = addressee.textContent;
   gate.setAttribute("aria-hidden", "false");
   gate.classList.add("is-ready");
   scene.disabled = false;
@@ -237,17 +247,22 @@ function showInvitationEnvelope(invitation) {
       const reducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       ).matches;
-      window.setTimeout(() => {
-        letter?.setAttribute("aria-hidden", "false");
-        gate.classList.add("is-open");
-        continueButton.disabled = false;
-        continueButton.focus({ preventScroll: true });
-      }, reducedMotion ? 0 : 1500);
+      window.setTimeout(
+        () => {
+          letter?.setAttribute("aria-hidden", "false");
+          gate.classList.add("is-open");
+          continueButton.disabled = false;
+          continueButton.focus({ preventScroll: true });
+        },
+        reducedMotion ? 0 : 1500,
+      );
     },
     { once: true },
   );
 
-  continueButton.addEventListener("click", hideInvitationEnvelope, { once: true });
+  continueButton.addEventListener("click", hideInvitationEnvelope, {
+    once: true,
+  });
 }
 
 function hideInvitationEnvelope() {
@@ -317,7 +332,8 @@ function renderInvitation(invitation) {
 
 async function submitRsvp(event) {
   event.preventDefault();
-  if (!currentInvitation || currentInvitation.responded || rsvpSubmitting) return;
+  if (!currentInvitation || currentInvitation.responded || rsvpSubmitting)
+    return;
 
   const form = event.currentTarget;
   const submitButton = document.querySelector("#rsvp-submit");
@@ -328,7 +344,9 @@ async function submitRsvp(event) {
   const declined = form.querySelector("#rsvp-decline").checked;
 
   if (!selectedGuestIds.length && !declined) {
-    showRsvpError("Selecciona al menos una persona o marca «No podemos asistir».");
+    showRsvpError(
+      "Selecciona al menos una persona o marca «No podemos asistir».",
+    );
     return;
   }
   if (selectedGuestIds.length && declined) {
@@ -375,7 +393,8 @@ async function submitRsvp(event) {
     } else if (receipt?.invitation?.responded) {
       Object.assign(currentInvitation, receipt.invitation);
       showSuccess(
-        currentInvitation.guests.filter((guest) => guest.attendance === "si").length,
+        currentInvitation.guests.filter((guest) => guest.attendance === "si")
+          .length,
         true,
       );
     } else {
@@ -390,7 +409,7 @@ async function submitRsvp(event) {
     if (fieldset) fieldset.disabled = false;
     if (submitButton) {
       submitButton.disabled = false;
-      submitButton.textContent = "Enviar confirmacion";
+      submitButton.textContent = "Enviar confirmación";
     }
   }
 }
@@ -403,12 +422,12 @@ function showSuccess(attendingCount, alreadyResponded = false) {
 
   if (title)
     title.textContent = alreadyResponded
-      ? "Confirmacion registrada"
-      : "Muchas gracias!";
+      ? "Confirmación registrada"
+      : "¡Muchas gracias!";
   if (text) {
     const responseSummary = attendingCount
-      ? `Registramos la asistencia de ${attendingCount} persona${attendingCount === 1 ? "" : "s"}. Nos vemos el 20 de diciembre!`
-      : "Registramos que no podran acompanarnos. Los tendremos presentes en este dia tan especial.";
+      ? `Registramos la asistencia de ${attendingCount} persona${attendingCount === 1 ? "" : "s"}. ¡Nos vemos el 20 de diciembre!`
+      : "Registramos que no podrán acompañarnos. Los tendremos presentes en este día tan especial.";
     text.textContent = alreadyResponded
       ? `Ya recibimos su respuesta. ${responseSummary}`
       : responseSummary;
