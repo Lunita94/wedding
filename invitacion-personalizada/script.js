@@ -224,7 +224,6 @@ function showInvitationEnvelope(invitation) {
   const addressee = document.querySelector("#envelope-addressee");
   const prefix = document.querySelector("#envelope-address-prefix");
   const letter = document.querySelector("#envelope-letter");
-  const letterAddressee = document.querySelector("#envelope-letter-addressee");
   const continueButton = document.querySelector("#envelope-continue");
 
   if (!gate || !scene || !addressee || !prefix || !continueButton) return;
@@ -232,7 +231,6 @@ function showInvitationEnvelope(invitation) {
   const family = invitation.family?.trim().replace(/^familia\s+/i, "");
   prefix.textContent = "Para:";
   addressee.textContent = family || "nuestros invitados";
-  if (letterAddressee) letterAddressee.textContent = addressee.textContent;
   gate.setAttribute("aria-hidden", "false");
   gate.classList.add("is-ready");
   scene.disabled = false;
