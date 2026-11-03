@@ -228,7 +228,7 @@ function showInvitationEnvelope(invitation) {
 
   if (!gate || !scene || !addressee || !prefix || !continueButton) return;
 
-  const family = invitation.family?.trim().replace(/^familia\s+/i, "");
+  const family = invitation.family?.trim();
   prefix.textContent = "Para:";
   addressee.textContent = family || "nuestros invitados";
   gate.setAttribute("aria-hidden", "false");
